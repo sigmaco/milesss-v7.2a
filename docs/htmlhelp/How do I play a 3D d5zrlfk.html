@@ -1,0 +1,39 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>How do I play a 3D digital sound?</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="">
+<meta name="ms-hkwd" content="How do I play a 3D digital sound?">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<table>
+<tr valign=top><td><b><p>Q:</p></b></td><td><b><p>How do I play a 3D digital sound?</p></b></td></tr>
+<tr valign=top><td><p>A:</p></td><td><p>Just like you'd play a 2D one, except that to give the sound a position in 3D space, you'll need to pass its location to <a href="AIL_set_sample_3D_pozr6aaa.html">AIL_set_sample_3D_position</a>. Unless your sound positions are relative to a listener at the origin, you'll also want to pass the listener's location to <a href="AIL_set_listener_3D_rl07ba.html">AIL_set_listener_3D_position</a>. </p><p>Note that 3D audio data should be mono (not stereo) under most circumstances. See the "How can I assign 3D positions to stereo samples?" <i><a href="How can I assign 3D zi3n46.html#FAQ">FAQ</a></i> for more details. </p><p>Most likely, your application will also need to use the <a href="AIL_set_sample_3D_dicyrnaa.html">AIL_set_sample_3D_distances</a> function to set the 3D volume-falloff characteristics. See the "My 3D sound isn't falling off like I expected..." <i><a href="My 3D sound isn't fa7r7p3x.html#FAQ">FAQ</a></i> for more details on 3D distances. </p></td></tr>
+</table>
+<p><a href="My 3D sound isn't fa7r7p3x.html">Next Topic (My 3D sound isn't falling off like I expected - what's going on?)</a>  </p><p><a href="How do I smoothly ransdjrf.html">Previous Topic (How do I smoothly ramp up or ramp down the volume of a sample over time?)</a>  </p><p>
+<br>
+<b>Group:</b>
+<a href="FAQs and How Tos.html">FAQs and How Tos</a><br>
+<b>Related Functions:</b>
+<a href="AIL_set_listener_3D_rl07ba.html">AIL_set_listener_3D_position</a>, <a href="AIL_set_sample_3D_dicyrnaa.html">AIL_set_sample_3D_distances</a>, <a href="AIL_set_sample_3D_pozr6aaa.html">AIL_set_sample_3D_position</a><br>
+<b>Related FAQs:</b>
+<a href="How can I assign 3D zi3n46.html">How can I assign 3D positions to stereo samples?</a>, <a href="My 3D sound isn't fa7r7p3x.html">My 3D sound isn't falling off like I expected - what's going on?</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

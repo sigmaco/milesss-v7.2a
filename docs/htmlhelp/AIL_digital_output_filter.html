@@ -1,0 +1,55 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>AIL_digital_output_filter</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="returns the output filter (either per-voice or matrix) provider for a specific driver.">
+<meta name="ms-hkwd" content="AIL_digital_output_filter">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>AIL_digital_output_filter</h1>
+<p>The function  <b>AIL_digital_output_filter</b> returns the output filter (either per-voice or matrix) provider for a specific driver.</p>
+<table width=100% cellspacing=0 class=pre>
+<tr class=pre>
+<td class=pre>
+<pre><b><a href="HPROVIDER.html" class=trn>HPROVIDER</a> <a href="AIL_digital_output_filter.html" class=trn>AIL_digital_output_filter</a>(</b>
+<b>&nbsp;&nbsp;<a href="HDIGDRIVER.html" class=trn>HDIGDRIVER</a>&nbsp;</b><i>dig</i>
+<b>);</b></pre>
+</td>
+</tr>
+</table>
+<h4>In Parameters</h4>
+<dl>
+<dt><i>dig</i></dt>
+<dd>specifies the HDIGDRIVER to query.</dd>
+</dl>
+<h4>Returns</h4>
+<p>The output filter provider, or 0 if the driver's output format does not require an output filter.</p>
+<h4>Discussion</h4>
+<p> Certain output configurations supported by <a href="AIL_open_digital_driver.html">AIL_open_digital_driver</a>, including DirectSound3D, EAX, DTS, Dolby Surround, and SRS Circle Surround(r), are implemented with extension modules called <i>output filters</i>. Output filters can offer additional control options beyond those available from the core MSS API. Most applications will never need to work with output filter controls directly, but those that wish to do so can obtain a handle to the current voice or matrix output filter from <a href="AIL_digital_output_filter.html">AIL_digital_output_filter</a> and access provider- and driver-level properties via the <a href="AIL_filter_property.html">AIL_filter_property</a> and <a href="AIL_output_filter_dr8og4f1.html">AIL_output_filter_driver_property</a> functions. </p><p>Sample-level properties may be accessed through calls to <a href="AIL_sample_stage_property.html">AIL_sample_stage_property</a> with the SP_OUTPUT stage identifier. Sample-level property control is available only for hardware voice filters such as DirectSound3D and EAX, not matrix filters such as Dolby. </p><p>You can find a list of configuration-specific properties in Digital Audio <i><a href="Digital Audio Services.html#Services">Services</a></i>. See the <b>examms</b> demo program for an example of how to enumerate and query provider-level, driver-level, and sample-level properties. </p>
+<p>
+<br>
+<b>Group:</b>
+<a href="Digital Filter Services.html">Digital Filter Services</a><br>
+<b>Related Functions:</b>
+<a href="AIL_digital_output_filter.html">AIL_digital_output_filter</a>, <a href="AIL_enumerate_outputs6xxcy.html">AIL_enumerate_output_filter_driver_properties</a>, <a href="AIL_enumerate_outputymkcvx.html">AIL_enumerate_output_filter_sample_properties</a>, <a href="AIL_filter_property.html">AIL_filter_property</a>, <a href="AIL_open_digital_driver.html">AIL_open_digital_driver</a>, <a href="AIL_output_filter_dr8og4f1.html">AIL_output_filter_driver_property</a>, <a href="AIL_sample_stage_property.html">AIL_sample_stage_property</a><br>
+<b>Related Basic Types:</b>
+<a href="HDIGDRIVER.html">HDIGDRIVER</a>, <a href="HPROVIDER.html">HPROVIDER</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

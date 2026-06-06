@@ -1,0 +1,64 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>AIL_set_sample_3D_cone</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="sets the sound emission cone on a sample.">
+<meta name="ms-hkwd" content="AIL_set_sample_3D_cone">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>AIL_set_sample_3D_cone</h1>
+<p>The function  <b>AIL_set_sample_3D_cone</b> sets the sound emission cone on a sample.</p>
+<table width=100% cellspacing=0 class=pre>
+<tr class=pre>
+<td class=pre>
+<pre><b><a href="void.html" class=trn>void</a> <a href="AIL_set_sample_3D_cone.html" class=trn>AIL_set_sample_3D_cone</a>(</b>
+<b>&nbsp;&nbsp;<a href="HSAMPLE.html" class=trn>HSAMPLE</a>&nbsp;</b><i>S</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="F32.html" class=trn>F32</a>&nbsp;</b><i>inner_angle</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="F32.html" class=trn>F32</a>&nbsp;</b><i>outer_angle</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="F32.html" class=trn>F32</a>&nbsp;</b><i>outer_volume</i>
+<b>);</b></pre>
+</td>
+</tr>
+</table>
+<h4>In Parameters</h4>
+<dl>
+<dt><i>S</i></dt>
+<dd>indicates the sample handle to control.</dd>
+<dt><i>inner_angle</i></dt>
+<dd>is the inner angle of the sound cone in degrees (0 to 360). If the listener is within this angle of this sample, then the sound is at its normal volume (based on its initial volume, distance, occlusion, etc).</dd>
+<dt><i>outer_angle</i></dt>
+<dd>is the outer angle of the sound cone in degrees (0 to 360). If the listener is outside the inner angle but still inside the outer angle, then the volume is scaled linearly from no scaling (when close to the inner angle) to the outer volume scale (when close or greater than the outer angle).</dd>
+<dt><i>outer_volume</i></dt>
+<dd>is the amount to scale the normal volume to when outside the outer angle. A value of 0 means the normal volume is scaled all the way to zero. A volume of 1.0 means that the normal volume isn't scaled at all (and you wouldn't hear the difference when inside or outside of the cone).</dd>
+</dl>
+<h4>Discussion</h4>
+<p>By default, every sound is omni-directional - the inner and outer angles are 360 degrees and the outer volume is 1.0. </p><p> The inner angle should always be smaller than the outer angle. </p><p> Example files that use this function: examms.cpp</p>
+<p>
+<br>
+<b>Group:</b>
+<a href="Digital Audio Services.html">Digital Audio Services</a><br>
+<b>Related Functions:</b>
+<a href="AIL_calculate_3D_chasw8mvh.html">AIL_calculate_3D_channel_levels</a>, <a href="AIL_sample_3D_cone.html">AIL_sample_3D_cone</a>, <a href="AIL_set_sample_3D_dicyrnaa.html">AIL_set_sample_3D_distances</a>, <a href="AIL_set_sample_3D_pozr6aaa.html">AIL_set_sample_3D_position</a><br>
+<b>Related Basic Types:</b>
+<a href="F32.html">F32</a>, <a href="HSAMPLE.html">HSAMPLE</a>, <a href="void.html">void</a><br>
+<b>Related FAQs:</b>
+<a href="How do I use multi-ckfnxne.html">How do I use multi-channel sound output in Miles?</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

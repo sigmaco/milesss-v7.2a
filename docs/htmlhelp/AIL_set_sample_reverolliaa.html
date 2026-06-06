@@ -1,0 +1,61 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>AIL_set_sample_reverb_levels</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="changes the reverb levels of a digital audio sample.">
+<meta name="ms-hkwd" content="AIL_set_sample_reverb_levels">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>AIL_set_sample_reverb_levels</h1>
+<p>The function  <b>AIL_set_sample_reverb_levels</b> changes the reverb levels of a digital audio sample.</p>
+<table width=100% cellspacing=0 class=pre>
+<tr class=pre>
+<td class=pre>
+<pre><b><a href="void.html" class=trn>void</a> <a href="AIL_set_sample_reverolliaa.html" class=trn>AIL_set_sample_reverb_levels</a>(</b>
+<b>&nbsp;&nbsp;<a href="HSAMPLE.html" class=trn>HSAMPLE</a>&nbsp;</b><i>S</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="F32.html" class=trn>F32</a>&nbsp;</b><i>dry_level</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="F32.html" class=trn>F32</a>&nbsp;</b><i>wet_level</i>
+<b>);</b></pre>
+</td>
+</tr>
+</table>
+<h4>In Parameters</h4>
+<dl>
+<dt><i>S</i></dt>
+<dd>indicates the sample whose reverb is to be set.</dd>
+<dt><i>dry_level</i></dt>
+<dd>specifies the level of the dry sound signal (the non-reverbed sound). The range is 0.0 for no output, 1.0 for full output.</dd>
+<dt><i>wet_level</i></dt>
+<dd>specifies the level of the wet sound signal (the reverberations). The range is 0.0 for no output, 1.0 for full output.</dd>
+</dl>
+<h4>Discussion</h4>
+<p>This function controls the reverb levels applied by the <a href="AIL_set_digital_mast3hdbfa.html">AIL_set_digital_master_reverb</a>. These levels are linear scalars, where each doubling of the level value represents a 6-dB change in the wet or dry level. For instance, a wet_level or dry_level value of 0.5 is 6 dB quieter than a value of 1.0, and 0.25 would be 12 dB quieter than 1.0. </p><p> Reverb requires CPU time to apply, but it's pretty minimal. You can monitor the CPU use with the <a href="AIL_digital_CPU_percent.html">AIL_digital_CPU_percent</a> function. </p><p> You can use this function even if you haven't started playback yet.</p>
+<p>
+<br>
+<b>Group:</b>
+<a href="Digital Audio Services.html">Digital Audio Services</a><br>
+<b>Related Functions:</b>
+<a href="AIL_calculate_3D_chasw8mvh.html">AIL_calculate_3D_channel_levels</a>, <a href="AIL_digital_CPU_percent.html">AIL_digital_CPU_percent</a>, <a href="AIL_digital_master_r9odawz.html">AIL_digital_master_reverb_levels</a>, <a href="AIL_sample_reverb_levels.html">AIL_sample_reverb_levels</a>, <a href="AIL_sample_volume_levels.html">AIL_sample_volume_levels</a>, <a href="AIL_set_digital_mast3hdbfa.html">AIL_set_digital_master_reverb</a>, <a href="AIL_set_digital_mastfheawz.html">AIL_set_digital_master_reverb_levels</a>, <a href="AIL_set_room_type.html">AIL_set_room_type</a>, <a href="AIL_set_sample_51_voc8298l.html">AIL_set_sample_51_volume_levels</a>, <a href="AIL_set_sample_51_vonel4aa.html">AIL_set_sample_51_volume_pan</a>, <a href="AIL_set_sample_volumolliaa.html">AIL_set_sample_volume_levels</a>, <a href="AIL_set_sample_volume_pan.html">AIL_set_sample_volume_pan</a><br>
+<b>Related Basic Types:</b>
+<a href="F32.html">F32</a>, <a href="HSAMPLE.html">HSAMPLE</a>, <a href="void.html">void</a><br>
+<b>Related FAQs:</b>
+<a href="How do I set an envi8ah3mj.html">How do I set an environmental reverb room style?</a>, <a href="What's the best way 3k0qus.html">What's the best way to port my older Miles application to MSS 7?</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

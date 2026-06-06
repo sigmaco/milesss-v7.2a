@@ -1,0 +1,100 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>Creative EAX 2, 3, and 4 Providers</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="">
+<meta name="ms-hkwd" content="Creative EAX 2, 3, and 4 Providers">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>Creative EAX 2, 3, and 4 Providers</h1>
+<h4>Discussion</h4>
+<p>Miles has extensive built-in support for EAX 2, 3, and 4. EAX is basically a set of environmental reverbation algorithms (and a few other DSP effects in EAX 4) that are performed in hardware on Creative Labs sound cards. </p><p>EAX 2 is fairly widely supported, even on non-Creative hardware. Unfortunately, like all hardware based systems, the quality, functionality, and even the stability varies dramatically from sound card to sound card. Intel's EAX 2 support sounds <b>very</b> different from the Creative sound cards, for example. In fact, even Creative's own cards sound very different from each other - an Audigy 4 card sounds quite different than an SBLive or an Audigy 1 - even when using identical EAX 2 software settings. </p><p>Due to this variablity, most developers are now authoring solely for software based 3D and environmental reverb systems like those in Miles 7 (even non-Miles developers like id Software have moved this direction). The CPU impact of even the most sophisticated reverb and DSP filters is so small (usually less than 3% in Miles, for example) that being able to author the sound and reverb mix of a game knowing that it always sounds the same is just too big of a win. </p><p>That said, if you can guarantee the latest Creative card and sound drivers (say, if you are doing a bundle deal with them, or co-marketing), then EAX hardware does sound great when you take the time to author for it. </p><p>That's why most developers that do choose to support EAX usually only support the Creative cards (and even then, usually only the latest hardware). It's hard enough to write a custom sound path just for EAX - let alone multiple ones for the various other sound cards out there. </p><p>Each section in this chapter will describe the properties that we expose for each level of the EAX API. Note that EAX 2 is the only API that non-Creative cards currently emulate, if you are trying for widest compatibility. </p>
+<table class=toc width=90%>
+<tr class=toc>
+<th height=25 valign=top class=toc  colspan="2"><a href="Creative EAX 2, 3, aiblpcu.html">Creative EAX 2, 3, and 4 Providers</a></th>
+</tr>
+<tr class=grid>
+<td height=25 valign=top class=toc colspan="2"><a href="Creative's EAX 2 Prosaseaa.html">Creative's EAX 2 Properties</a></td>
+</tr>
+<tr class=grid>
+<td height=25 valign=top class=toc colspan="2"><a href="Creative's EAX 3 Prosaseaa.html">Creative's EAX 3 Properties</a></td>
+</tr>
+<tr class=grid>
+<td height=25 valign=top class=toc colspan="2"><a href="Creative's EAX 4 Prosaseaa.html">Creative's EAX 4 Properties</a></td>
+</tr>
+<tr class=grid>
+<td height=25 valign=top class=toc ><a href="EAX_SAMPLE_SLOT_VOLUME.html">EAX_SAMPLE_SLOT_VOLUME</a></td>
+<td height=25 valign=top class=toc>used to control the sound levels for a slot that the sample should play to</td>
+</tr>
+<tr class=grid>
+<td height=25 valign=top class=toc ><a href="EAX_SAMPLE_SLOT_VOLUMES.html">EAX_SAMPLE_SLOT_VOLUMES</a></td>
+<td height=25 valign=top class=toc>used to control the sound levels for each the two possible slots that the sample can play into</td>
+</tr>
+<tr class=grid>
+<td height=25 valign=top class=toc ><a href="EAX_REVERB.html">EAX_REVERB</a></td>
+<td height=25 valign=top class=toc>used to control the environmental reverb filter in the EAX 4 3D provider</td>
+</tr>
+<tr class=grid>
+<td height=25 valign=top class=toc ><a href="EAX_AUTOGAIN.html">EAX_AUTOGAIN</a></td>
+<td height=25 valign=top class=toc>used to control the automatic gain control filter in the EAX 4 3D provider</td>
+</tr>
+<tr class=grid>
+<td height=25 valign=top class=toc ><a href="EAX_AUTOWAH.html">EAX_AUTOWAH</a></td>
+<td height=25 valign=top class=toc>used to control the autowah filter in the EAX 4 3D provider</td>
+</tr>
+<tr class=grid>
+<td height=25 valign=top class=toc ><a href="EAX_CHORUS.html">EAX_CHORUS</a></td>
+<td height=25 valign=top class=toc>used to control the chorus filter in the EAX 4 3D provider</td>
+</tr>
+<tr class=grid>
+<td height=25 valign=top class=toc ><a href="EAX_DISTORTION.html">EAX_DISTORTION</a></td>
+<td height=25 valign=top class=toc>used to control the distortion filter in the EAX 4 3D provider</td>
+</tr>
+<tr class=grid>
+<td height=25 valign=top class=toc ><a href="EAX_ECHO.html">EAX_ECHO</a></td>
+<td height=25 valign=top class=toc>used to control the echo filter in the EAX 4 3D provider</td>
+</tr>
+<tr class=grid>
+<td height=25 valign=top class=toc ><a href="EAX_EQUALIZER.html">EAX_EQUALIZER</a></td>
+<td height=25 valign=top class=toc>used to control the equalizer filter in the EAX 4 3D provider</td>
+</tr>
+<tr class=grid>
+<td height=25 valign=top class=toc ><a href="EAX_FLANGER.html">EAX_FLANGER</a></td>
+<td height=25 valign=top class=toc>used to control the flange filter in the EAX 4 3D provider</td>
+</tr>
+<tr class=grid>
+<td height=25 valign=top class=toc ><a href="EAX_FSHIFTER.html">EAX_FSHIFTER</a></td>
+<td height=25 valign=top class=toc>used to control the frequency shifter filter in the EAX 4 3D provider</td>
+</tr>
+<tr class=grid>
+<td height=25 valign=top class=toc ><a href="EAX_VMORPHER.html">EAX_VMORPHER</a></td>
+<td height=25 valign=top class=toc>used to control the vocal morpher filter in the EAX 4 3D provider</td>
+</tr>
+<tr class=grid>
+<td height=25 valign=top class=toc ><a href="EAX_PSHIFTER.html">EAX_PSHIFTER</a></td>
+<td height=25 valign=top class=toc>used to control the pitch shifter filter in the EAX 4 3D provider</td>
+</tr>
+<tr class=grid>
+<td height=25 valign=top class=toc ><a href="EAX_RMODULATOR.html">EAX_RMODULATOR</a></td>
+<td height=25 valign=top class=toc>used to control the ring modulator filter in the EAX 4 3D provider</td>
+</tr>
+</table>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

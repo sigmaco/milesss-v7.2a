@@ -1,0 +1,38 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>Miles DTS Provider for the Sony PS2</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="">
+<meta name="ms-hkwd" content="Miles DTS Provider for the Sony PS2">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>Miles DTS Provider for the Sony PS2</h1>
+<h4>Discussion</h4>
+<p> The Miles DTS provider is accessed by passing <a href="MSS_MC_SPEC.html#MSS_MC_40_DTS">MSS_MC_40_DTS</a> or <a href="MSS_MC_SPEC.html#MSS_MC_51_DTS">MSS_MC_51_DTS</a> as the channel specification in a call to <a href="AIL_open_digital_driver.html">AIL_open_digital_driver</a> or <a href="AIL_quick_startup.html">AIL_quick_startup</a>. Miles's DTS support is provided by a run-time surround-sound encoder module which is implemented in a so-called 'matrix' output filter. </p><p>To add DTS support to your Sony PS2 application, you'll need to link with the <b>mssdts.a</b> library provided with the MSS distribution, and also with the <b>libidtsenc.a</b> library obtained directly from DTS. </p><p>You'll need to call Register_RIB(DTS) prior to <a href="AIL_startup.html">AIL_startup</a>, and you'll also need to pass the RAD_IOP_NEED_CORE0 + RAD_IOP_SPDIF flags to both <a href="RAD_IOPMemoryAmount.html">RAD_IOPMemoryAmount</a> and <a href="RAD_IOPStartUp.html">RAD_IOPStartUp</a>. That's all there is to it! However, for best CPU performance, we also recommend that you allow Miles access to the PS2 scratchpad RAM when using DTS. You can do this by calling <a href="AIL_set_scratchpad_policy.html">AIL_set_scratchpad_policy</a> at any time. </p><p><b>VU0 Usage</b> </p><p>The DTS encoder heavily utilizes VU0 (Vector Unit 0) in macro mode. Registers VF01 through VF31 and the ACC register, as well as the MAC and Status flags, are all used by the DTS encoder at interrupt time. MSS saves and restores these registers, so your application should not normally be affected. </p><p>If any VU0 code is executing in micro mode when an MSS mixer service interrupt occurs, the DTS encoder will stall until the micro mode routine has finished executing. Any code or data in local VU0 memory is not affected by the encoder. </p><p><b>Switching between PCM and DTS</b> </p><p>According to DTS, when switching the digital output from PCM to DTS or DTS to PCM, it is necessary to produce 2 seconds of silent PCM or DTS data after the switch occurs. Otherwise the switch may not work correctly on some receivers. In practice, since the Miles DTS encoder begins generating a silent bitstream as soon as <a href="AIL_open_digital_driver.html">AIL_open_digital_driver</a> is called, this guideline can be met by refraining from playing any sounds for two seconds after opening the driver. </p><p><b>DTS Preference Control</b> </p><p>The Miles DTS module doesn't provide any output-filter properties or properties. If your application is tight on memory, you can control the encoding quality by setting a lower value for the <a href="MILES_PREFERENCES.html#DIG_ENCODE_QUALITY_PERCENT">DIG_ENCODE_QUALITY_PERCENT</a> preference <i>before</i> calling <a href="AIL_open_digital_driver.html">AIL_open_digital_driver</a>. This property can range from 0 to 100, and defaults to 50. </p><p><b>Licensing info</b> Miles ships with everything necessary to hook up to DTS, except for the DTS library itself. The DTS library is only available directly from DTS. To obtain it (and we definitely recommend doing so - it sounds great!), just drop an email to Mitch Soule at mitchs@radgametools.com and he can hook you up with the DTS folks. </p>
+<p>
+<br>
+<b>Related Sections:</b>
+<a href="Miles DTS Provider fiu59xr.html">Miles DTS Provider for the Sony PS2</a><br>
+<b>Related Functions:</b>
+<a href="AIL_open_digital_driver.html">AIL_open_digital_driver</a>, <a href="AIL_quick_startup.html">AIL_quick_startup</a>, <a href="AIL_set_scratchpad_policy.html">AIL_set_scratchpad_policy</a>, <a href="AIL_startup.html">AIL_startup</a>, <a href="RAD_IOPMemoryAmount.html">RAD_IOPMemoryAmount</a>, <a href="RAD_IOPStartUp.html">RAD_IOPStartUp</a><br>
+<b>Related Basic Types:</b>
+<a href="MILES_PREFERENCES.html">MILES_PREFERENCES</a>, <a href="MSS_MC_SPEC.html">MSS_MC_SPEC</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

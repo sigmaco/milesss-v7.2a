@@ -1,0 +1,56 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>AILTRACECB</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="specifies a user-defined debug-trace callback.">
+<meta name="ms-hkwd" content="AILTRACECB">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>AILTRACECB</h1>
+<p>The function  <b>AILTRACECB</b> specifies a user-defined debug-trace callback.</p>
+<table width=100% cellspacing=0 class=pre>
+<tr class=pre>
+<td class=pre>
+<pre><b><a href="void.html" class=trn>void</a> AILCALLBACK <a href="AILTRACECB.html" class=trn>AILTRACECB</a>(</b>
+<b>&nbsp;&nbsp;<a href="char P.html" class=trn>char *</a>&nbsp;</b><i>text</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a>&nbsp;</b><i>nest_depth</i>
+<b>);</b></pre>
+</td>
+</tr>
+</table>
+<h4>In Parameters</h4>
+<dl>
+<dt><i>text</i></dt>
+<dd>specifies a zero-terminated ASCII string bearing call-trace information or formatting.</dd>
+<dt><i>nest_depth</i></dt>
+<dd>indicates the call-nesting depth within the MSS API.</dd>
+</dl>
+<h4>Discussion</h4>
+<p>The nest_depth parameter will be 1 for MSS calls which are made by the application itself, or a higher number for subsequent calls which are made from within MSS on behalf of the application-called function. (These nested calls will be reported only if <a href="AIL_register_trace_cs0khaa.html">AIL_register_trace_callback</a> was invoked with a level parameter of 2.) </p><p> The ASCII text traffic which will be passed to the AILTRACECB callback function may consist of indenting whitespace, timestamps and other marker/decorative characters as well as function names, parameters, and return values. </p><p> Background function calls (those made while Miles is executing from its own internal thread(s) or interrupt handlers) will not be reported to the trace callback.</p>
+<p>
+<br>
+<b>Group:</b>
+<a href="System Services.html">System Services</a><br>
+<b>Related Functions:</b>
+<a href="AIL_register_trace_cs0khaa.html">AIL_register_trace_callback</a><br>
+<b>Related Basic Types:</b>
+<a href="S32.html">S32</a>, <a href="char P.html">char *</a>, <a href="void.html">void</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

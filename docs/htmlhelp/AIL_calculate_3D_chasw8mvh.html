@@ -1,0 +1,110 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>AIL_calculate_3D_channel_levels</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="gives your application direct access to the Miles 3D sound-positioner function.">
+<meta name="ms-hkwd" content="AIL_calculate_3D_channel_levels">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>AIL_calculate_3D_channel_levels</h1>
+<p>The function  <b>AIL_calculate_3D_channel_levels</b> gives your application direct access to the Miles 3D sound-positioner function.</p>
+<table width=100% cellspacing=0 class=pre>
+<tr class=pre>
+<td class=pre>
+<pre><b><a href="S32.html" class=trn>S32</a> <a href="AIL_calculate_3D_chasw8mvh.html" class=trn>AIL_calculate_3D_channel_levels</a>(</b>
+<b>&nbsp;&nbsp;<a href="HDIGDRIVER.html" class=trn>HDIGDRIVER</a>&nbsp;</b><i>dig</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="F32.html" class=trn>F32</a>&nbsp;*</b><i>channel_levels</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="MSS_SPEAKER.html" class=trn>MSS_SPEAKER *</a>&nbsp;*</b><i>speaker_array</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="MSSVECTOR3D.html" class=trn>MSSVECTOR3D</a>&nbsp;const *</b><i>src_pos</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="MSSVECTOR3D.html" class=trn>MSSVECTOR3D</a>&nbsp;const *</b><i>src_face</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="MSSVECTOR3D.html" class=trn>MSSVECTOR3D</a>&nbsp;const *</b><i>src_up</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="F32.html" class=trn>F32</a>&nbsp;</b><i>src_inner_angle</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="F32.html" class=trn>F32</a>&nbsp;</b><i>src_outer_angle</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="F32.html" class=trn>F32</a>&nbsp;</b><i>src_outer_volume</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="F32.html" class=trn>F32</a>&nbsp;</b><i>src_max_dist</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="F32.html" class=trn>F32</a>&nbsp;</b><i>src_min_dist</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="MSSVECTOR3D.html" class=trn>MSSVECTOR3D</a>&nbsp;const *</b><i>listen_pos</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="MSSVECTOR3D.html" class=trn>MSSVECTOR3D</a>&nbsp;const *</b><i>listen_face</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="MSSVECTOR3D.html" class=trn>MSSVECTOR3D</a>&nbsp;const *</b><i>listen_up</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="F32.html" class=trn>F32</a>&nbsp;</b><i>rolloff_factor</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="MSSVECTOR3D.html" class=trn>MSSVECTOR3D</a>&nbsp;const *</b><i>doppler_velocity</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="F32.html" class=trn>F32</a>&nbsp;*</b><i>doppler_shift</i>
+<b>);</b></pre>
+</td>
+</tr>
+</table>
+<h4>In Parameters</h4>
+<dl>
+<dt><i>dig</i></dt>
+<dd>specifies the digital audio driver from which to acquire the listener-relative speaker location and falloff-power parameters.</dd>
+<dt><i>src_pos</i></dt>
+<dd>specifies the effective 3D position of an audio emitter (source) object.</dd>
+<dt><i>src_face</i></dt>
+<dd>specifies the source object's facing direction (front vector).</dd>
+<dt><i>src_up</i></dt>
+<dd>specifies the source object's up vector.</dd>
+<dt><i>src_inner_angle</i></dt>
+<dd>is the inner angle of the source's sound cone in degrees (0 to 360). If the listener is within this angle of this sample, then the sound is at its normal volume (based on its volume, distance, occlusion, etc). The src_inner_angle value should always be smaller than, or equal to, src_outer_angle. A value of 360.0 disables cone attenuation entirely.</dd>
+<dt><i>src_outer_angle</i></dt>
+<dd>is the outer angle of the source's sound cone in degrees (0 to 360). If the listener is outside the inner angle but still inside the outer angle, then the effective volume is scaled linearly from no scaling (when close to the inner angle) to the outer_volume value (when close or greater than the outer angle).</dd>
+<dt><i>src_outer_volume</i></dt>
+<dd>is the amount to scale the normal volume to when outside the outer angle. A value of 0 means the normal volume is scaled all the way to zero. A volume of 1.0 means that the normal volume isn't scaled at all (and you wouldn't hear a difference when inside or outside of the cone).</dd>
+<dt><i>src_max_dist</i></dt>
+<dd>is the distance from the source position to the listener position at which the sound will be clipped to silence. Note that this parameter does <b>not</b> affect the volume falloff curve.</dd>
+<dt><i>src_min_dist</i></dt>
+<dd>is the distance from the source position to the listener position at which the sound will be at maximum volume. That is, any sound that is this distance or closer to the listener will be at maximum volume.</dd>
+<dt><i>listen_pos</i></dt>
+<dd>specifies the effective 3D position of the listener object.</dd>
+<dt><i>listen_face</i></dt>
+<dd>specifies the listener object's facing direction (front vector).</dd>
+<dt><i>listen_up</i></dt>
+<dd>specifies the listener object's up vector.</dd>
+<dt><i>rolloff_factor</i></dt>
+<dd>specifies how fast 3D audio will fall off with distance. The default is 1.0, which implies no change to the "real-world" falloff speed. You can double the falloff rate by using 2.0, and you can turn off the falloff completely by using 0.0.</dd>
+<dt><i>doppler_velocity</i></dt>
+<dd>specifies the relative velocity of the source relative to (i.e., subtracted from) that of the listener, or NULL if no Doppler-shift calculations are desired.</dd>
+</dl>
+<h4>Out Parameters</h4>
+<dl>
+<dt><i>channel_levels</i></dt>
+<dd>specifies a pointer to an array of at least MAX_SPEAKERS single-precision floating-point variables which will receive the calculated channel levels, from 0.0 to 1.0.</dd>
+<dt><i>speaker_array</i></dt>
+<dd>specifies a pointer to a variable of type <a href="MSS_SPEAKER.html">MSS_SPEAKER</a> * which will receive the address of the array of speaker locations corresponding to each channel_levels entry. (This array is internal to MSS, and is always the same for a given HDIGDRIVER).</dd>
+<dt><i>doppler_shift</i></dt>
+<dd>returns the factor by which the sample or stream's playback rate should be modified to implement the doppler_velocity parameter. This parameter can be NULL if no Doppler-shift calculations are desired.</dd>
+</dl>
+<h4>Returns</h4>
+<p>The number of entries written to the channel_levels array (as well as the number of entries in the array whose location is written to *speaker_array). This will be the same as the n_logical_channels value returned by <a href="AIL_speaker_configuration.html">AIL_speaker_configuration</a>.</p>
+<h4>Discussion</h4>
+<p> This function gives you the ability to position sounds in 3D space yourself without going through the normal Miles 3D sample/listener API. Its output consists of two parallel arrays, <i>channel_levels</i> and <i>speaker_array</i>, which are suitable for use as the <i>levels</i> and <i>dest_speaker_indexes</i> inputs to the <a href="AIL_set_sample_channsk7xda.html">AIL_set_sample_channel_levels</a> function. Additionally, an optional Doppler-shift factor that can be applied with <a href="AIL_set_sample_playbug1eaa.html">AIL_set_sample_playback_rate</a> is also returned. <P> You can use this function in cases where you don't want MSS to maintain its own copy of an HSAMPLE's 3D state for any reason, or when you wish to modify the results of the default 3D positioning algorithm used by the library. An example might be an application requiring multiple "listeners" on the same physical platform; e.g., a split-screen multiplayer title. </p><p>For details on sound positions, cones, and distance attenuation, refer to the <a href="AIL_set_sample_3D_pozr6aaa.html">AIL_set_sample_3D_position</a>, <a href="AIL_set_sample_3D_cone.html">AIL_set_sample_3D_cone</a>, <a href="AIL_set_sample_3D_dicyrnaa.html">AIL_set_sample_3D_distances</a>, and <a href="AIL_set_3D_rolloff_factor.html">AIL_set_3D_rolloff_factor</a> functions. For simplicity's sake, most applications should use these functions rather than calling <a href="AIL_calculate_3D_chasw8mvh.html">AIL_calculate_3D_channel_levels</a> manually. </p><p>Note that the auto_3D_wet_atten parameter in <a href="AIL_set_sample_3D_dicyrnaa.html">AIL_set_sample_3D_distances</a> has no corresponding functionality when <a href="AIL_calculate_3D_chasw8mvh.html">AIL_calculate_3D_channel_levels</a> is used. If you need to scale wet-reverb attenuation based on distance while using <a href="AIL_calculate_3D_chasw8mvh.html">AIL_calculate_3D_channel_levels</a>, you'll need to perform the calculation separately and pass the result to <a href="AIL_set_sample_reverolliaa.html">AIL_set_sample_reverb_levels</a>. </p><p>For more information on channel-based control functions such as this one, you can review the <i>How do I use multi-channel sound output in Miles? </i><a href="How do I use multi-ckfnxne.html#FAQ">FAQ</a>. </p>
+<p>
+<br>
+<b>Group:</b>
+<a href="Digital Audio Services.html">Digital Audio Services</a><br>
+<b>Related Functions:</b>
+<a href="AIL_calculate_3D_chasw8mvh.html">AIL_calculate_3D_channel_levels</a>, <a href="AIL_set_3D_rolloff_factor.html">AIL_set_3D_rolloff_factor</a>, <a href="AIL_set_sample_3D_cone.html">AIL_set_sample_3D_cone</a>, <a href="AIL_set_sample_3D_dicyrnaa.html">AIL_set_sample_3D_distances</a>, <a href="AIL_set_sample_3D_pozr6aaa.html">AIL_set_sample_3D_position</a>, <a href="AIL_set_sample_channsk7xda.html">AIL_set_sample_channel_levels</a>, <a href="AIL_set_sample_playbug1eaa.html">AIL_set_sample_playback_rate</a>, <a href="AIL_set_sample_reverolliaa.html">AIL_set_sample_reverb_levels</a>, <a href="AIL_speaker_configuration.html">AIL_speaker_configuration</a><br>
+<b>Related Basic Types:</b>
+<a href="F32.html">F32</a>, <a href="HDIGDRIVER.html">HDIGDRIVER</a>, <a href="MSS_SPEAKER.html">MSS_SPEAKER</a>, <a href="S32.html">S32</a><br>
+<b>Related Structures:</b>
+<a href="MSSVECTOR3D.html">MSSVECTOR3D</a><br>
+<b>Related FAQs:</b>
+<a href="How do I use multi-ckfnxne.html">How do I use multi-channel sound output in Miles?</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>AIL_quick_load_named_mem</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="loads a sound file that is already loaded into memory, with a filename hint, returning a handle that can be used with the other quick API functions.">
+<meta name="ms-hkwd" content="AIL_quick_load_named_mem">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>AIL_quick_load_named_mem</h1>
+<p>The function  <b>AIL_quick_load_named_mem</b> loads a sound file that is already loaded into memory, with a filename hint, returning a handle that can be used with the other quick API functions.</p>
+<table width=100% cellspacing=0 class=pre>
+<tr class=pre>
+<td class=pre>
+<pre><b><a href="HAUDIO.html" class=trn>HAUDIO</a> <a href="AIL_quick_load_named_mem.html" class=trn>AIL_quick_load_named_mem</a>(</b>
+<b>&nbsp;&nbsp;<a href="void const P.html" class=trn>void const *</a>&nbsp;</b><i>mem</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="char const P.html" class=trn>char const *</a>&nbsp;</b><i>filename</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="U32.html" class=trn>U32</a>&nbsp;</b><i>size</i>
+<b>);</b></pre>
+</td>
+</tr>
+</table>
+<h4>In Parameters</h4>
+<dl>
+<dt><i>mem</i></dt>
+<dd>specifies the address of a loaded .WAV, .MP3, .OGG, .VOC, .MID or .XMI file.</dd>
+<dt><i>filename</i></dt>
+<dd>specifies the filename of the data loaded at mem - this is used to load memory buffers of suond data that we can't positively identify without a filename hint (like voice chat buffers).</dd>
+<dt><i>size</i></dt>
+<dd>specifies the length of the data in bytes.</dd>
+</dl>
+<h4>Returns</h4>
+<p>A new audio handle if the function was successful, NULL otherwise.</p>
+<h4>Discussion</h4>
+<p>This function can read Microsoft .WAV files, XMA- or IMA ADPCM-compressed .WAV files, MPEG Layer-3 files, Ogg Vorbis files, Voxware Voice chat compressed files, Creative Labs .VOC files, normal MIDI files, or XMIDI files. </p><p> You must call <a href="AIL_quick_unload.html">AIL_quick_unload</a> on all handles returned by this function. <b>The memory image provided to this function must not be freed until <a href="AIL_quick_unload.html">AIL_quick_unload</a> has been called.</b> </p><p> Under DOS and MacOS 9, this function must not be invoked from an interrupt-based callback function. </p><p> Example files that use this function: MilesPly.C</p>
+<p>
+<br>
+<b>Group:</b>
+<a href="Quick Integration Sesm1baa.html">Quick Integration Services</a><br>
+<b>Related Functions:</b>
+<a href="AIL_quick_copy.html">AIL_quick_copy</a>, <a href="AIL_quick_load.html">AIL_quick_load</a>, <a href="AIL_quick_load_and_play.html">AIL_quick_load_and_play</a>, <a href="AIL_quick_unload.html">AIL_quick_unload</a><br>
+<b>Related Basic Types:</b>
+<a href="HAUDIO.html">HAUDIO</a>, <a href="U32.html">U32</a>, <a href="char const P.html">char const *</a>, <a href="void const P.html">void const *</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

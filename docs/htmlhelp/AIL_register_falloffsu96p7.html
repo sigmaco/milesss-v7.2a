@@ -1,0 +1,60 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>AIL_register_falloff_function_callback</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="allows an application to override the system's default distance-based attenuation calculations for 3D-enabled samples.">
+<meta name="ms-hkwd" content="AIL_register_falloff_function_callback">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>AIL_register_falloff_function_callback</h1>
+<p>The function  <b>AIL_register_falloff_function_callback</b> allows an application to override the system's default distance-based attenuation calculations for 3D-enabled samples.</p>
+<table width=100% cellspacing=0 class=pre>
+<tr class=pre>
+<td class=pre>
+<pre><b><a href="AILFALLOFFCB.html" class=trn>AILFALLOFFCB</a> <a href="AIL_register_falloffsu96p7.html" class=trn>AIL_register_falloff_function_callback</a>(</b>
+<b>&nbsp;&nbsp;<a href="HSAMPLE.html" class=trn>HSAMPLE</a>&nbsp;</b><i>S</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="AILFALLOFFCB.html" class=trn>AILFALLOFFCB</a>&nbsp;</b><i>falloff_function</i>
+<b>);</b></pre>
+</td>
+</tr>
+</table>
+<h4>In Parameters</h4>
+<dl>
+<dt><i>S</i></dt>
+<dd>indicates the sample for which the 3D falloff-function handler is to be installed.</dd>
+<dt><i>falloff_function</i></dt>
+<dd>should be set to the address of a user callback function which calculates the distance-based attenuation scalar for an HSAMPLE. A value of NULL restores the system's default (DirectSound3D-style) distance-calculation behavior.</dd>
+</dl>
+<h4>Returns</h4>
+<p>The address of the previously-installed falloff-function handler (which may be a function internal to MSS if no previous user callback has been registered).</p>
+<h4>Discussion</h4>
+<p>When calculating how much to attenuate the volume of a 3D-enabled HSAMPLE based on its distance from the listener, the Miles Sound System normally uses an algorithm similar to the one that DirectSound3D and other standard 3D-sound APIs have traditionally employed. Specifically, the HSAMPLE's level is reduced by a linear scale factor of 0.5 (6 dB) for each doubling of the distance between the emitter and the listener's minimum-distance boundary. The default MSS falloff-function handler looks like this: </p><p></p><code><font size=3 color=#006000><pre><br>   F32 AILCALLBACK default_falloff_function (HSAMPLE   S, <br>                                             F32       distance,<br>                                             F32       rolloff_factor,<br>                                             F32       min_dist,<br>                                             F32       max_dist)<br>   {<br>      return min_dist / (min_dist + (rolloff_factor * (distance - min_dist)));<br>   }<br></pre></font></code><p></p><p> It's important to note that user falloff functions have no effect on 3D-hardware processed HSAMPLEs. These include HSAMPLEs played through EAX/DirectSound3D providers, as well as HSAMPLEs played on the original Xbox when the driver has been opened with the AIL_OPEN_DIGITAL_NEED_HW_3D, AIL_OPEN_DIGITAL_NEED_FULL_3D, or AIL_OPEN_DIGITAL_NEED_LIGHT_3D flags. </p><p> Note that falloff-function callbacks are invoked during background HSAMPLE processing. <i>You should be careful not to make any API calls from within a falloff-function callback that could affect the state of the HSAMPLE or its corresponding HDIGDRIVER.</i> If you do anything other than basic 3D state queries, undefined behavior may result. If in doubt about whether a particular action may safely be performed from within a falloff-function callback, contact RAD Game Tools for assistance.</p>
+<p>
+<br>
+<b>Group:</b>
+<a href="Digital Audio Services.html">Digital Audio Services</a><br>
+<b>Related Functions:</b>
+<a href="AILFALLOFFCB.html">AILFALLOFFCB</a>, <a href="AIL_sample_3D_distances.html">AIL_sample_3D_distances</a>, <a href="AIL_set_sample_3D_dicyrnaa.html">AIL_set_sample_3D_distances</a><br>
+<b>Related Basic Types:</b>
+<a href="HSAMPLE.html">HSAMPLE</a><br>
+<b>Related FAQs:</b>
+<a href="What's the deal with4bihxb.html">What's the deal with callbacks - are they threads, interrupts, system timers, or what?</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

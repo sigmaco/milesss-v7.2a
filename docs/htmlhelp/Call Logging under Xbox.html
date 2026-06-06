@@ -1,0 +1,38 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>Call Logging under Xbox</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="">
+<meta name="ms-hkwd" content="Call Logging under Xbox">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>Call Logging under Xbox</h1>
+<h4>Discussion</h4>
+<p>Miles contains a powerful diagnostic feature that allows developers to create a timestamped list of all of their application's foreground Miles calls, along with their parameters and results. The call log will be sent to an application callback routine registered with <a href="AIL_register_trace_cs0khaa.html">AIL_register_trace_callback</a>, or to a plain text file if no debug-trace callback function has been registered by the application. </p><p>To take advantage of MSS's built-in logging without recompiling your application, just create a text file called "<b>mss_debug_log.txt</b>" in the root directory of your Xbox hard drive (xe:\ from a PC, or d:\ inside a running Xbox application). If this file exists, then, during execution of all subsequent Miles calls, a timestamped API call log will be written to the file. </p><p>DirectSound itself also issues warnings to the output debug console, so you can watch that as well. </p>
+<p><a href="Miles Example for Xbox.html">Next Topic (Miles Example for Xbox)</a>  </p><p><a href="Sharing the CPU unde19saaa.html">Previous Topic (Sharing the CPU under Xbox)</a>  </p><p>
+<br>
+<b>Group:</b>
+<a href="Overview for Microso9f3caa.html">Overview for Microsoft Xbox</a><br>
+<b>Related Functions:</b>
+<a href="AIL_register_trace_cs0khaa.html">AIL_register_trace_callback</a><br>
+<b>Related FAQs:</b>
+<a href="My application is crs22pi6.html">My application is crashing - what should I try?</a>, <a href="Where is the Miles slsp9cm.html">Where is the Miles source code? How can I rebuild it (in debug mode)?</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

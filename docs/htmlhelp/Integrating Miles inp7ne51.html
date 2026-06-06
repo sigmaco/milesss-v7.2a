@@ -1,0 +1,36 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>Integrating Miles into a Nintendo Wii Build Environment</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="">
+<meta name="ms-hkwd" content="Integrating Miles into a Nintendo Wii Build Environment">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>Integrating Miles into a Nintendo Wii Build Environment</h1>
+<h4>Discussion</h4>
+<p>To build an application that uses Miles, you must include the Miles SDK in the build process. Only a few simple steps are required: </p><p>1) Include <b>MSS.H</b> in all of the source files that need to call Miles functions. </p><p>2) Link with the <b>MSSWii.A</b> library. </p><p>3) If you are using MP3 data, link with the <b>MP3Wii.A</b> library. If you are using Ogg Vorbis data, link with the <b>OGGWii.A</b> library. </p><p>4) If you're using Dolby Surround (which is a great fast multispeaker solution for the Wii), link with <b>mssdolby.a</b>. </p><p>4) If you're using SRS CircleSurround (which is a great sounding, but slightly slower multispeaker solution for the Wii), link with <b>msssrs.a</b>. </p><p>5) If you'd like to use per-sample DSP filters, link with <b>FLTWii.A</b>. </p><p>And that's it - you should now be able to call the Miles functions! (Don't forget the <a href="Register_RIB.html">Register_RIB</a> calls needed for the Dolby, SRS, and DSP filter options -- see MilesWii.cpp for an example.) </p>
+<p><a href="Distributing Miles wd8t9qa.html">Next Topic (Distributing Miles with Nintendo Wii Applications)</a>  </p><p><a href="Installation for Ninacy1ba.html">Previous Topic (Installation for Nintendo Wii)</a>  </p><p>
+<br>
+<b>Group:</b>
+<a href="Overview for Nintendo Wii.html">Overview for Nintendo Wii</a><br>
+<b>Related Functions:</b>
+<a href="Register_RIB.html">Register_RIB</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

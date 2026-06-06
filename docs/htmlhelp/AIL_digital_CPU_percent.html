@@ -1,0 +1,57 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>AIL_digital_CPU_percent</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="returns the percentage of total CPU being spent in the Miles digital processing loop.">
+<meta name="ms-hkwd" content="AIL_digital_CPU_percent">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>AIL_digital_CPU_percent</h1>
+<p>The function  <b>AIL_digital_CPU_percent</b> returns the percentage of total CPU being spent in the Miles digital processing loop.</p>
+<table width=100% cellspacing=0 class=pre>
+<tr class=pre>
+<td class=pre>
+<pre><b><a href="S32.html" class=trn>S32</a> <a href="AIL_digital_CPU_percent.html" class=trn>AIL_digital_CPU_percent</a>(</b>
+<b>&nbsp;&nbsp;<a href="HDIGDRIVER.html" class=trn>HDIGDRIVER</a>&nbsp;</b><i>dig</i>
+<b>);</b></pre>
+</td>
+</tr>
+</table>
+<h4>In Parameters</h4>
+<dl>
+<dt><i>dig</i></dt>
+<dd>indicates the driver that you want to profile.</dd>
+</dl>
+<h4>Returns</h4>
+<p>Percentage from 0 to 100 of the CPU that was used by the specified digital driver since the last time you called <a href="AIL_digital_CPU_percent.html">AIL_digital_CPU_percent</a>.</p>
+<h4>Discussion</h4>
+<p>This includes mixing, format conversion, on-the-fly decompression of formats such as IMA ADPCM or MPEG Layer 3, and filling of the system buffers. <i>Note that the tasks profiled by this function may vary from platform to platform.</i> </p><p> Note that <a href="AIL_digital_CPU_percent.html">AIL_digital_CPU_percent</a> provides an indication of loading as if the machine had only a single CPU. That is, if it reports, say, 8%, then it used 8% of just one of the CPUs. This is different than the Windows Task Manager which divides the percentage used by the number of CPUs. So, if <a href="AIL_digital_CPU_percent.html">AIL_digital_CPU_percent</a> reports 8%, then Task Manager will say 4% on a dual CPU or hyper-threaded machine.</p>
+<p>
+<br>
+<b>Group:</b>
+<a href="Digital Audio Services.html">Digital Audio Services</a><br>
+<b>Related Functions:</b>
+<a href="AIL_digital_CPU_percent.html">AIL_digital_CPU_percent</a>, <a href="AIL_quick_set_reverbolliaa.html">AIL_quick_set_reverb_levels</a>, <a href="AIL_sample_reverb_levels.html">AIL_sample_reverb_levels</a>, <a href="AIL_set_sample_reverolliaa.html">AIL_set_sample_reverb_levels</a><br>
+<b>Related Basic Types:</b>
+<a href="HDIGDRIVER.html">HDIGDRIVER</a>, <a href="S32.html">S32</a><br>
+<b>Related FAQs:</b>
+<a href="How much CPU do the wv3vjf.html">How much CPU do the various filters use?</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

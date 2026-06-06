@@ -1,0 +1,149 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>MP3_INFO</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="">
+<meta name="ms-hkwd" content="MP3_INFO">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>MP3_INFO</h1>
+<table width=100% cellspacing=0 class=pre>
+<tr class=pre>
+<td class=pre>
+<pre><b>struct <a href="MP3_INFO.html" class=trn>MP3_INFO</a>
+{
+&nbsp;&nbsp;<a href="U8.html" class=trn>U8 *</a></b><i> MP3_file_image</i><b>;
+&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a></b><i> MP3_image_size</i><b>;
+&nbsp;&nbsp;<a href="U8.html" class=trn>U8 *</a></b><i> ID3v2</i><b>;
+&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a></b><i> ID3v2_size</i><b>;
+&nbsp;&nbsp;<a href="U8.html" class=trn>U8 *</a></b><i> ID3v1</i><b>;
+&nbsp;&nbsp;<a href="U8.html" class=trn>U8 *</a></b><i> start_MP3_data</i><b>;
+&nbsp;&nbsp;<a href="U8.html" class=trn>U8 *</a></b><i> end_MP3_data</i><b>;
+&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a></b><i> sample_rate</i><b>;
+&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a></b><i> bit_rate</i><b>;
+&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a></b><i> channels_per_sample</i><b>;
+&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a></b><i> samples_per_frame</i><b>;
+&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a></b><i> byte_offset</i><b>;
+&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a></b><i> next_frame_expected</i><b>;
+&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a></b><i> average_frame_size</i><b>;
+&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a></b><i> data_size</i><b>;
+&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a></b><i> header_size</i><b>;
+&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a></b><i> side_info_size</i><b>;
+&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a></b><i> ngr</i><b>;
+&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a></b><i> main_data_begin</i><b>;
+&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a></b><i> hpos</i><b>;
+&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a></b><i> MPEG1</i><b>;
+&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a></b><i> MPEG25</i><b>;
+&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a></b><i> layer</i><b>;
+&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a></b><i> protection_bit</i><b>;
+&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a></b><i> bitrate_index</i><b>;
+&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a></b><i> sampling_frequency</i><b>;
+&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a></b><i> padding_bit</i><b>;
+&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a></b><i> private_bit</i><b>;
+&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a></b><i> mode</i><b>;
+&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a></b><i> mode_extension</i><b>;
+&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a></b><i> copyright</i><b>;
+&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a></b><i> original</i><b>;
+&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a></b><i> emphasis</i><b>;
+};</b></pre>
+</td>
+</tr>
+</table>
+<h4>In Members</h4>
+<dl>
+<dt><i>MP3_file_image</i></dt>
+<dd>Original MP3_file_image pointer passed to <a href="AIL_inspect_MP3.html">AIL_inspect_MP3</a>.</dd>
+<dt><i>MP3_image_size</i></dt>
+<dd>Original MP3_image_size passed to <a href="AIL_inspect_MP3.html">AIL_inspect_MP3</a>.</dd>
+<dt><i>ID3v2</i></dt>
+<dd>ID3v2 tag, if not NULL.</dd>
+<dt><i>ID3v2_size</i></dt>
+<dd>Size of tag in bytes.</dd>
+<dt><i>ID3v1</i></dt>
+<dd>ID3v1 tag, if not NULL (always 128 bytes long if present).</dd>
+<dt><i>start_MP3_data</i></dt>
+<dd>Pointer to start of data area in file (not necessarily first valid frame).</dd>
+<dt><i>end_MP3_data</i></dt>
+<dd>Pointer to last valid byte in MP3 data area (before ID3v1 tag, if any).</dd>
+<dt><i>sample_rate</i></dt>
+<dd>Sample rate in Hz (normally constant across all frames in file).</dd>
+<dt><i>bit_rate</i></dt>
+<dd>Bits/second for current frame.</dd>
+<dt><i>channels_per_sample</i></dt>
+<dd>Always 1 or 2.</dd>
+<dt><i>samples_per_frame</i></dt>
+<dd>Always 576 or 1152 samples in each MP3 frame, depending on rate.</dd>
+<dt><i>byte_offset</i></dt>
+<dd>Offset of frame from start_MP3_data (i.e., suitable for use as loop point).</dd>
+<dt><i>next_frame_expected</i></dt>
+<dd>Offset from start_MP3_data where the next frame was <i>expected</i>. Will normally be equal to byte_offset unless garbage data or an ID3v2 tag was skipped before the currently-enumerated frame, or EOF was reached before the next frame header.</dd>
+<dt><i>average_frame_size</i></dt>
+<dd>Average source bytes per frame, determined solely by bit rate and sample rate.</dd>
+<dt><i>data_size</i></dt>
+<dd># of data-only bytes in this particular frame.</dd>
+<dt><i>header_size</i></dt>
+<dd>4 or 6 bytes, depending on CRC.</dd>
+<dt><i>side_info_size</i></dt>
+<dd>Valid for layer 3 side info only.</dd>
+<dt><i>ngr</i></dt>
+<dd>Always 2 for MPEG1, else 1.</dd>
+<dt><i>main_data_begin</i></dt>
+<dd>Always 0 in files with no bit reservoir.</dd>
+<dt><i>hpos</i></dt>
+<dd> Current bit position in header/side buffer.</dd>
+<dt><i>MPEG1</i></dt>
+<dd>Data copied directly from frame header; see ISO docs for info.</dd>
+<dt><i>MPEG25</i></dt>
+<dd>Data copied directly from frame header; see ISO docs for info.</dd>
+<dt><i>layer</i></dt>
+<dd>Data copied directly from frame header; see ISO docs for info.</dd>
+<dt><i>protection_bit</i></dt>
+<dd>Data copied directly from frame header; see ISO docs for info.</dd>
+<dt><i>bitrate_index</i></dt>
+<dd>Data copied directly from frame header; see ISO docs for info.</dd>
+<dt><i>sampling_frequency</i></dt>
+<dd>Data copied directly from frame header; see ISO docs for info.</dd>
+<dt><i>padding_bit</i></dt>
+<dd>Data copied directly from frame header; see ISO docs for info.</dd>
+<dt><i>private_bit</i></dt>
+<dd>Data copied directly from frame header; see ISO docs for info.</dd>
+<dt><i>mode</i></dt>
+<dd>Data copied directly from frame header; see ISO docs for info.</dd>
+<dt><i>mode_extension</i></dt>
+<dd>Data copied directly from frame header; see ISO docs for info.</dd>
+<dt><i>copyright</i></dt>
+<dd>Data copied directly from frame header; see ISO docs for info.</dd>
+<dt><i>original</i></dt>
+<dd>Data copied directly from frame header; see ISO docs for info.</dd>
+<dt><i>emphasis</i></dt>
+<dd>Data copied directly from frame header; see ISO docs for info.</dd>
+</dl>
+<h4>Discussion</h4>
+<p>All MP3_INFO fields other than those documented above are for internal use, and may change between MSS versions. </p><p> Fields between MP3_file_image and end_MP3_data, inclusive, are valid as soon as <a href="AIL_inspect_MP3.html">AIL_inspect_MP3</a> returns, even if the file contains no valid MP3 frames. </p><p> All remaining fields pertain to the current frame being inspected, and are valid only after <a href="AIL_enumerate_MP3_frames.html">AIL_enumerate_MP3_frames</a> has returned TRUE.</p>
+<p>
+<br>
+<b>Group:</b>
+<a href="Utility Services.html">Utility Services</a><br>
+<b>Related Functions:</b>
+<a href="AIL_enumerate_MP3_frames.html">AIL_enumerate_MP3_frames</a>, <a href="AIL_inspect_MP3.html">AIL_inspect_MP3</a><br>
+<b>Related Basic Types:</b>
+<a href="S32.html">S32</a>, <a href="U8.html">U8</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>AIL_set_sample_position</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="adjusts the playback position of a sample.">
+<meta name="ms-hkwd" content="AIL_set_sample_position">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>AIL_set_sample_position</h1>
+<p>The function  <b>AIL_set_sample_position</b> adjusts the playback position of a sample.</p>
+<table width=100% cellspacing=0 class=pre>
+<tr class=pre>
+<td class=pre>
+<pre><b><a href="void.html" class=trn>void</a> <a href="AIL_set_sample_position.html" class=trn>AIL_set_sample_position</a>(</b>
+<b>&nbsp;&nbsp;<a href="HSAMPLE.html" class=trn>HSAMPLE</a>&nbsp;</b><i>S</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="U32.html" class=trn>U32</a>&nbsp;</b><i>pos</i>
+<b>);</b></pre>
+</td>
+</tr>
+</table>
+<h4>In Parameters</h4>
+<dl>
+<dt><i>S</i></dt>
+<dd>indicates the sample whose position is to be adjusted.</dd>
+<dt><i>pos</i></dt>
+<dd>indicates the offset in bytes of the new playback position from the beginning of the sample. If the sample is compressed, this offset is specified in "compressed" bytes.</dd>
+</dl>
+<h4>Discussion</h4>
+<p>By means of this function, it is possible to instantaneously change the location from which sample data is being played. The change will take effect as soon as the next block of audio data from the sample is merged into the hardware buffer. </p><p> If the sample data is compressed, then the offset passed to this function is in "compressed" bytes. </p><p> The granularity of the seek position that you specified is based on the size of a sample for uncompressed data, or the ADPCM block size for ADPCM data. </p><p> You can use the <a href="AIL_set_sample_ms_pozr6aaa.html">AIL_set_sample_ms_position</a> function to set a new sample position based on milliseconds. </p><p> Not all compressed file types support seeking to arbitrarily-precise locations in MSS. If your application cannot tolerate approximations in seeking operations, it's best to stick with MP3 data and review the <i>I'm getting a glitch when I loop an MP3 or ADPCM file - what can I do? </i><a href="I'm getting a glitch82o68h.html#FAQ">FAQ</a> carefully.) </p><p> Any calls to <a href="AIL_set_sample_position.html">AIL_set_sample_position</a>, <a href="AIL_set_stream_position.html">AIL_set_stream_position</a>, or <a href="AIL_set_sample_loop_block.html">AIL_set_sample_loop_block</a> with MP3 source data should specify offsets that lie on frame boundaries. This helps us avoid mistakenly interpreting intraframe data as a valid frame boundary. The loop boundaries displayed by the Miles Sound Player are suitable for passing directly to <a href="AIL_set_sample_position.html">AIL_set_sample_position</a>, <a href="AIL_set_stream_position.html">AIL_set_stream_position</a>, or <a href="AIL_set_sample_loop_block.html">AIL_set_sample_loop_block</a>. <b><i>Note that MSS considers offset 0 to be the first byte after any ID3v2 tag or other metadata at the beginning of an MP3 file!</i></b> Frame offsets reported by other MP3 editors will most likely be relative to the beginning of the entire file, making them unsuitable for use with the Miles API.</p>
+<p>
+<br>
+<b>Group:</b>
+<a href="Digital Audio Services.html">Digital Audio Services</a><br>
+<b>Related Functions:</b>
+<a href="AIL_sample_granularity.html">AIL_sample_granularity</a>, <a href="AIL_sample_ms_position.html">AIL_sample_ms_position</a>, <a href="AIL_sample_position.html">AIL_sample_position</a>, <a href="AIL_set_sample_loop_block.html">AIL_set_sample_loop_block</a>, <a href="AIL_set_sample_ms_pozr6aaa.html">AIL_set_sample_ms_position</a>, <a href="AIL_set_sample_position.html">AIL_set_sample_position</a>, <a href="AIL_set_stream_position.html">AIL_set_stream_position</a>, <a href="AIL_start_sample.html">AIL_start_sample</a><br>
+<b>Related Basic Types:</b>
+<a href="HSAMPLE.html">HSAMPLE</a>, <a href="U32.html">U32</a>, <a href="void.html">void</a><br>
+<b>Related FAQs:</b>
+<a href="I'm getting a glitch82o68h.html">I'm getting a glitch when I loop an MP3 or ADPCM file - what can I do?</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

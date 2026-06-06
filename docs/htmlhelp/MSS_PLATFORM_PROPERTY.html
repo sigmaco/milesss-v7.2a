@@ -1,0 +1,124 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>MSS_PLATFORM_PROPERTY</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="is a list of available platform-specific property identifiers for use with the AIL_platform_property function.">
+<meta name="ms-hkwd" content="MSS_PLATFORM_PROPERTY">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>MSS_PLATFORM_PROPERTY</h1>
+<p>The basic type <b>MSS_PLATFORM_PROPERTY</b> is a list of available platform-specific property identifiers for use with the AIL_platform_property function.</p>
+<h4>Fundamental Values</h4>
+<table class=list width=90%>
+<tr valign=top class=list>
+<th width=29% height=25 valign=middle class=list>&nbsp;Value</th>
+<th width=71% height=25 valign=middle class=list>&nbsp;Description</th>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#WIN32_TIMER_THREAD" href="#WIN32_TIMER_THREAD" class=trn>&nbsp;WIN32_TIMER_THREAD</a></td>
+<td width=71% height=25 valign=middle class=list><b>Windows</b> Read-only property returning the HANDLE to the thread used by Miles for all of its background mixing, callback, and user timer function processing. The object parameter is ignored. May be queried only after the first MSS timer function has been registered (typically by opening a digital or XMIDI driver).</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#WIN32_STREAM_THREAD" href="#WIN32_STREAM_THREAD" class=trn>&nbsp;WIN32_STREAM_THREAD</a></td>
+<td width=71% height=25 valign=middle class=list><b>Windows</b> Read-only property returning the HANDLE to the thread used by Miles do perform background disk IO for the streaming API. The object parameter is ignored. May be queried after the first stream is opened.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#WIN32_HWAVEOUT" href="#WIN32_HWAVEOUT" class=trn>&nbsp;WIN32_HWAVEOUT</a></td>
+<td width=71% height=25 valign=middle class=list><b>Windows</b> Read-only property returning the HWAVEOUT handle to the waveOut audio driver in use, or NULL if DirectSound is in use. The object parameter should be an HDIGDRIVER handle to a digital driver open in waveOut mode.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#WIN32_HWAVEIN" href="#WIN32_HWAVEIN" class=trn>&nbsp;WIN32_HWAVEIN</a></td>
+<td width=71% height=25 valign=middle class=list><b>Windows</b> Read-only property returning the HWAVEIN handle to the waveIn audio driver opened by the <a href="AIL_open_input.html">AIL_open_input</a> function. The object parameter should be a valid HDIGINPUT handle returned by <a href="AIL_open_input.html">AIL_open_input</a>.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#WIN32_LPDS" href="#WIN32_LPDS" class=trn>&nbsp;WIN32_LPDS</a></td>
+<td width=71% height=25 valign=middle class=list><b>Windows</b> Read-only property corresponding to the IDirectSound object used by an HDIGDRIVER. The object parameter should be an HDIGDRIVER handle to a digital driver open in DirectSound mode.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#WIN32_LPDSB" href="#WIN32_LPDSB" class=trn>&nbsp;WIN32_LPDSB</a></td>
+<td width=71% height=25 valign=middle class=list><b>Windows</b> Read-only property corresponding to the IDirectSoundBuffer object used by an HDIGDRIVER as its mixer target buffer. The object parameter should be an HDIGDRIVER handle to a digital driver open in DirectSound mode. Because a DirectSoundBuffer object may not be assigned until a sample or stream is actually played, you must play at least one sample or stream before querying this property.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#WIN32_HWND" href="#WIN32_HWND" class=trn>&nbsp;WIN32_HWND</a></td>
+<td width=71% height=25 valign=middle class=list><b>Windows</b> Readable/writable property corresponding to the HWND that MSS will pass to DirectSound when establishing focus control in future calls to <a href="AIL_open_digital_driver.html">AIL_open_digital_driver</a>. The object parameter is ignored and should be NULL. (Altering the WIN32_HWND property is necessary only if MSS guesses incorrectly when it tries to locate your application's main window).</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#XB_TIMER_THREAD" href="#XB_TIMER_THREAD" class=trn>&nbsp;XB_TIMER_THREAD</a></td>
+<td width=71% height=25 valign=middle class=list><b>Xbox 1</b> Read-only property returning the HANDLE to the thread used by Miles to perform all background audio, user-timer, and callback processing. This thread is also used to service the XBox hardware mixer. The object parameter is ignored. May be queried only after the first MSS timer function has been registered (typically by opening a digital or XMIDI driver).</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#XB_STREAM_THREAD" href="#XB_STREAM_THREAD" class=trn>&nbsp;XB_STREAM_THREAD</a></td>
+<td width=71% height=25 valign=middle class=list><b>Xbox 1</b> Read-only property returning the HANDLE to the thread used by Miles do perform background disk IO for the streaming API. The object parameter is ignored. May be queried after the first stream is opened.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#XB_LPDS" href="#XB_LPDS" class=trn>&nbsp;XB_LPDS</a></td>
+<td width=71% height=25 valign=middle class=list><b>Xbox 1</b> Read-only property corresponding to the IDirectSound object used by an HDIGDRIVER. The object parameter should be an HDIGDRIVER handle to a digital driver open in DirectSound mode.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#XB_LPDSB" href="#XB_LPDSB" class=trn>&nbsp;XB_LPDSB</a></td>
+<td width=71% height=25 valign=middle class=list><b>Xbox 1</b> Read-only property corresponding to the IDirectSoundBuffer object used by an HSAMPLE as its output target buffer. The object parameter should be the HSAMPLE to query. On the Xbox 1, DirectSoundBuffer objects are allocated by <a href="AIL_open_digital_driver.html">AIL_open_digital_driver</a>, so it is not necessary to play any sounds before querying this property.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#XB360_TIMER_THREAD" href="#XB360_TIMER_THREAD" class=trn>&nbsp;XB360_TIMER_THREAD</a></td>
+<td width=71% height=25 valign=middle class=list><b>Xbox 360</b> Read-only property returning the HANDLE to the thread used by Miles for all of its background mixing, callback, and user timer function processing. The object parameter is ignored. May be queried only after the first MSS timer function has been registered (typically by opening a digital or XMIDI driver).</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#XB360_STREAM_THREAD" href="#XB360_STREAM_THREAD" class=trn>&nbsp;XB360_STREAM_THREAD</a></td>
+<td width=71% height=25 valign=middle class=list><b>Xbox 360</b> Read-only property returning the HANDLE to the thread used by Miles do perform background disk IO for the streaming API. The object parameter is ignored. May be queried after the first stream is opened.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#XB360_LPXAB" href="#XB360_LPXAB" class=trn>&nbsp;XB360_LPXAB</a></td>
+<td width=71% height=25 valign=middle class=list><b>Xbox 360</b> Read-only property corresponding to the IXAudioSourceVoice object used by an HDIGDRIVER as its mixer target buffer. The object parameter should be an HDIGDRIVER handle to a digital driver. Because an IXAudioSourceVoice object may not be assigned to the driver until a sample or stream is actually played, you must play at least one sample or stream before querying this property.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#PS3_TIMER_THREAD" href="#PS3_TIMER_THREAD" class=trn>&nbsp;PS3_TIMER_THREAD</a></td>
+<td width=71% height=25 valign=middle class=list><b>PS3</b> Read-only property returning the HANDLE to the thread used by Miles for all of its background mixing, callback, and user timer function processing. The object parameter is ignored. May be queried only after the first MSS timer function has been registered (typically by opening a digital or XMIDI driver).</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#PS3_STREAM_THREAD" href="#PS3_STREAM_THREAD" class=trn>&nbsp;PS3_STREAM_THREAD</a></td>
+<td width=71% height=25 valign=middle class=list><b>PS3</b> Read-only property returning the HANDLE to the thread used by Miles do perform background disk IO for the streaming API. The object parameter is ignored. May be queried after the first stream is opened.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#PS3_AUDIO_PORT" href="#PS3_AUDIO_PORT" class=trn>&nbsp;PS3_AUDIO_PORT</a></td>
+<td width=71% height=25 valign=middle class=list><b>PS3</b> Read-only property corresponding to the cellAudio port used by an HDIGDRIVER as its mixer target buffer. The object parameter should be an HDIGDRIVER handle to a digital driver.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#PS3_AUDIO_ADDRESS" href="#PS3_AUDIO_ADDRESS" class=trn>&nbsp;PS3_AUDIO_ADDRESS</a></td>
+<td width=71% height=25 valign=middle class=list><b>PS3</b> Read-only property corresponding to the memory address of the cellAudio sound buffer used by an HDIGDRIVER as its mixer target buffer. The object parameter should be an HDIGDRIVER handle to a digital driver.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#PS3_AUDIO_LENGTH" href="#PS3_AUDIO_LENGTH" class=trn>&nbsp;PS3_AUDIO_LENGTH</a></td>
+<td width=71% height=25 valign=middle class=list><b>PS3</b> Read-only property corresponding to the length of the cellAudio sound buffer used by an HDIGDRIVER as its mixer target buffer. The object parameter should be an HDIGDRIVER handle to a digital driver.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#PS3_AUDIO_POSITION" href="#PS3_AUDIO_POSITION" class=trn>&nbsp;PS3_AUDIO_POSITION</a></td>
+<td width=71% height=25 valign=middle class=list><b>PS3</b> Read-only property corresponding to the current position offset within the cellAudio sound buffer used by an HDIGDRIVER as its mixer target buffer. The object parameter should be an HDIGDRIVER handle to a digital driver.</td>
+</tr>
+</table>
+<h4>Discussion</h4>
+<p>Before calling <a href="AIL_platform_property.html">AIL_platform_property</a> for any of these values, be sure you understand what object parameter (if any) is required to access the property, when the property value may be queried or modified, and how long it will remain valid. Most applications should not attempt to use MSS_PLATFORM_PROPERTY values or the <a href="AIL_platform_property.html">AIL_platform_property</a> function.</p>
+<p>
+<br>
+<b>Group:</b>
+<a href="System Services.html">System Services</a><br>
+<b>Related Functions:</b>
+<a href="AIL_open_digital_driver.html">AIL_open_digital_driver</a>, <a href="AIL_open_input.html">AIL_open_input</a>, <a href="AIL_platform_property.html">AIL_platform_property</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

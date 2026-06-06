@@ -1,0 +1,36 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>Delay Filter</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="">
+<meta name="ms-hkwd" content="Delay Filter">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>Delay Filter</h1>
+<h4>Discussion</h4>
+<p> This filter provides a simple delay effect. </p><p><b>Name for use with <a href="AIL_find_filter.html">AIL_find_filter</a>:</b> "Delay Filter" </p><p><b>Properties:</b> </p><p><b>"Max Delay Time":</b> Forces immediate reallocation of internal buffers to support delay times up to the given maximum. <i>Range:</i> 0.01 to 10000.0 milliseconds. </p><p><b>"Delay TimeL":</b> Delay time for left channel. <i>Range:</i> 0.01 to "Max Delay Time" milliseconds. </p><p><b>"Delay TimeR":</b> Delay time for right channel. <i>Range:</i> 0.01 to "Max Delay Time" milliseconds. </p><p><b>"Delay Feedback":</b> Feedback regeneration of signal. <i>Range:</i> 0.0 to 1.0. </p><p><b>"Delay Feedforward":</b> Feedforward gain. <i>Range:</i> 0.0 to 1.0. </p><p><b>"Mix":</b> Mix of delayed signal. <i>Range:</i> 0.0 (original - dry) to 1.0 (full delay - wet). </p><p>When a mix value of 0.0 is specified, the filter will operate on an internal "fast path" designed to consume minimal CPU resources. </p><p>By default, the "Max Delay Time" property value is set to 300 milliseconds when the filter is initially bound to a sample. This allows you to set "Delay TimeL" and "Delay TimeR" values from 10 milliseconds to 300 milliseconds. Values outside of this range will be clamped; the only way to obtain longer delays is to set a new "Max Delay Time" property value. </p><p>Because changes to "Max Delay Time" always cause internal memory buffers to be freed and reallocated, <i>you must not change "Max Delay Time" from within a callback function.</i> The other preferences may be changed at any time. </p><p>Per-sample memory requirements for the internal delay buffers may be determined as follows: </p><code><font size=3 color=#006000><pre>   (8 * "Max Delay Time" in milliseconds * driver output rate in Hz) / 1000 bytes</pre></font></code><p> </p>
+<p>
+<br>
+<b>Group:</b>
+<a href="Digital Filter Services.html">Digital Filter Services</a><br>
+<b>Related Functions:</b>
+<a href="AIL_find_filter.html">AIL_find_filter</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

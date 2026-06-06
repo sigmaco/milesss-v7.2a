@@ -1,0 +1,36 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>Callbacks under PlayStation 2</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="">
+<meta name="ms-hkwd" content="Callbacks under PlayStation 2">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>Callbacks under PlayStation 2</h1>
+<h4>Discussion</h4>
+<p>Read this section carefully if you plan to use Miles timer or other callbacks (such as an end-of-sample callback). If you don't intend to use callbacks, then this section won't apply to you. </p><p>On the PS2, callbacks are usually made to your application from an IOP interrupt handler. The ideal callback function is one that does nothing more than write to one or two flag variables and then immediately return back to Miles. At interrupt time on the PS2, certain operations are <i>allowed</i> but not recommended -- while other operations are forbidden altogether. The Sony documentation is the final authority here. (However, because Miles saves and restores the state of the floating-point unit at interrupt time, you can perform floating-point operations within Miles callback functions without difficulty.) </p><p>In any event, if you want to maintain portable code, you should read about the callback restrictions for the other platforms you intend to support. </p><p>Remember that all global or static variables that are modified by a callback function must be declared with the <i>volatile</i> modifier. Otherwise, the callback function and the foreground may not be able to communicate after the compiler has performed all of its optimizing tricks. </p><p>You should also minimize the total amount of work inside a Miles callback. During a callback, Miles is suspended, so other background tasks won't run - mixing will be interrupted, for example, if you take too long. </p><p>Again the best advice for callbacks is to simply post a message or set a flag that can be operated on by your foreground task. This technique works on all platforms and you'll never need to worry about the complications that multithreading or interrupts can cause. </p>
+<p><a href="Call Logging under Pu0wpdi.html">Next Topic (Call Logging under PlayStation 2)</a>  </p><p><a href="Memory management unctyjnz.html">Previous Topic (Memory management under PlayStation 2)</a>  </p><p>
+<br>
+<b>Group:</b>
+<a href="Overview for Sony Plu0wpdi.html">Overview for Sony PlayStation 2</a><br>
+<b>Related FAQs:</b>
+<a href="What's the deal with4bihxb.html">What's the deal with callbacks - are they threads, interrupts, system timers, or what?</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

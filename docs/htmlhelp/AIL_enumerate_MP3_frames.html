@@ -1,0 +1,57 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>AIL_enumerate_MP3_frames</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="obtains information about successive frames from an MPEG-1 Layer 3 audio file.">
+<meta name="ms-hkwd" content="AIL_enumerate_MP3_frames">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>AIL_enumerate_MP3_frames</h1>
+<p>The function  <b>AIL_enumerate_MP3_frames</b> obtains information about successive frames from an MPEG-1 Layer 3 audio file.</p>
+<table width=100% cellspacing=0 class=pre>
+<tr class=pre>
+<td class=pre>
+<pre><b><a href="S32.html" class=trn>S32</a> <a href="AIL_enumerate_MP3_frames.html" class=trn>AIL_enumerate_MP3_frames</a>(</b>
+<b>&nbsp;&nbsp;<a href="MP3_INFO.html" class=trn>MP3_INFO</a>&nbsp;*</b><i>inspection_state</i>
+<b>);</b></pre>
+</td>
+</tr>
+</table>
+<h4>Out Parameters</h4>
+<dl>
+<dt><i>inspection_state</i></dt>
+<dd>points to an instance of an MP3_INFO structure owned by the application and previously initialized by a call to <a href="AIL_inspect_MP3.html">AIL_inspect_MP3</a>.</dd>
+</dl>
+<h4>Returns</h4>
+<p>1 if the frame-data portion of the <a href="MP3_INFO.html">MP3_INFO</a> structure represents a valid frame; 0 if no (further) valid frames exist in the file image.</p>
+<h4>Discussion</h4>
+<p>This function returns information about all of the valid MP3 frames in the file image, beginning with the first, by filling in the appropriate <a href="MP3_INFO.html">MP3_INFO</a> structure fields. </p><p> You can inspect all of the frames in an MP3 file image with the following code: </p><p></p><code><font size=3 color=#006000><pre><br>   MP3_INFO info;<br>   AIL_inspect_MP3(&info,<br>                   my_MP3_file_image,<br>                   size_in_bytes_of_my_MP3_file_image);<br>   printf("Valid MP3 data, if any, begins at %X\n",info.start_MP3_data);<br>   while (AIL_enumerate_MP3_frames(&info))<br>      {<br>      printf("Valid frame found at byte offset %d from info.start_MP3_data\n",info.byte_offset);<br>      }<br></pre></font></code><p></p><p> ID3v2 tags appearing in the middle of the file will <i>not</i> be reported by this function; they will be skipped. An ID3v2 tag at the beginning of the file, if any, will be logged by the initial call to <a href="AIL_inspect_MP3.html">AIL_inspect_MP3</a>. </p><p> See the <a href="MP3_INFO.html">MP3_INFO</a> structure description for details about the information retrieved by this function.</p>
+<p>
+<br>
+<b>Group:</b>
+<a href="Utility Services.html">Utility Services</a><br>
+<b>Related Functions:</b>
+<a href="AIL_inspect_MP3.html">AIL_inspect_MP3</a><br>
+<b>Related Basic Types:</b>
+<a href="S32.html">S32</a><br>
+<b>Related Structures:</b>
+<a href="MP3_INFO.html">MP3_INFO</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

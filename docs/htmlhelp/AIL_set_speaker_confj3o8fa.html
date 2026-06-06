@@ -1,0 +1,66 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>AIL_set_speaker_configuration</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="establishes the listener-relative location of the speaker array, and the falloff power factor used for sample spatialization.">
+<meta name="ms-hkwd" content="AIL_set_speaker_configuration">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>AIL_set_speaker_configuration</h1>
+<p>The function  <b>AIL_set_speaker_configuration</b> establishes the listener-relative location of the speaker array, and the falloff power factor used for sample spatialization.</p>
+<table width=100% cellspacing=0 class=pre>
+<tr class=pre>
+<td class=pre>
+<pre><b><a href="void.html" class=trn>void</a> <a href="AIL_set_speaker_confj3o8fa.html" class=trn>AIL_set_speaker_configuration</a>(</b>
+<b>&nbsp;&nbsp;<a href="HDIGDRIVER.html" class=trn>HDIGDRIVER</a>&nbsp;</b><i>dig</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="MSSVECTOR3D.html" class=trn>MSSVECTOR3D</a>&nbsp;const *</b><i>array</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a>&nbsp;</b><i>n_channels</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="F32.html" class=trn>F32</a>&nbsp;</b><i>falloff_power</i>
+<b>);</b></pre>
+</td>
+</tr>
+</table>
+<h4>In Parameters</h4>
+<dl>
+<dt><i>dig</i></dt>
+<dd>indicates the HDIGDRIVER whose speaker configuration is to be set.</dd>
+<dt><i>array</i></dt>
+<dd>specifies an array of 3D unit vectors which point to the speakers corresponding to the logical channels in the current output configuration.</dd>
+<dt><i>n_channels</i></dt>
+<dd>specifies the number of speaker location entries actually submitted. This can be 0 if you only wish to set the falloff power.</dd>
+<dt><i>falloff_power</i></dt>
+<dd>specifies the falloff power factor to be used for sample positioning.</dd>
+</dl>
+<h4>Discussion</h4>
+<p> When MSS opens an HDIGDRIVER in configurations other than DirectSound3D/EAX, it chooses a reasonable set of default positions for the speakers in the configuration. In most cases, the speakers with directional characteristics (i.e., other than the subwoofer/LFE channel) are arrayed at roughly-equal intervals around the unit circle. Sophisticated applications may wish to allow the user to alter MSS's speaker positions to match the positions of the actual speakers that surround the listener. You can call <a href="AIL_set_speaker_confj3o8fa.html">AIL_set_speaker_configuration</a> to submit an array containing zero to n speaker locations, where n is the number of logical channels in the configuration as reported by <a href="AIL_speaker_configuration.html">AIL_speaker_configuration</a>. The submitted speaker locations will replace the default locations chosen at driver initialization time. </p><p>You may also wish to specify a falloff power greater than 1.0 to exaggerate the movement of sounds between speakers. At 1.0, MSS's 3D pan function is constant in power. A sound will not appear to grow louder or software as it moves around the listener, providing it remains equidistant. Higher falloff powers can make games sound more 'interesting' due to increased apparent movement of sound sources... but this effect comes at the expense of level accuracy, as the sound will not tend to be as loud when it's positioned between speakers. The <b>examms</b> example program can help you judge the effect of different falloff powers. </p><p>You can use <a href="AIL_set_speaker_confj3o8fa.html">AIL_set_speaker_configuration</a> to change the falloff power without supplying new speaker locations. To do this, simply pass 0 for <b>n_channels</b> and NULL for <b>array</b>. </p><p>This function will have no effect with per-voice hardware drivers that don't use the Miles software mixer. Currently, this applies only to the MSS_MC_DIRECTSOUND3D and MSS_MC_EAX? values from the <a href="MSS_MC_SPEC.html">MSS_MC_SPEC</a> list, since these providers use DirectSound3D voices for output. </p><p>For a detailed understanding of speaker configurations, you should carefully review the <i>How do I use multi-channel sound output in Miles? </i><a href="How do I use multi-ckfnxne.html#FAQ">FAQ</a> before attempting to use this function. </p><p></p>
+<p>
+<br>
+<b>Group:</b>
+<a href="Digital Audio Services.html">Digital Audio Services</a><br>
+<b>Related Functions:</b>
+<a href="AIL_set_speaker_confj3o8fa.html">AIL_set_speaker_configuration</a>, <a href="AIL_speaker_configuration.html">AIL_speaker_configuration</a><br>
+<b>Related Basic Types:</b>
+<a href="F32.html">F32</a>, <a href="HDIGDRIVER.html">HDIGDRIVER</a>, <a href="MSS_MC_SPEC.html">MSS_MC_SPEC</a>, <a href="S32.html">S32</a>, <a href="void.html">void</a><br>
+<b>Related Structures:</b>
+<a href="MSSVECTOR3D.html">MSSVECTOR3D</a><br>
+<b>Related FAQs:</b>
+<a href="How do I use multi-ckfnxne.html">How do I use multi-channel sound output in Miles?</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

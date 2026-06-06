@@ -1,0 +1,64 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>AIL_set_sample_3D_position</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="sets a sample's current position in 3D space.">
+<meta name="ms-hkwd" content="AIL_set_sample_3D_position">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>AIL_set_sample_3D_position</h1>
+<p>The function  <b>AIL_set_sample_3D_position</b> sets a sample's current position in 3D space.</p>
+<table width=100% cellspacing=0 class=pre>
+<tr class=pre>
+<td class=pre>
+<pre><b><a href="void.html" class=trn>void</a> <a href="AIL_set_sample_3D_pozr6aaa.html" class=trn>AIL_set_sample_3D_position</a>(</b>
+<b>&nbsp;&nbsp;<a href="HSAMPLE.html" class=trn>HSAMPLE</a>&nbsp;</b><i>S</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="F32.html" class=trn>F32</a>&nbsp;</b><i>X</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="F32.html" class=trn>F32</a>&nbsp;</b><i>Y</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="F32.html" class=trn>F32</a>&nbsp;</b><i>Z</i>
+<b>);</b></pre>
+</td>
+</tr>
+</table>
+<h4>In Parameters</h4>
+<dl>
+<dt><i>S</i></dt>
+<dd>specifies the 3D sample.</dd>
+<dt><i>X</i></dt>
+<dd>specifies the X coordinate (usually imagined as left to right - left is negative, right is positive).</dd>
+<dt><i>Y</i></dt>
+<dd>specifies the Y coordinate (usually imagined as down to up - down is negative, up is positive).</dd>
+<dt><i>Z</i></dt>
+<dd>specifies the Z coordinate (usually imagined as back to front - back is negative, front is positive).</dd>
+</dl>
+<h4>Discussion</h4>
+<p> Assigning a 3D position to an HSAMPLE allows MSS to determine its channel levels automatically by performing distance and directionality calculations based on the relative positions of the HSAMPLE and its HDIGDRIVER (also known as the <i>listener</i>) in 3D space. Positions in 3D space are specified in left-handed coordinates (+X = right, +Y = up, +Z = front) by means of the <a href="AIL_set_sample_3D_pozr6aaa.html">AIL_set_sample_3D_position</a> and <a href="AIL_set_listener_3D_rl07ba.html">AIL_set_listener_3D_position</a> functions. </p><p>Even after you call <a href="AIL_set_sample_3D_pozr6aaa.html">AIL_set_sample_3D_position</a> on an HSAMPLE, the sample's channel-level scale factors may still be specified by the application, if desired, with the <a href="AIL_set_sample_channsk7xda.html">AIL_set_sample_channel_levels</a> function. The 3D positioner will continue to multiply its own set of scale factors with the default channel-level scalars until the HSAMPLE is released and reallocated, or reinitialized with a call to <a href="AIL_init_sample.html">AIL_init_sample</a>, <a href="AIL_set_sample_info.html">AIL_set_sample_info</a>, <a href="AIL_set_sample_file.html">AIL_set_sample_file</a>, or <a href="AIL_set_named_sample_file.html">AIL_set_named_sample_file</a>. Any of these actions will disable 3D positioning on an HSAMPLE when the MSS software mixer is in use. </p><p>Once an HSAMPLE has been placed under 3D control, a number of additional MSS API functions can be applied to the HSAMPLE. <a href="AIL_set_sample_3D_dicyrnaa.html">AIL_set_sample_3D_distances</a> determines how distance-based attenuation is applied to the sound, while the <a href="AIL_set_sample_3D_cone.html">AIL_set_sample_3D_cone</a> and <a href="AIL_set_sample_3D_orz3noha.html">AIL_set_sample_3D_orientation</a> functions give the sound a directional falloff characteristic. <a href="AIL_set_sample_3D_veetjbaa.html">AIL_set_sample_3D_velocity</a> applies Doppler shift to the sound. Similar functions apply to the listener object associated with the HDIGDRIVER. When the MSS software mixer is in use, <i>none of the functions whose name contains '_3D_' affect HSAMPLES that have not been assigned a 3D position.</i> </p><p>You should carefully review the <i>How do I use multi-channel sound output in Miles? </i><a href="How do I use multi-ckfnxne.html#FAQ">FAQ</a> before using this function. </p><p>Example files that use this function: examms.cpp </p>
+<p>
+<br>
+<b>Group:</b>
+<a href="Digital Audio Services.html">Digital Audio Services</a><br>
+<b>Related Functions:</b>
+<a href="AIL_calculate_3D_chasw8mvh.html">AIL_calculate_3D_channel_levels</a>, <a href="AIL_init_sample.html">AIL_init_sample</a>, <a href="AIL_sample_3D_position.html">AIL_sample_3D_position</a>, <a href="AIL_sample_3D_velocity.html">AIL_sample_3D_velocity</a>, <a href="AIL_set_listener_3D_rl07ba.html">AIL_set_listener_3D_position</a>, <a href="AIL_set_named_sample_file.html">AIL_set_named_sample_file</a>, <a href="AIL_set_sample_3D_cone.html">AIL_set_sample_3D_cone</a>, <a href="AIL_set_sample_3D_dicyrnaa.html">AIL_set_sample_3D_distances</a>, <a href="AIL_set_sample_3D_orz3noha.html">AIL_set_sample_3D_orientation</a>, <a href="AIL_set_sample_3D_pozr6aaa.html">AIL_set_sample_3D_position</a>, <a href="AIL_set_sample_3D_veetjbaa.html">AIL_set_sample_3D_velocity</a>, <a href="AIL_set_sample_3D_ve6w93po.html">AIL_set_sample_3D_velocity_vector</a>, <a href="AIL_set_sample_channsk7xda.html">AIL_set_sample_channel_levels</a>, <a href="AIL_set_sample_file.html">AIL_set_sample_file</a>, <a href="AIL_set_sample_info.html">AIL_set_sample_info</a>, <a href="AIL_update_sample_3Dnucgsa.html">AIL_update_sample_3D_position</a><br>
+<b>Related Basic Types:</b>
+<a href="F32.html">F32</a>, <a href="HSAMPLE.html">HSAMPLE</a>, <a href="MILES_OPEN_DIGITAL_FLAGS.html">MILES_OPEN_DIGITAL_FLAGS</a>, <a href="void.html">void</a><br>
+<b>Related FAQs:</b>
+<a href="How do I play a 3D d5zrlfk.html">How do I play a 3D digital sound?</a>, <a href="How do I use multi-ckfnxne.html">How do I use multi-channel sound output in Miles?</a>, <a href="What's the best way 3k0qus.html">What's the best way to port my older Miles application to MSS 7?</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

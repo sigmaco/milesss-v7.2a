@@ -1,0 +1,36 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>Resource Usage on the Playstation 2</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="">
+<meta name="ms-hkwd" content="Resource Usage on the Playstation 2">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>Resource Usage on the Playstation 2</h1>
+<h4>Discussion</h4>
+<p>We have tried very hard to be as low-impact on the PS2 hardware as possible, since resource contention is one of the trickiest bits of PS2 programming. We didn't want MSS to make that situation worse. </p><p>1) We use EE (of course), but no threads. We run on the same thread that you call us on. We do have interrupts happening in the background to service the I/O coming in from the IOP, but this is all low-impact stuff unless more CPU-intensive features like MP3, Ogg Vorbis, DLS, or CircleSurround processing are enabled. <br> </p><p>2) Our MP3 decoder and DTS encoder can use scratchpad RAM for improved performance if the <a href="AIL_set_scratchpad_policy.html">AIL_set_scratchpad_policy</a> function is called with MSS_USE_AND_SAVE or MSS_USE_WITHOUT_SAVING. For MP3 decoding, the advantage amounts to about 15% of the total Miles time slice (which is already small), but if you're using real-time DTS encoding, then the scratchpad is definitely worth enabling. By default, we do not use the scratchpad. <br> </p><p>3) We save and restore the floating-point unit's contents and state during interrupt processing, including any MSS timers registered by the application. Although we seldom recommend calling runtime library functions from within callback functions, this does mean you can disregard Sony's prohibitions against using certain SCE runtime functions at interrupt time. <br> </p><p>4) We use the IOP to handle all I/O in the background. The EE tells the IOP to start reading, and whenever the IOP has a packet of data ready (usually 4K), it DMAs it over to the EE, triggers an EE interrupt, and then the EE tells the IOP the next piece of data to read. We use the sceCdRead function for CD or DVD reads, and the simple C runtime functions (open, lseek, read, and close) to read from the host or the hard drive. <br> </p><p>5) The IOP IRX that we use for our IOP component is built into the MSS library and loaded and unloaded automatically as necessary. The IOP memory that we use for buffering is allocated by your game and passed into us (we do no direct allocation of IOP memory). <br> </p><p>6) We use the PCM channel on one of the two SPU sound chips for all audio output (we mix everything down to one hardware output channel). Other than this PCM sound channel, we don't touch any of the rest of the sound functionality. This means you can use any API (like Multistream) to control the other 48 ADPCM voices or even the other PCM channel. We expect that we would work with any sound output middleware, assuming they don't pound on the same hardware voice that you told us to use. (Be sure to review the discussion of the RAD_IOP layer in the PS2 support-services <i><a href="The RAD_IOP API for mhntme.html#section">section</a></i> if you need MSS to coexist with other IOP-based resources.) <br> </p><p>7) We use one SIF command handler to communicate between the EE and IOP. This simple API is rarely used, so the chance of conflict is low. You can specify which command handler to use, if you actually are using this API. <br> </p><p>8) The DTS encoder heavily utilizes VU0 (Vector Unit 0) in macro mode. Registers VF01 through VF31 and the ACC register, as well as the MAC and Status flags, are all used by the DTS encoder at interrupt time. MSS saves and restores these registers, so your application should not normally be affected. <br> </p><p>9) If any VU0 code is executing in micro mode when an MSS mixer service interrupt occurs, the DTS encoder will stall until the micro mode routine has finished executing. Any code or data in local VU0 memory is not affected by the encoder. <br> </p><p>We've worked hard to make MSS as easy to drop in as any of our other platforms - unlike a lot of other middleware, we think you'll be pleasantly surprised at how little work you'll have to do. </p>
+<p><a href="MSS Example for the 8hyjnz.html">Next Topic (MSS Example for the PlayStation 2)</a>  </p><p><a href="Call Logging under Pu0wpdi.html">Previous Topic (Call Logging under PlayStation 2)</a>  </p><p>
+<br>
+<b>Group:</b>
+<a href="Overview for Sony Plu0wpdi.html">Overview for Sony PlayStation 2</a><br>
+<b>Related Functions:</b>
+<a href="AIL_set_scratchpad_policy.html">AIL_set_scratchpad_policy</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>AIL_set_sample_channel_levels</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="scales the output contribution from each source channel in the specified HSAMPLE to each speaker.">
+<meta name="ms-hkwd" content="AIL_set_sample_channel_levels">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>AIL_set_sample_channel_levels</h1>
+<p>The function  <b>AIL_set_sample_channel_levels</b> scales the output contribution from each source channel in the specified HSAMPLE to each speaker.</p>
+<table width=100% cellspacing=0 class=pre>
+<tr class=pre>
+<td class=pre>
+<pre><b><a href="void.html" class=trn>void</a> <a href="AIL_set_sample_channsk7xda.html" class=trn>AIL_set_sample_channel_levels</a>(</b>
+<b>&nbsp;&nbsp;<a href="HSAMPLE.html" class=trn>HSAMPLE</a>&nbsp;</b><i>S</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="MSS_SPEAKER.html" class=trn>MSS_SPEAKER const *</a>&nbsp;</b><i>source_speaker_indexes</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="MSS_SPEAKER.html" class=trn>MSS_SPEAKER const *</a>&nbsp;</b><i>dest_speaker_indexes</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="F32.html" class=trn>F32 const *</a>&nbsp;</b><i>level_array</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a>&nbsp;</b><i>n_levels</i>
+<b>);</b></pre>
+</td>
+</tr>
+</table>
+<h4>In Parameters</h4>
+<dl>
+<dt><i>S</i></dt>
+<dd>indicates the HSAMPLE for which the channel levels are to be set.</dd>
+<dt><i>source_speaker_indexes</i></dt>
+<dd>specifies an array of one or more channels in the source data.</dd>
+<dt><i>dest_speaker_indexes</i></dt>
+<dd>specifies an array of one or more speakers.</dd>
+<dt><i>level_array</i></dt>
+<dd>specifies an array of coefficients from 0.0 to 1.0 which will scale the output of the HSAMPLE at each combination of source/destination channels specified by the corresponding source_speaker_indexes and dest_speaker_indexes entries.</dd>
+<dt><i>n_levels</i></dt>
+<dd>specifies the number of entries in level_array, source_speaker_indexes, and dest_speaker_indexes.</dd>
+</dl>
+<h4>Discussion</h4>
+<p>This function allows the application to provide scale factors that determine the routing between the specified sample's source channels and the driver's logical output channels. The input arrays must all have the same number of elements, specified by n_levels. They can be as simple as three single-entry arrays that establish the level of a single channel at a single speaker, or a completely-general matrix where audio from any number of source channels is steered to any number of destination speakers. References to channels that are not present in the source or destination will simply be ignored. </p><p> Here's an example of how you might implement a simple downmix function that maps the center channel in a 3.0-channel source sample to the front-left and front-right speakers in a stereo output configuration: </p><p></p><code><font size=3 color=#006000><pre><br>  MSS_SPEAKER downmix_source_list[] = { MSS_SPEAKER_FRONT_CENTER, MSS_SPEAKER_FRONT_CENTER };<br>  MSS_SPEAKER downmix_dest_list[] =   { MSS_SPEAKER_FRONT_LEFT,   MSS_SPEAKER_FRONT_RIGHT  };<br>  F32         downmix_level_list[] =  { 0.5F,                     0.5F                     };<br>  AIL_set_sample_channel_levels(S,<br>                                downmix_source_list,<br>                                downmix_dest_list,<br>                                downmix_level_list,<br>                                2);<br></pre></font></code><p></p><p> This function will have no effect with per-voice hardware drivers that don't use the Miles software mixer. Currently, this applies only to the Xbox 1 and the MSS_MC_DIRECTSOUND3D and MSS_MC_EAX? values from the <a href="MSS_MC_SPEC.html">MSS_MC_SPEC</a> list. </p><p>For a detailed understanding of per-channel level control, you should carefully review the <i>How do I use multi-channel sound output in Miles? </i><a href="How do I use multi-ckfnxne.html#FAQ">FAQ</a> before attempting to use this function. </p><p>Most applications won't need to set channel levels explicitly. To handle mono samples in a multichannel environment, it's often best to let Miles' built-in 3D positioning code do the work for you! (If an HSAMPLE has been assigned a 3D position with <a href="AIL_set_sample_3D_pozr6aaa.html">AIL_set_sample_3D_position</a>, any values the application writes to the channel-level array will be multiplied with the results of the 3D-positioning calculations.) </p><p>This function is not recommended for use with stereo samples. Standard stereo samples cannot be cross-routed (left-to-right and vice versa) with this function, since stereo source data has its own dedicated mixer path. Multichannel samples, however, can be routed arbitrarily, since they're processed internally as a stack of discrete mono samples.</p>
+<p>
+<br>
+<b>Group:</b>
+<a href="Digital Audio Services.html">Digital Audio Services</a><br>
+<b>Related Functions:</b>
+<a href="AIL_calculate_3D_chasw8mvh.html">AIL_calculate_3D_channel_levels</a>, <a href="AIL_open_stream.html">AIL_open_stream</a>, <a href="AIL_sample_51_volumeolliaa.html">AIL_sample_51_volume_levels</a>, <a href="AIL_sample_51_volume_pan.html">AIL_sample_51_volume_pan</a>, <a href="AIL_sample_channel_levels.html">AIL_sample_channel_levels</a>, <a href="AIL_sample_output_levels.html">AIL_sample_output_levels</a>, <a href="AIL_set_sample_3D_pozr6aaa.html">AIL_set_sample_3D_position</a>, <a href="AIL_set_sample_51_voc8298l.html">AIL_set_sample_51_volume_levels</a>, <a href="AIL_set_sample_51_vonel4aa.html">AIL_set_sample_51_volume_pan</a><br>
+<b>Related Basic Types:</b>
+<a href="F32.html">F32</a>, <a href="HSAMPLE.html">HSAMPLE</a>, <a href="MSS_MC_SPEC.html">MSS_MC_SPEC</a>, <a href="MSS_SPEAKER.html">MSS_SPEAKER</a>, <a href="S32.html">S32</a>, <a href="void.html">void</a><br>
+<b>Related FAQs:</b>
+<a href="How do I use multi-ckfnxne.html">How do I use multi-channel sound output in Miles?</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

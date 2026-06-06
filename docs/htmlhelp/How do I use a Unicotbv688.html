@@ -1,0 +1,39 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>How do I use a Unicode path on Windows?</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="">
+<meta name="ms-hkwd" content="How do I use a Unicode path on Windows?">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<table>
+<tr valign=top><td><b><p>Q:</p></b></td><td><b><p>How do I use a Unicode path on Windows?</p></b></td></tr>
+<tr valign=top><td><p>A:</p></td><td><p>The Miles DLL is compiled in ascii character mode so that it can work on Windows 9x without any extra DLLs. </p><p>That means if your Miles application is installed in a Unicode path, then the redistributable add-ons (for MP3 playback, DSP filters, etc) won't be found. </p><p>So, to fix this, you follow these steps: </p><p>1) Have your installer create a normal ascii path <b>under</b> your main application directory for the Miles files (usually you'd do this anyway, creating a "redist" directory). </p><p>2) Before calling <a href="AIL_startup.html">AIL_startup</a>, use the Win32/Win64 Unicode function <b>SetCurrentDirectoryW</b> to make sure that the current directory is set to your main application directory. </p><p>3) Call <a href="AIL_set_redist_directory.html">AIL_set_redist_directory</a> with the relative pathname to your Miles redistribution directory, only put a "*" character in front of the path. So, for example, instead of "redist", use "*redist". </p><p>4) Finally, call <a href="AIL_startup.html">AIL_startup</a> as you would normally. </p><p>All of the files should then load correctly (whether on a Unicode path or not). </p></td></tr>
+</table>
+<p><a href="How do I access filex8kvia.html">Next Topic (How do I access files from a big packed file?)</a>  </p><p><a href="What is the latest vpbjt32.html">Previous Topic (What is the latest version of MSS?)</a>  </p><p>
+<br>
+<b>Group:</b>
+<a href="FAQs and How Tos.html">FAQs and How Tos</a><br>
+<b>Related Sections:</b>
+<a href="Distributing Miles wly4t1o.html">Distributing Miles with Win32 Applications</a>, <a href="Distributing Miles wtw4t1o.html">Distributing Miles with Win64 Applications</a><br>
+<b>Related Functions:</b>
+<a href="AIL_set_redist_directory.html">AIL_set_redist_directory</a>, <a href="AIL_startup.html">AIL_startup</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>Filenames on MacOS</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="">
+<meta name="ms-hkwd" content="Filenames on MacOS">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>Filenames on MacOS</h1>
+<h4>Discussion</h4>
+<p>MacOS has several different ways to specify files (mostly deriving from their long OS history). </p><p>On Carbon Mach-O, Miles uses the clean and cross-platform compatible Unix-style slash separators, for example, "redist/macho". </p><p>On Classic and Carbon CFM, you can use FSSpec'<a href="FSSpec.html#s">s</a> or string filenames. An FSSpec is a binary representation of a file that most of the old Mac APIs use. On Classic and Carbon CFM, you can also use the original Mac style of string filenames where ":" is used as a separator, ":redist:classic", for example. </p><p>If you rebuild the Miles source, you can also make the Mach-O version use FSSpecs, or even the Carbon CFM version to use slashes (which would only work on MacOS X, of course). For modern games, though, you will probably only use the Mach-O version anyway, so the slash style filenames is the way to go. </p>
+<p><a href="Memory management un1cdaca.html">Next Topic (Memory management under MacOS)</a>  </p><p><a href="Distributing Miles wdkih6t.html">Previous Topic (Distributing Miles with MacOS Applications)</a>  </p><p>
+<br>
+<b>Group:</b>
+<a href="Overview for MacOS- 4e2z95.html">Overview for MacOS: Miles on Macintosh</a><br>
+<b>Related Functions:</b>
+<a href="AIL_WAV_file_fss_write.html">AIL_WAV_file_fss_write</a>, <a href="AIL_file_fss_attrib_write.html">AIL_file_fss_attrib_write</a>, <a href="AIL_file_fss_read.html">AIL_file_fss_read</a>, <a href="AIL_file_fss_size.html">AIL_file_fss_size</a>, <a href="AIL_file_fss_write.html">AIL_file_fss_write</a>, <a href="AIL_quick_fss_load.html">AIL_quick_fss_load</a>, <a href="AIL_quick_fss_load_a2xyaaa.html">AIL_quick_fss_load_and_play</a><br>
+<b>Related Basic Types:</b>
+<a href="FSSpec.html">FSSpec</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

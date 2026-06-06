@@ -1,0 +1,57 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>Register_RIB</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="registers a static library RIB interface on non-Win32 platforms such as Xbox, Sony Playstation 2 or DOS.">
+<meta name="ms-hkwd" content="Register_RIB">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>Register_RIB</h1>
+<p>The function  <b>Register_RIB</b> registers a static library RIB interface on non-Win32 platforms such as Xbox, Sony Playstation 2 or DOS.</p>
+<table width=100% cellspacing=0 class=pre>
+<tr class=pre>
+<td class=pre>
+<pre><b><a href="void.html" class=trn>void</a> <a href="Register_RIB.html" class=trn>Register_RIB</a>(</b>
+<b>&nbsp;&nbsp;<a href="void P.html" class=trn>void *</a>&nbsp;</b><i>static_lib_name</i>
+<b>);</b></pre>
+</td>
+</tr>
+</table>
+<h4>In Parameters</h4>
+<dl>
+<dt><i>static_lib_name</i></dt>
+<dd>Name of the static RIB library to load.</dd>
+</dl>
+<h4>Discussion</h4>
+<p>On the static library versions of Miles (Xbox, Wii, PS2, PS3 and DOS), you must manually load the ASI decompressors that you want to use. </p><p>This function (macro actually) takes a single paramater - the static library to load. Currently, the available static libraries include MP3Dec, OggDec, Voice, SRS, DolbySurround, and DSP. To load any or all of these libraries, you use this function before <a href="AIL_startup.html">AIL_startup</a>. For example: </p><p></p><code><font size=3 color=#006000><pre><br>Register_RIB(MP3Dec);<br>Register_RIB(DSP);<br>Register_RIB(Voice);<br>Register_RIB(XMADec);<br>Register_RIB(OGGDec);<br>AIL_startup();<br></pre></font></code><p></p><p> </p>
+<p>
+<br>
+<b>Group:</b>
+<a href="System Services.html">System Services</a><br>
+<b>Related Sections:</b>
+<a href="Integrating Miles inp7ne51.html">Integrating Miles into a Nintendo Wii Build Environment</a>, <a href="Integrating Miles in5ryggq.html">Integrating Miles into a PlayStation 2 Build Environment</a>, <a href="Integrating Miles inprr6hq.html">Integrating Miles into a PlayStation 3 Build Environment</a>, <a href="Integrating Miles inogwva8.html">Integrating Miles into a Xbox 360 Build Environment</a><br>
+<b>Related Functions:</b>
+<a href="AIL_startup.html">AIL_startup</a><br>
+<b>Related Basic Types:</b>
+<a href="void.html">void</a>, <a href="void P.html">void *</a><br>
+<b>Related FAQs:</b>
+<a href="How do I initialize owpc2p.html">How do I initialize the Miles Sound System for use?</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

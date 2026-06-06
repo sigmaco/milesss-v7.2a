@@ -1,0 +1,38 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>Gain Block Filter</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="">
+<meta name="ms-hkwd" content="Gain Block Filter">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>Gain Block Filter</h1>
+<h4>Discussion</h4>
+<p> This filter is a general-purpose gain block with controllable linearity characteristics. It's especially useful for creating distortion or "fuzz" effects. </p><p>Briefly, the Gain Block Filter operates by allowing the signal's instantaneous amplitude at each sample point to determine how much gain or loss is applied to that point in the signal waveform. To use this filter, you'll need to specify the desired gain levels in dB for three different signal-amplitude levels: the zero-volt baseline; the positive and negative "rails"; and a midpoint level at a position (also user-specified) between the baseline and rails. </p><p>You can think of the three user-specified gain factors as creating a simple two-segment line graph that divides the waveform's possible 16-bit amplitude range into baseline-to-midpoint and midpoint-to-rail sections. All valid sample amplitudes will fall somewhere between the baseline and rail extents of this graph -- or more precisely, within one of its two sections. When the filter processes an input sample point, it first determines which of the two graph segments the point occupies. It then amplifies or attenuates that sample point by an amount obtained by interpolating the gain parameters at the two endpoints of the graph segment. In this way, the Gain Block Filter operates in a manner similar to the "Distortion" effects plugin in Sound Forge. </p><p>If the baseline, midpoint, and rail gain factors are all within 0.1 dB of each other, then the Gain Block Filter acts as a simple amplifier or attenuator. Apply different gain levels over the waveform's amplitude range, however, and things get interesting. A nonlinear gain curve introduces <i>harmonic distortion</i> into a waveform. The nearest equivalent in the analog world is probably a guitar effects pedal (or a poorly-designed audio amplifier.) </p><p>Note that you have the option of specifying a different gain profile for the negative and positive halves of the signal waveform. Use the "Negative Controls Enabled" boolean property to control this behavior. If you look at the filtered output on an FFT analyzer, you'll find that changes that affect only one half of the waveform tend to cause stronger even-order harmonics to appear in the signal, while distortion applied to both halves symmetrically plays up the odd harmonics. </p><p><b>Name for use with <a href="AIL_find_filter.html">AIL_find_filter</a>:</b> "Gain Block Filter" </p><p><b>Properties:</b> </p><p><b>"Rail Gain":</b> Desired gain in dB at the very limits of the waveform envelope; i.e., sample values of 0 and 65536 for a signed 16-bit waveform. <i>Range:</i> -96.0 to 96.0 dB. </p><p><b>"Midpoint Level":</b> A linear (0.0-1.0) scalar that sets the breakpoint between the baseline-midpoint and midpoint-rail segments of the gain curve. <i>Range:</i> 0.0 (midpoint at baseline) to 1.0 (midpoint at rails). </p><p><b>"Midpoint Gain":</b> Desired gain in dB at the midpoint level. <i>Range:</i> -96.0 to 96.0 dB. </p><p><b>"Base Gain":</b> Desired gain in dB for sample points in the middle (the quietest part, near the zero-volt baseline) of a waveform. <i>Range:</i> -96.0 to 96.0 dB. </p><p><b>"Negative Controls Enabled":</b> This is a boolean property (integer value of 0 or 1) that defaults to 0. When this property is set to 1, three additional properties become available ("Negative Rail Gain", "Negative Midpoint Level", and "Negative Midpoint Gain".) These are identical to the corresponding properties above, except that they control the gain profile for the bottom half of the waveform. When "Negative Controls Enabled" is 0, the standard gain/level properties apply equally to both the top and bottom halves of the waveform. </p><p><b>"Mix":</b> Mix of the filtered signal. <i>Range:</i> 0.0 (original input signal - dry) to 1.0 (full effect - wet). </p><p>When a mix value of 0.0 is specified, the filter will operate on an internal "fast path" designed to consume minimal CPU resources. Performance is also optimized in the specific case where all gains are equal, enabling the filter to operate as a general-purpose amplifier/attenuator block. </p><p>By default, all gain properties are set to 0.0 dB, and the midpoint level is 0.5 (halfway between the signal's baseline and rails). "Negative Controls Enabled" is 0 (false) by default, meaning that changes made to the "Rail Gain", "Midpoint Level", "Midpoint Gain", and "Base Gain" properties apply equally to the negative and positive halves of the waveform. </p>
+<p>
+<br>
+<b>Group:</b>
+<a href="Digital Filter Services.html">Digital Filter Services</a><br>
+<b>Related Sections:</b>
+<a href="Compressor Filter.html">Compressor Filter</a>, <a href="Volume Ramp Filter.html">Volume Ramp Filter</a><br>
+<b>Related Functions:</b>
+<a href="AIL_find_filter.html">AIL_find_filter</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

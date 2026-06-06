@@ -1,0 +1,63 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>AIL_init_sample</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="prepares a sample handle for playback of audio data.">
+<meta name="ms-hkwd" content="AIL_init_sample">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>AIL_init_sample</h1>
+<p>The function  <b>AIL_init_sample</b> prepares a sample handle for playback of audio data.</p>
+<table width=100% cellspacing=0 class=pre>
+<tr class=pre>
+<td class=pre>
+<pre><b><a href="S32.html" class=trn>S32</a> <a href="AIL_init_sample.html" class=trn>AIL_init_sample</a>(</b>
+<b>&nbsp;&nbsp;<a href="HSAMPLE.html" class=trn>HSAMPLE</a>&nbsp;</b><i>S</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a>&nbsp;</b><i>format</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="U32.html" class=trn>U32</a>&nbsp;</b><i>flags</i>
+<b>);</b></pre>
+</td>
+</tr>
+</table>
+<h4>In Parameters</h4>
+<dl>
+<dt><i>S</i></dt>
+<dd>indicates the sample handle to prepare for audio playback.</dd>
+<dt><i>format</i></dt>
+<dd>should be set to one of the <a href="MILES_DIGITAL_FORMAT.html">MILES_DIGITAL_FORMAT</a> equates.</dd>
+<dt><i>flags</i></dt>
+<dd>should be set to a combination of the <a href="MILES_DIGITAL_FLAGS.html">MILES_DIGITAL_FLAGS</a> equates.</dd>
+</dl>
+<h4>Returns</h4>
+<p>Nonzero if the sample handle initialization succeeded; zero if a failure occurred.</p>
+<h4>Discussion</h4>
+<p>This function initializes all parameters associated with a sample handle to a set of nominal values. It should be called immediately after allocating a sample handle with <a href="AIL_allocate_sample_ijfaaa.html">AIL_allocate_sample_handle</a>, as well as anytime an existing sample handle is used to play a new audio data sample. (Applications that play audio file images directly with <a href="AIL_set_sample_file.html">AIL_set_sample_file</a> or <a href="AIL_set_named_sample_file.html">AIL_set_named_sample_file</a> do not need to call <a href="AIL_init_sample.html">AIL_init_sample</a> at all.) </p><p> <a href="AIL_init_sample.html">AIL_init_sample</a> initializes the sample's playback information as follows: </p><p> The sample's status is set to <a href="MILES_DIGITAL_STATUS.html#SMP_DONE">SMP_DONE</a>. </p><p> Any filters applied to the sample are disconnected. </p><p> The starting addresses of both the primary and secondary sample buffers are set to NULL, and their lengths are set to 0. Consequently, normal single-buffer playback is enabled. </p><p> The sample's position counter is set to 0 (start-of-sample). </p><p> The sample's loop counter is set to 1 (no looping). </p><p> The sample playback rate is initialized to 11025 Hz. </p><p> The sample's volume value is set to 1.0. </p><p> The sample's wet mix level is set to 0.0 and its dry mix level is set to 1.0. Occlusion, obstruction, and exclusion levels are all set to 0.0. </p><p> If the sample was under 3D positional control (i.e., the application has called <a href="AIL_set_sample_3D_pozr6aaa.html">AIL_set_sample_3D_position</a> on it), it is returned to normal 2D-only mode, with its channel levels under application control. (The channel level scalars themselves are all set to 1.0.) All of the sample's internal 3D-positional data members are reset to nominal values (position at origin, up=+Y, face=+X, no emission cone, minimum distance 1.0, maximum distance 200.0, 3D auto wet-attenuation flag=TRUE). </p><p> The sample's panpot value is set to 0.5 (dead center) on a scale of 0 (hard left) to 1.0 (hard right). </p><p> The start-of-block, end-of-buffer, and end-of-sample callbacks are all canceled. </p><p> Since <a href="AIL_init_sample.html">AIL_init_sample</a> resets parameters such as volume, pan location, loop count, and other playback characteristics, it should appear <i>before</i> any calls to functions such as <a href="AIL_set_sample_volume_pan.html">AIL_set_sample_volume_pan</a> or <a href="AIL_set_sample_loop_count.html">AIL_set_sample_loop_count</a>, or these functions will have no effect. Of course, only values which the application wishes to change from their defaults need to be set prior to calling <a href="AIL_start_sample.html">AIL_start_sample</a>. </p><p> None of the digital audio library functions alter or modify application sample data in any way. The same sample data may safely be passed to other drivers (or even used more than once per driver) without being reloaded into memory. </p><p> Note that stereo data is normally encountered in LR (left-to-right, in order of ascending memory location) order. If RL data from a nonstandard source is played, the <a href="MILES_DIGITAL_FLAGS.html#DIG_PCM_ORDER">DIG_PCM_ORDER</a> flag should be set. <i>Stereo data is not supported by the original Xbox HDIGDRIVERs when hardware 3D is enabled.</i> </p><p> In all cases, the MSS digital playback system acts as an arbitrator between the application's data format and the limitations of the hardware in use. For example, if an attempt is made to play 16-bit 44 kHz signed stereo data with a basic mono 8-bit unsigned-PCM Sound Blaster card installed, MSS will mix the left and right channels together, scale each channel's amplitude according to the sample panpot setting, truncate the lower 8 bits of each sample, and invert the sign of the remaining 8 bits while undersampling the input data to conform to the hardware sample rate in use - all without the knowledge or intervention of the application program. </p><p> Again, it is not necessary to call this function if <a href="AIL_set_named_sample_file.html">AIL_set_named_sample_file</a>, <a href="AIL_set_sample_file.html">AIL_set_sample_file</a> or <a href="AIL_set_sample_info.html">AIL_set_sample_info</a> is used to play memory-resident files directly. </p><p> This function will not normally fail unless a memory-allocation failure occurs while attempting to allocate the (relatively-small) arrays associated with level-scaling and other per-channel properties. If <a href="AIL_init_sample.html">AIL_init_sample</a> returns 0 for failure, the <a href="AIL_last_error.html">AIL_last_error</a> function may be called to obtain the error description. </p><p> Example files that use this function: SSTEST.C</p>
+<p>
+<br>
+<b>Group:</b>
+<a href="Digital Audio Services.html">Digital Audio Services</a><br>
+<b>Related Functions:</b>
+<a href="AIL_allocate_sample_ijfaaa.html">AIL_allocate_sample_handle</a>, <a href="AIL_init_sample.html">AIL_init_sample</a>, <a href="AIL_last_error.html">AIL_last_error</a>, <a href="AIL_minimum_sample_bahfkoa.html">AIL_minimum_sample_buffer_size</a>, <a href="AIL_sample_buffer_avecvgaa.html">AIL_sample_buffer_available</a>, <a href="AIL_set_named_sample_file.html">AIL_set_named_sample_file</a>, <a href="AIL_set_sample_3D_pozr6aaa.html">AIL_set_sample_3D_position</a>, <a href="AIL_set_sample_51_vonel4aa.html">AIL_set_sample_51_volume_pan</a>, <a href="AIL_set_sample_address.html">AIL_set_sample_address</a>, <a href="AIL_set_sample_file.html">AIL_set_sample_file</a>, <a href="AIL_set_sample_info.html">AIL_set_sample_info</a>, <a href="AIL_set_sample_loop_count.html">AIL_set_sample_loop_count</a>, <a href="AIL_set_sample_volumolliaa.html">AIL_set_sample_volume_levels</a>, <a href="AIL_set_sample_volume_pan.html">AIL_set_sample_volume_pan</a>, <a href="AIL_start_sample.html">AIL_start_sample</a>, <a href="AIL_stream_info.html">AIL_stream_info</a><br>
+<b>Related Basic Types:</b>
+<a href="DIGDRVSTAGE.html">DIGDRVSTAGE</a>, <a href="HSAMPLE.html">HSAMPLE</a>, <a href="MILES_DIGITAL_FLAGS.html">MILES_DIGITAL_FLAGS</a>, <a href="MILES_DIGITAL_FORMAT.html">MILES_DIGITAL_FORMAT</a>, <a href="MILES_DIGITAL_STATUS.html">MILES_DIGITAL_STATUS</a>, <a href="S32.html">S32</a>, <a href="U32.html">U32</a><br>
+<b>Related FAQs:</b>
+<a href="How do I set a DSP flufd25.html">How do I set a DSP filter on a sample?</a>, <a href="How do I use multi-ckfnxne.html">How do I use multi-channel sound output in Miles?</a>, <a href="What's the best way 3k0qus.html">What's the best way to port my older Miles application to MSS 7?</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

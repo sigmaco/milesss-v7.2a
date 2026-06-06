@@ -1,0 +1,64 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>AIL_inspect_MP3</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="obtains some basic information about the structure of an MPEG-1 Layer 3 audio file, and prepares for optional header enumeration.">
+<meta name="ms-hkwd" content="AIL_inspect_MP3">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>AIL_inspect_MP3</h1>
+<p>The function  <b>AIL_inspect_MP3</b> obtains some basic information about the structure of an MPEG-1 Layer 3 audio file, and prepares for optional header enumeration.</p>
+<table width=100% cellspacing=0 class=pre>
+<tr class=pre>
+<td class=pre>
+<pre><b><a href="void.html" class=trn>void</a> <a href="AIL_inspect_MP3.html" class=trn>AIL_inspect_MP3</a>(</b>
+<b>&nbsp;&nbsp;<a href="MP3_INFO.html" class=trn>MP3_INFO</a>&nbsp;*</b><i>inspection_state</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="U8.html" class=trn>U8 *</a>&nbsp;</b><i>MP3_file_image</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a>&nbsp;</b><i>MP3_image_size</i>
+<b>);</b></pre>
+</td>
+</tr>
+</table>
+<h4>In Parameters</h4>
+<dl>
+<dt><i>MP3_file_image</i></dt>
+<dd>points to an MP3 file image owned by the application.</dd>
+<dt><i>MP3_image_size</i></dt>
+<dd>The size, in bytes, of the MP3 file image.</dd>
+</dl>
+<h4>Out Parameters</h4>
+<dl>
+<dt><i>inspection_state</i></dt>
+<dd>points to an instance of an MP3_INFO structure owned by the application.</dd>
+</dl>
+<h4>Discussion</h4>
+<p>This function can locate ID3v1 and ID3v2 tags at the end and beginning of an MP3 file image, respectively. It also prepares an <a href="MP3_INFO.html">MP3_INFO</a> structure instance for use with <a href="AIL_enumerate_MP3_frames.html">AIL_enumerate_MP3_frames</a>. </p><p> See the <a href="MP3_INFO.html">MP3_INFO</a> structure description for details about the information retrieved by this function.</p>
+<p>
+<br>
+<b>Group:</b>
+<a href="Utility Services.html">Utility Services</a><br>
+<b>Related Functions:</b>
+<a href="AIL_enumerate_MP3_frames.html">AIL_enumerate_MP3_frames</a><br>
+<b>Related Basic Types:</b>
+<a href="S32.html">S32</a>, <a href="U8.html">U8</a>, <a href="void.html">void</a><br>
+<b>Related Structures:</b>
+<a href="MP3_INFO.html">MP3_INFO</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

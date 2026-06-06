@@ -1,0 +1,74 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>AIL_speaker_configuration</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="returns an array of 3D vectors describing the listener-relative locations of the array of speakers associated with the current output format, plus some additional information about the format.">
+<meta name="ms-hkwd" content="AIL_speaker_configuration">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>AIL_speaker_configuration</h1>
+<p>The function  <b>AIL_speaker_configuration</b> returns an array of 3D vectors describing the listener-relative locations of the array of speakers associated with the current output format, plus some additional information about the format.</p>
+<table width=100% cellspacing=0 class=pre>
+<tr class=pre>
+<td class=pre>
+<pre><b><a href="MSSVECTOR3D.html" class=trn>MSSVECTOR3D *</a> <a href="AIL_speaker_configuration.html" class=trn>AIL_speaker_configuration</a>(</b>
+<b>&nbsp;&nbsp;<a href="HDIGDRIVER.html" class=trn>HDIGDRIVER</a>&nbsp;</b><i>dig</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a>&nbsp;*</b><i>n_physical_channels</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a>&nbsp;*</b><i>n_logical_channels</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="F32.html" class=trn>F32</a>&nbsp;*</b><i>falloff_power</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="MSS_MC_SPEC.html" class=trn>MSS_MC_SPEC</a>&nbsp;*</b><i>channel_spec</i>
+<b>);</b></pre>
+</td>
+</tr>
+</table>
+<h4>In Parameters</h4>
+<dl>
+<dt><i>dig</i></dt>
+<dd>indicates the HDIGDRIVER whose configuration information is to be returned.</dd>
+</dl>
+<h4>Out Parameters</h4>
+<dl>
+<dt><i>n_physical_channels</i></dt>
+<dd>specifies a pointer to a variable of type S32 which will receive the number of physical output channels. This may be less than the number of logical channels used elsewhere by MSS, in the case of a matrix provider such as Dolby or SRS that multiplexes several logical channels onto two physical channels. It will be zero if a per-voice output filter is in use.</dd>
+<dt><i>n_logical_channels</i></dt>
+<dd>specifies a pointer to a variable of type S32 which will receive the number of output channels the Miles mixer will write to. It will be zero if a per-voice output filter is in use.</dd>
+<dt><i>falloff_power</i></dt>
+<dd>specifies a pointer to a variable of type F32 which will receive the falloff power in use by the Miles mixer. This will not be meaningful if a per-voice output filter is in use.</dd>
+<dt><i>channel_spec</i></dt>
+<dd>specifies a pointer to a variable of type <a href="MSS_MC_SPEC.html">MSS_MC_SPEC</a> which will receive the channel specification that was actually opened by <a href="AIL_open_digital_driver.html">AIL_open_digital_driver</a> or <a href="AIL_quick_startup.html">AIL_quick_startup</a>.</dd>
+</dl>
+<h4>Returns</h4>
+<p>The array of n_logical_channels 3D vectors describing the listener-relative positions of the speakers associated with the current output format.</p>
+<h4>Discussion</h4>
+<p>This function lets you retrieve the configuration information resulting from the last successful call to <a href="AIL_open_digital_driver.html">AIL_open_digital_driver</a> or <a href="AIL_quick_startup.html">AIL_quick_startup</a>. If you pass MSS_MC_USE_SYSTEM_CONFIG to these functions, you can call <a href="AIL_speaker_configuration.html">AIL_speaker_configuration</a> to discover what was actually chosen by the system. </p><p><table border> 	<tr> <th><a href="MSS_MC_SPEC.html">MSS_MC_SPEC</a> enum</th> <th>Physical/logical channels</th> <th>Logical SPEAKER_ array</th> </tr> <tr><td>MSS_MC_DIRECTSOUND3D</td> <td>0/0</td> <td>NA</td></tr> <tr><td>MSS_MC_EAX2</td> <td>0/0</td> <td>NA</td></tr> <tr><td>MSS_MC_EAX3</td> <td>0/0</td> <td>NA</td></tr> <tr><td>MSS_MC_EAX4</td> <td>0/0</td> <td>NA</td></tr> </p><p> <tr><td>MSS_MC_MONO</td> <td>1/1</td> <td>FL</td></tr> <tr><td>MSS_MC_STEREO</td> <td>2/2</td> <td>FL,FR</td></tr> <tr><td>MSS_MC_HEADPHONES</td> <td>2/2</td> <td>FL,FR</td></tr> <tr><td>MSS_MC_40_DISCRETE</td> <td>4/4</td> <td>FL,FR,BL,BR</td></tr> <tr><td>MSS_MC_DOLBY_SURROUND</td> <td>2/3</td> <td>FL,FR,BC</td></tr> <tr><td>MSS_MC_SRS_CIRCLE_SURROUND</td> <td>2/7</td> <td>FL,FR,FC,LF,BL,BR,BC</td></tr> <tr><td>MSS_MC_51_DISCRETE</td> <td>6/6</td> <td>FL,FR,FC,LF,BL,BR</td></tr> <tr><td>MSS_MC_61_DISCRETE</td> <td>7/7</td> <td>FL,FR,FC,LF,BL,BR,BC</td></tr> <tr><td>MSS_MC_71_DISCRETE</td> <td>8/8</td> <td>FL,FR,FC,LF,BL,BR,SL,SR</td></tr> <tr><td>MSS_MC_81_DISCRETE</td> <td>9/9</td> <td>FL,FR,FC,LF,BL,BR,BC,SL,SR</td></tr> </table> </p><p>You can obtain the number of physical and logical channels in use by calling <a href="AIL_speaker_configuration.html">AIL_speaker_configuration</a>, as well as the <a href="MSS_MC_SPEC.html">MSS_MC_SPEC</a> value passed to (or chosen by) <a href="AIL_open_digital_driver.html">AIL_open_digital_driver</a>. As can be seen in the table above, these will be identical for all conventional (non-matrix) discrete formats, while matrix formats such as Dolby and SRS Circle Surround(r) can map three or more logical channels onto two physical channels. DirectSound3D and EAX will report zero physical channels and zero logical channels, since Windows insulates the application from these details. </p><p>For a detailed understanding of per-channel level control, you should carefully review the <i>How do I use multi-channel sound output in Miles? </i><a href="How do I use multi-ckfnxne.html#FAQ">FAQ</a> before attempting to use this function. </p>
+<p>
+<br>
+<b>Group:</b>
+<a href="Digital Audio Services.html">Digital Audio Services</a><br>
+<b>Related Functions:</b>
+<a href="AIL_calculate_3D_chasw8mvh.html">AIL_calculate_3D_channel_levels</a>, <a href="AIL_open_digital_driver.html">AIL_open_digital_driver</a>, <a href="AIL_quick_startup.html">AIL_quick_startup</a>, <a href="AIL_set_speaker_confj3o8fa.html">AIL_set_speaker_configuration</a>, <a href="AIL_speaker_configuration.html">AIL_speaker_configuration</a><br>
+<b>Related Basic Types:</b>
+<a href="F32.html">F32</a>, <a href="HDIGDRIVER.html">HDIGDRIVER</a>, <a href="MSS_MC_SPEC.html">MSS_MC_SPEC</a>, <a href="S32.html">S32</a><br>
+<b>Related Structures:</b>
+<a href="MSSVECTOR3D.html">MSSVECTOR3D</a><br>
+<b>Related FAQs:</b>
+<a href="How do I use multi-ckfnxne.html">How do I use multi-channel sound output in Miles?</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

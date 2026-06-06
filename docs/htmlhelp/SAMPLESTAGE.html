@@ -1,0 +1,82 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>SAMPLESTAGE</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="describes the stage in the sample pipeline to install the filter on.">
+<meta name="ms-hkwd" content="SAMPLESTAGE">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>SAMPLESTAGE</h1>
+<p>The basic type <b>SAMPLESTAGE</b> describes the stage in the sample pipeline to install the filter on.</p>
+<h4>Fundamental Values</h4>
+<table class=list width=90%>
+<tr valign=top class=list>
+<th width=29% height=25 valign=middle class=list>&nbsp;Value</th>
+<th width=71% height=25 valign=middle class=list>&nbsp;Description</th>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#SP_FILTER_0" href="#SP_FILTER_0" class=trn>&nbsp;SP_FILTER_0</a></td>
+<td width=71% height=25 valign=middle class=list>Specifies the first of eight filter provider stages. SP_FILTER_0 is equivalent to SP_FILTER from versions of MSS prior to MSS 7. Once set, the filter in each slot will be executed before each buffer from the HSAMPLE is copied into the mixing buffer. You will almost always use the SP_FILTER_x stages to install and communicate with the Miles sample pipeline filters.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#SP_FILTER_1" href="#SP_FILTER_1" class=trn>&nbsp;SP_FILTER_1</a></td>
+<td width=71% height=25 valign=middle class=list>Filter pipeline stage 1.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#SP_FILTER_2" href="#SP_FILTER_2" class=trn>&nbsp;SP_FILTER_2</a></td>
+<td width=71% height=25 valign=middle class=list>Filter pipeline stage 2.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#SP_FILTER_3" href="#SP_FILTER_3" class=trn>&nbsp;SP_FILTER_3</a></td>
+<td width=71% height=25 valign=middle class=list>Filter pipeline stage 3.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#SP_FILTER_4" href="#SP_FILTER_4" class=trn>&nbsp;SP_FILTER_4</a></td>
+<td width=71% height=25 valign=middle class=list>Filter pipeline stage 4.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#SP_FILTER_5" href="#SP_FILTER_5" class=trn>&nbsp;SP_FILTER_5</a></td>
+<td width=71% height=25 valign=middle class=list>Filter pipeline stage 5.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#SP_FILTER_6" href="#SP_FILTER_6" class=trn>&nbsp;SP_FILTER_6</a></td>
+<td width=71% height=25 valign=middle class=list>Filter pipeline stage 6.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#SP_FILTER_7" href="#SP_FILTER_7" class=trn>&nbsp;SP_FILTER_7</a></td>
+<td width=71% height=25 valign=middle class=list>Filter pipeline stage 7.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#SP_OUTPUT" href="#SP_OUTPUT" class=trn>&nbsp;SP_OUTPUT</a></td>
+<td width=71% height=25 valign=middle class=list>Intended to be used to address sample-level properties on output filters.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#SP_MERGE" href="#SP_MERGE" class=trn>&nbsp;SP_MERGE</a></td>
+<td width=71% height=25 valign=middle class=list>Specifies the merge provider stage. The merge provider is called to mix each HSAMPLE's current address into the internal MSS mixing build buffer.</td>
+</tr>
+</table>
+<p>
+<br>
+<b>Group:</b>
+<a href="Digital Filter Services.html">Digital Filter Services</a><br>
+<b>Related Functions:</b>
+<a href="AIL_digital_driver_pjsvica.html">AIL_digital_driver_processor</a>, <a href="AIL_enumerate_sampleiv92e3.html">AIL_enumerate_sample_stage_properties</a>, <a href="AIL_sample_processor.html">AIL_sample_processor</a>, <a href="AIL_sample_stage_property.html">AIL_sample_stage_property</a>, <a href="AIL_set_sample_processor.html">AIL_set_sample_processor</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

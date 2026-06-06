@@ -1,0 +1,65 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>AIL_open_stream</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="opens a stream handle based on a supported file (.WAV, Ogg Vorbis, XMA, or MP3, and others).">
+<meta name="ms-hkwd" content="AIL_open_stream">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>AIL_open_stream</h1>
+<p>The function  <b>AIL_open_stream</b> opens a stream handle based on a supported file (.WAV, Ogg Vorbis, XMA, or MP3, and others).</p>
+<table width=100% cellspacing=0 class=pre>
+<tr class=pre>
+<td class=pre>
+<pre><b><a href="HSTREAM.html" class=trn>HSTREAM</a> <a href="AIL_open_stream.html" class=trn>AIL_open_stream</a>(</b>
+<b>&nbsp;&nbsp;<a href="HDIGDRIVER.html" class=trn>HDIGDRIVER</a>&nbsp;</b><i>dig</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="char const P.html" class=trn>char const *</a>&nbsp;</b><i>name</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a>&nbsp;</b><i>stream_mem</i>
+<b>);</b></pre>
+</td>
+</tr>
+</table>
+<h4>In Parameters</h4>
+<dl>
+<dt><i>dig</i></dt>
+<dd>specifies the digital driver handle to use.</dd>
+<dt><i>name</i></dt>
+<dd>specifies the name of the file to stream. The streaming API supports .WAV, Ogg Vorbis, XMA, and MP3 files, among other possible formats.</dd>
+<dt><i>stream_mem</i></dt>
+<dd>specifies the amount of memory to use for streaming. Normally, you will pass a zero for this parameter which tells MSS to determine the optimal amount of memory to use. You may want to increase this parameter if you plan on increasing the playback rate.</dd>
+</dl>
+<h4>Returns</h4>
+<p>A handle to the new stream, or NULL if the open failed.</p>
+<h4>Discussion</h4>
+<p>Currently-supported file types include uncompressed .WAV files, IMA ADPCM compressed .WAV files, Xbox 360 XMA-compressed .WAV files, Ogg Vorbis files (mono, stereo, and multichannel), .WAV-wrapped MP3 files, standard MP3 files, and Xbox ADPCM wave files. A stream is similar to a digital sample, but instead of the entire file being loaded into memory, only a small portion of the file is loaded at once. </p><p> To stream data files that are embedded within other packed files or libraries, you can mark up the filename to tell MSS how to access it. Simply use a filename string of the form </p><p> </p><code><font size=3 color=#006000><pre><br>                *my_large_packed_file.pak*3141592*271828.mp3<br>                </pre></font></code><p> </p><p> to access (for example) a 3,141,592-byte .mp3 file that resides within a container file at byte offset 271,828. When creating a subfile descriptor string, only the suffix portion of the original filename (.mp3 in this case) is needed. </p><p> It's also possible to force MSS to use an existing open file handle supplied by your application, but this method is platform-specific and <i>very</i> error prone. Email RAD Game Tools for help with this feature if you really need it, but be aware that it's been deprecated and will not be supported in future versions of MSS. </p><p>On the Playstation 2, you can also stream audio from IOP or SPU memory using this function. To load from IOP memory, you can create a special file handle to use with the <a href="RAD_IOPGetFileHandlemn5jyx.html">RAD_IOPGetFileHandleToIOPMemory</a> macro. To load from SPU memory, you use the <a href="RAD_IOPGetFileHandlemn5jyx.html">RAD_IOPGetFileHandleToIOPMemory</a> macro. For example, to play 32768 bytes at IOP memory address 0x12340, you'd do something like: </p><p></p><code><font size=3 color=#006000><pre><br>char load_handle[ 32 ];<br>sprintf( load_handle, "\\\\\\\\%d,32768", RAD_IOPGetFileHandleToIOPMemory( 0x12340 ) );<br>stream = AIL_open_stream( load_handle, 0, 0 );<br></pre></font></code><p></p><p> Of course, you can also override the I/O functions that Miles uses to read from the stream with the <a href="AIL_set_file_callbacks.html">AIL_set_file_callbacks</a> function, if you don't want to bother composing a subfile descriptor or using the (deprecated) ASCII-encoded file handle technique. On platforms that support asynchronous file access, you should also call <a href="AIL_set_file_async_cw5nwba.html">AIL_set_file_async_callbacks</a>. Note, however, that <i>most applications are better off letting Miles do its own file access</i>, even with packed files that your application has already opened. Unless you have a very specific reason for overriding Miles's file I/O calls, we recommend against doing so. </p><p> Under Windows, streams are automatically serviced in the background by default. You can service the buffers manually with the <a href="AIL_service_stream.html">AIL_service_stream</a> and <a href="AIL_auto_service_stream.html">AIL_auto_service_stream</a> functions. </p><p> Under MacOS 9, Wii and PS2, streams are automatically serviced with background asynchronous reads. </p><p> Under DOS, you must always service the stream manually with the <a href="AIL_service_stream.html">AIL_service_stream</a> function. </p><p> If the total size of the streaming buffers is greater than or equal to the total stream size, then the MSS will preload all of the data automatically, so you'll never use more memory than a normal sample would take. </p><p> This function doesn't actually load any of the streaming buffers - the only routine in the streaming API that performs the file reading is <a href="AIL_service_stream.html">AIL_service_stream</a>. </p><p> Under DOS, Wii, PS2 and MacOS 9, this function must not be invoked from an interrupt-based callback function. </p><p> Monaural-source streams may be steered to multiple output speakers via <a href="AIL_stream_sample_handle.html">AIL_stream_sample_handle</a> and the various volume/pan and channel-level control functions. Additionally, multichannel (&gt; 2-channel) Ogg Vorbis files may be streamed with full channel/speaker routing capabilities via <a href="AIL_set_sample_channsk7xda.html">AIL_set_sample_channel_levels</a>. Consult the <i>How do I use multi-channel sound output in Miles?</i> <i><a href="How do I use multi-ckfnxne.html#FAQ">FAQ</a></i> for an overview of multichannel audio support. </p><p> Example files that use this function: Demo.C, Streamer.C, FileHndl.C</p>
+<p>
+<br>
+<b>Group:</b>
+<a href="Digital Audio Stream436kmy.html">Digital Audio Streaming Services</a><br>
+<b>Related Sections:</b>
+<a href="Memory management unctyjnz.html">Memory management under PlayStation 2</a><br>
+<b>Related Functions:</b>
+<a href="AIL_auto_service_stream.html">AIL_auto_service_stream</a>, <a href="AIL_close_stream.html">AIL_close_stream</a>, <a href="AIL_register_stream_s0khaa.html">AIL_register_stream_callback</a>, <a href="AIL_service_stream.html">AIL_service_stream</a>, <a href="AIL_set_file_async_cw5nwba.html">AIL_set_file_async_callbacks</a>, <a href="AIL_set_file_callbacks.html">AIL_set_file_callbacks</a>, <a href="AIL_set_sample_channsk7xda.html">AIL_set_sample_channel_levels</a>, <a href="AIL_set_stream_loop_count.html">AIL_set_stream_loop_count</a>, <a href="AIL_stream_sample_handle.html">AIL_stream_sample_handle</a>, <a href="RAD_IOPGetFileHandlemn5jyx.html">RAD_IOPGetFileHandleToIOPMemory</a><br>
+<b>Related Basic Types:</b>
+<a href="HDIGDRIVER.html">HDIGDRIVER</a>, <a href="HSTREAM.html">HSTREAM</a>, <a href="S32.html">S32</a>, <a href="char const P.html">char const *</a><br>
+<b>Related FAQs:</b>
+<a href="How do I access filex8kvia.html">How do I access files from a big packed file?</a>, <a href="How do I stream a fisosz8v.html">How do I stream a file off a hard disk or CD?</a>, <a href="How do I use multi-ckfnxne.html">How do I use multi-channel sound output in Miles?</a>, <a href="On the Sony PS2, how2tyo60.html">On the Sony PS2, how can I use the IOP or SPU memory to hold my audio?</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

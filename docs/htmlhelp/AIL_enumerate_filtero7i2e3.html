@@ -1,0 +1,66 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>AIL_enumerate_filter_properties</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="enumerates a filter's provider-level properties.">
+<meta name="ms-hkwd" content="AIL_enumerate_filter_properties">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>AIL_enumerate_filter_properties</h1>
+<p>The function  <b>AIL_enumerate_filter_properties</b> enumerates a filter's provider-level properties.</p>
+<table width=100% cellspacing=0 class=pre>
+<tr class=pre>
+<td class=pre>
+<pre><b><a href="S32.html" class=trn>S32</a> <a href="AIL_enumerate_filtero7i2e3.html" class=trn>AIL_enumerate_filter_properties</a>(</b>
+<b>&nbsp;&nbsp;<a href="HPROVIDER.html" class=trn>HPROVIDER</a>&nbsp;</b><i>filter</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="HINTENUM.html" class=trn>HINTENUM</a>&nbsp;*</b><i>next</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="RIB_INTERFACE_ENTRY.html" class=trn>RIB_INTERFACE_ENTRY</a>&nbsp;*</b><i>dest</i>
+<b>);</b></pre>
+</td>
+</tr>
+</table>
+<h4>In Parameters</h4>
+<dl>
+<dt><i>filter</i></dt>
+<dd>specifies the filter whose provider-level properties should be enumerated.</dd>
+</dl>
+<h4>Out Parameters</h4>
+<dl>
+<dt><i>next</i></dt>
+<dd>is a pointer that MSS uses to keep track of the next property to return. You initialize the next variable with the constant HINTENUM_FIRST before the first call to <a href="AIL_enumerate_filtero7i2e3.html">AIL_enumerate_filter_properties</a>.</dd>
+<dt><i>dest</i></dt>
+<dd>points to an structure of type RIB_INTERFACE_ENTRY that receives the property information. The most important field in this RIB structure is "entry_name" which is a pointer to the property name (which can then be used in the <a href="AIL_filter_property.html">AIL_filter_property</a> function.</dd>
+</dl>
+<h4>Returns</h4>
+<p>0 if no further filter properties were found; non-zero if another property was found.</p>
+<h4>Discussion</h4>
+<p>Provider-level properties are properties that are set globally for a particular filter module. For properties that are specific to each sample (sample-level properties), use the <a href="AIL_enumerate_sampleiv92e3.html">AIL_enumerate_sample_stage_properties</a> function. For properties that are specific to an output filter's binding to its HDIGDRIVER, use <a href="AIL_enumerate_outputs6xxcy.html">AIL_enumerate_output_filter_driver_properties</a>. </p><p> Example files that use this function: filter.cpp, multiflt.cpp</p>
+<p>
+<br>
+<b>Group:</b>
+<a href="Digital Filter Services.html">Digital Filter Services</a><br>
+<b>Related Functions:</b>
+<a href="AIL_enumerate_filtero7i2e3.html">AIL_enumerate_filter_properties</a>, <a href="AIL_enumerate_filterygy892.html">AIL_enumerate_filter_sample_properties</a>, <a href="AIL_enumerate_outputs6xxcy.html">AIL_enumerate_output_filter_driver_properties</a>, <a href="AIL_enumerate_sampleiv92e3.html">AIL_enumerate_sample_stage_properties</a>, <a href="AIL_filter_property.html">AIL_filter_property</a><br>
+<b>Related Basic Types:</b>
+<a href="HINTENUM.html">HINTENUM</a>, <a href="HPROVIDER.html">HPROVIDER</a>, <a href="S32.html">S32</a><br>
+<b>Related Structures:</b>
+<a href="RIB_INTERFACE_ENTRY.html">RIB_INTERFACE_ENTRY</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

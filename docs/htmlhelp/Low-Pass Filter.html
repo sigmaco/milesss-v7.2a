@@ -1,0 +1,38 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>Low-Pass Filter</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="">
+<meta name="ms-hkwd" content="Low-Pass Filter">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>Low-Pass Filter</h1>
+<h4>Discussion</h4>
+<p> This filter is built right into the Miles mixer. See <a href="AIL_set_sample_low_pjj4gjc.html">AIL_set_sample_low_pass_cut_off</a> for details. </p><p>You can also install the low-pass filter as a normal pipeline-stage filter like any of the others, if you wish. This can be useful if you wish to add additional low-pass filtering to an occluded sample, for instance. In this case, the following properties are available: </p><p><b>Name for use with <a href="AIL_find_filter.html">AIL_find_filter</a>:</b> "LowPass Filter" </p><p><b>"Lowpass Cutoff":</b> Cutoff Frequency. <i>Range:</i> 20.0 Hz to Nyquist (one-half the driver's output sample rate in Hz). </p><p><b>"Mix":</b> Wet/dry mix. <i>Range:</i> 0.0 (no effect) to 1.0 (full effect). </p><p>When a mix value of 0.0 is specified, the filter will operate on an internal "fast path" designed to consume minimal CPU resources. </p>
+<p>
+<br>
+<b>Group:</b>
+<a href="Digital Filter Services.html">Digital Filter Services</a><br>
+<b>Related Sections:</b>
+<a href="Band-Pass Filter.html">Band-Pass Filter</a>, <a href="High-Pass Filter.html">High-Pass Filter</a>, <a href="Resonator Filter.html">Resonator Filter</a><br>
+<b>Related Functions:</b>
+<a href="AIL_find_filter.html">AIL_find_filter</a>, <a href="AIL_set_sample_low_pjj4gjc.html">AIL_set_sample_low_pass_cut_off</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

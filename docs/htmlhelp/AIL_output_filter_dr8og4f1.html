@@ -1,0 +1,74 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>AIL_output_filter_driver_property</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="retrieves and/or sets driver-level properties for an output filter.">
+<meta name="ms-hkwd" content="AIL_output_filter_driver_property">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>AIL_output_filter_driver_property</h1>
+<p>The function  <b>AIL_output_filter_driver_property</b> retrieves and/or sets driver-level properties for an output filter.</p>
+<table width=100% cellspacing=0 class=pre>
+<tr class=pre>
+<td class=pre>
+<pre><b><a href="S32.html" class=trn>S32</a> <a href="AIL_output_filter_dr8og4f1.html" class=trn>AIL_output_filter_driver_property</a>(</b>
+<b>&nbsp;&nbsp;<a href="HDIGDRIVER.html" class=trn>HDIGDRIVER</a>&nbsp;</b><i>dig</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="char const P.html" class=trn>char const *</a>&nbsp;</b><i>property</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="void.html" class=trn>void</a>&nbsp;*</b><i>before_value</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="void const P.html" class=trn>void const *</a>&nbsp;</b><i>new_value</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="void.html" class=trn>void</a>&nbsp;*</b><i>after_value</i>
+<b>);</b></pre>
+</td>
+</tr>
+</table>
+<h4>In Parameters</h4>
+<dl>
+<dt><i>dig</i></dt>
+<dd>indicates the driver whose installed output filter should be queried.</dd>
+<dt><i>property</i></dt>
+<dd>is a string variable describing the property to retrieve.</dd>
+<dt><i>new_value</i></dt>
+<dd>is a pointer to a new value to set. If you don't want to set the property, pass in 0.</dd>
+</dl>
+<h4>Out Parameters</h4>
+<dl>
+<dt><i>before_value</i></dt>
+<dd>is a pointer to a variable that will contain the property value before changing it. Always use this pointer to retrieve read-only properties. You can use 0 if you don't want to retrieve the prior value.</dd>
+<dt><i>after_value</i></dt>
+<dd>is a pointer to a variable that will contain the property value after changing it. You can use 0 if you don't want to retrieve the post-value.</dd>
+</dl>
+<h4>Returns</h4>
+<p>Non-zero for success, 0 for failure.</p>
+<h4>Discussion</h4>
+<p> Certain digital sound configurations, including DirectSound3D, EAX, Dolby Surround, DTS, and SRS Circle Surround(r), are implemented with internal extension modules called <i>output filters</i>. Output filters can offer additional control options beyond those available from the core MSS API. Most applications will never need to work with output filter controls directly, but those that wish to do so can obtain a handle to the current voice or matrix output filter from <a href="AIL_digital_output_filter.html">AIL_digital_output_filter</a> and access provider- and driver-level properties via the <a href="AIL_filter_property.html">AIL_filter_property</a> and <a href="AIL_output_filter_dr8og4f1.html">AIL_output_filter_driver_property</a> functions. </p><p>You can find a list of configuration-specific properties in the chapter on the specific output filter you are using. See the <b>examms</b> demo program for an example of how to enumerate and query provider-level, driver-level, and sample-level properties. </p><p> Each per-voice output filter, such as those installed when MSS_MC_DIRECTSOUND3D or one of the EAX options is specified in a call to <a href="AIL_open_digital_driver.html">AIL_open_digital_driver</a>, publishes a property called "Maximum supported samples" that returns the total number of 3D samples that can be (potentially) opened by that provider. </p><p> Many output filters also publish provider-specific properties -- see the provider information at the end of this chapter for details. </p><p> <b>Retrieving Example:</b> To obtain the total number of 3D samples that can be opened, you could use the following code: </p><p></p><code><font size=3 color=#006000><pre><br>U32 max_3D_samples;<br>AIL_output_filter_driver_property( opened_dig_driver,<br>                                   "Maximum supported samples",<br>                                   &max_3D_samples, 0, 0 );<br></pre></font></code><p></p><p> <b>Setting Example:</b> To set the EAX room style, you could use the following code (you'd usually want to use the <a href="AIL_set_room_type.html">AIL_set_room_type</a> function, though): </p><p></p><code><font size=3 color=#006000><pre><br>U32 room_style=EAX_ENVIRONMENT_BATHROOM;<br>AIL_output_filter_driver_property( eax_dig_driver,<br>                                  "EAX environment selection",<br>                                   0, &room_style, 0 );<br></pre></font></code><p></p><p> </p><p> (In reality, you still need to check the returned values from <a href="AIL_allocate_sample_ijfaaa.html">AIL_allocate_sample_handle</a>, because not all of those hardware voices may be available by the time they're needed.) </p><p> Prior to MSS 7, 3D driver properties were accessed at the HPROVIDER level. In MSS 7, a given HPROVIDER may provide 3D services for a number of HDIGDRIVERS at once. Consequently, very few provider-level properties are associated with output filters other than the filter's name and version. </p><p> This function will have no effect if no per-voice or matrix output filter is in use. </p><p> Example files that use this function: examms.cpp</p>
+<p>
+<br>
+<b>Group:</b>
+<a href="Digital Audio Services.html">Digital Audio Services</a><br>
+<b>Related Sections:</b>
+<a href="Creative's EAX 2 Prosaseaa.html">Creative's EAX 2 Properties</a>, <a href="Creative's EAX 3 Prosaseaa.html">Creative's EAX 3 Properties</a>, <a href="Creative's EAX 4 Prosaseaa.html">Creative's EAX 4 Properties</a><br>
+<b>Related Functions:</b>
+<a href="AIL_allocate_sample_ijfaaa.html">AIL_allocate_sample_handle</a>, <a href="AIL_digital_output_filter.html">AIL_digital_output_filter</a>, <a href="AIL_enumerate_outputs6xxcy.html">AIL_enumerate_output_filter_driver_properties</a>, <a href="AIL_enumerate_outputymkcvx.html">AIL_enumerate_output_filter_sample_properties</a>, <a href="AIL_filter_property.html">AIL_filter_property</a>, <a href="AIL_open_digital_driver.html">AIL_open_digital_driver</a>, <a href="AIL_output_filter_dr8og4f1.html">AIL_output_filter_driver_property</a>, <a href="AIL_set_room_type.html">AIL_set_room_type</a><br>
+<b>Related Basic Types:</b>
+<a href="HDIGDRIVER.html">HDIGDRIVER</a>, <a href="S32.html">S32</a>, <a href="char const P.html">char const *</a>, <a href="void.html">void</a>, <a href="void const P.html">void const *</a><br>
+<b>Related FAQs:</b>
+<a href="What's the best way 3k0qus.html">What's the best way to port my older Miles application to MSS 7?</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

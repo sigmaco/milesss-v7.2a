@@ -1,0 +1,37 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>What kind of audio decompression does Miles support?</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="">
+<meta name="ms-hkwd" content="What kind of audio decompression does Miles support?">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<table>
+<tr valign=top><td><b><p>Q:</p></b></td><td><b><p>What kind of audio decompression does Miles support?</p></b></td></tr>
+<tr valign=top><td><p>A:</p></td><td><p>Miles supports IMA ADPCM, MP3 (MPEG Layer 3), Ogg Vorbis, Voxware voice, Sony PS2 VAG, Xbox ADPCM hardware, and Xbox 360 XMA decompression. </p><p>IMA ADPCM is a simple format that provides 4 to 1 compression on 16-bit data. There is essentially no CPU hit for decoding ADPCM - it's that simple. Like all ADPCM variants, it is somewhat hissy, though. </p><p>MP3 (or MPEG Layer 3) is a more complicated format that usually provides 11 to 1 compression with no audible loss. It does use a bit more CPU, though. See the "What is MPEG Audio and MP3?" <i><a href="What is MPEG Audio aqqdaaa.html#FAQ">FAQ</a></i> for more details about MP3. You need to sign a special license addendum to use MP3. </p><p>Ogg Vorbis is an non-patented MP3 alternative, with similar capabilities and limitations. It does use about twice the CPU of MP3, so it is the most expensive of our codecs. At low bit rates (128 kbit or less), Ogg usually sounds a little better than MP3. At higher bit rates, you can't tell the difference, so you are better off using MP3 due to the lower CPU hit. You also need to sign a special license addendum to use Ogg Vorbis. </p><p>The Voxware voice codecs are complicated formats that provide up to 200 to 1 compression on voice data (fairly compressed-sounding, though). They are only for voice data, though - they can't do anything at all with music or sound effects. The Voxware codecs are used almost exclusively for Internet voice chat. </p><p>On the original Xbox, Miles can also play Xbox ADPCM with no CPU hit at all - it is transparently decoded in hardware. These files can only be played on an original Xbox, though. </p><p>On the Xbox 360, Miles can play XMA files. XMA is a perceptual encoder like MP3 and Ogg, but not quite as powerful. It can be decompressed mostly in hardware, so it's only a little slower than IMA ADPCM, though. It's a great option on the Xbox 360, but it can't be played on any other platform. </p><p>On the PS2, you can use the <a href="The RAD_IOP API for mhntme.html#RAD_IOP">RAD_IOP</a> API to play VAG files in hardware with no CPU hit. VAG files are a Sony version of ADPCM. It's a good option for the usually CPU-constrained PS2. </p><p></p></td></tr>
+</table>
+<p><a href="What is MPEG Audio aqqdaaa.html">Next Topic (What is MPEG Audio and MP3?)</a>  </p><p><a href="I used an older versn2acmr.html">Previous Topic (I used an older version of Miles and now my volume and pan calls are weird - what's going on? And what's with the two types of volume functions?)</a>  </p><p>
+<br>
+<b>Group:</b>
+<a href="FAQs and How Tos.html">FAQs and How Tos</a><br>
+<b>Related FAQs:</b>
+<a href="What is MPEG Audio aqqdaaa.html">What is MPEG Audio and MP3?</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

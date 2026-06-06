@@ -1,0 +1,37 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>What MP3 encoder should I use?</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="">
+<meta name="ms-hkwd" content="What MP3 encoder should I use?">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<table>
+<tr valign=top><td><b><p>Q:</p></b></td><td><b><p>What MP3 encoder should I use?</p></b></td></tr>
+<tr valign=top><td><p>A:</p></td><td><p>The encoders are being upgraded so quickly that it's hard to give a recommendation that will be valid for any length of time. </p><p>We've generally found the Fraunhofer encoders to be the best (and are relatively inexpensive) - after all, they did first publish the format! </p><p>If you want to compress the DLS instruments in your files, then you need our encoder - it is the only one with the hooks necessary to encode DLS files. Our encoder isn't the best for general MP3 encoding, though. </p><p>If you will be doing looping or seeking of any type on MP3 files, they'll sound much better if you encode them without using the format's bit-reservoir feature. With the LAME encoder (also among the best available), the command-line option <b>--nores</b> will ensure that all of the source data associated with an MP3 frame is stored within the physical boundaries of the frame. </p><p>The MAKELOOP.EXE utility is a Win32 console application that works in conjunction with LAME to create loopable .MP3 and ADPCM .WAV files. It will accept PCM .WAV, ADPCM .WAV, or existing .MP3 files as input. When encoding MP3 files, MAKELOOP.EXE resamples your input file to the next-smaller multiple of the MP3 frame size (usually 1152 samples), then launches LAME with a combination of options chosen for loop-transition quality. Finally, MAKELOOP.EXE post-processes LAME's output file to remove silent frames. </p><p>MAKELOOP.EXE is especially convenient because you don't need to specify subblock offsets with <a href="AIL_set_sample_loop_block.html">AIL_set_sample_loop_block</a> or <a href="AIL_set_stream_loop_block.html">AIL_set_stream_loop_block</a> to loop a file encoded by it. Just use <a href="AIL_set_sample_loop_count.html">AIL_set_sample_loop_count</a> or <a href="AIL_set_stream_loop_count.html">AIL_set_stream_loop_count</a> to loop the entire file. Most loopable .WAV files will sound great when encoded with MAKELOOP.EXE, saving your production department the need to select and audition loop points manually with the Miles Sound Player. </p><p>You can run MAKELOOP.EXE with no command-line options to see usage notes for the current version. Most .WAV files can be encoded simply by running <b>makeloop infile.wav outfile.mp3</b>. </p></td></tr>
+</table>
+<p><a href="I can't get Miles tos2yybj.html">Next Topic (I can't get Miles to play an MP3, XMA, or Ogg Vorbis file - what's going on?)</a>  </p><p><a href="What is MPEG Audio aqqdaaa.html">Previous Topic (What is MPEG Audio and MP3?)</a>  </p><p>
+<br>
+<b>Group:</b>
+<a href="FAQs and How Tos.html">FAQs and How Tos</a><br>
+<b>Related Functions:</b>
+<a href="AIL_set_sample_loop_block.html">AIL_set_sample_loop_block</a>, <a href="AIL_set_sample_loop_count.html">AIL_set_sample_loop_count</a>, <a href="AIL_set_stream_loop_block.html">AIL_set_stream_loop_block</a>, <a href="AIL_set_stream_loop_count.html">AIL_set_stream_loop_count</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>How much CPU do the various filters use?</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="">
+<meta name="ms-hkwd" content="How much CPU do the various filters use?">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<table>
+<tr valign=top><td><b><p>Q:</p></b></td><td><b><p>How much CPU do the various filters use?</p></b></td></tr>
+<tr valign=top><td><p>A:</p></td><td><p>The built-in filters are <b>very</b> fast! </p><p>The built-in global reverb is about as expensive as mixing each sample twice (which is basically free - mixing 64 samples on a modern PC only costs about 1.5% of the CPU). </p><p>The built-in low-pass filter is also almost free - on a modern PC, you can low-pass filter 64 samples in less than 2% of the CPU. </p><p>Other filters are more CPU-intensive -- using the Chorus filter on 64 samples, for instance, takes about 8% of the CPU. You can use the <a href="AIL_digital_CPU_percent.html">AIL_digital_CPU_percent</a> function to check the CPU demands imposed by the filter(s) your application uses.</p></td></tr>
+</table>
+<p><a href="How can I play two Ho6e0ns.html">Next Topic (How can I play two HSAMPLEs from the same memory address?)</a>  </p><p><a href="How do I set a DSP flufd25.html">Previous Topic (How do I set a DSP filter on a sample?)</a>  </p><p>
+<br>
+<b>Group:</b>
+<a href="FAQs and How Tos.html">FAQs and How Tos</a><br>
+<b>Related Functions:</b>
+<a href="AIL_digital_CPU_percent.html">AIL_digital_CPU_percent</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

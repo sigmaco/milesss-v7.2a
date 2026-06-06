@@ -1,0 +1,60 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>AIL_set_room_type</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="sets the room type that the listener is currently in.">
+<meta name="ms-hkwd" content="AIL_set_room_type">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>AIL_set_room_type</h1>
+<p>The function  <b>AIL_set_room_type</b> sets the room type that the listener is currently in.</p>
+<table width=100% cellspacing=0 class=pre>
+<tr class=pre>
+<td class=pre>
+<pre><b><a href="void.html" class=trn>void</a> <a href="AIL_set_room_type.html" class=trn>AIL_set_room_type</a>(</b>
+<b>&nbsp;&nbsp;<a href="HDIGDRIVER.html" class=trn>HDIGDRIVER</a>&nbsp;</b><i>driver</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a>&nbsp;</b><i>room_type</i>
+<b>);</b></pre>
+</td>
+</tr>
+</table>
+<h4>In Parameters</h4>
+<dl>
+<dt><i>driver</i></dt>
+<dd>indicates the driver representing the listener.</dd>
+<dt><i>room_type</i></dt>
+<dd>indicates the one of the <a href="MILES_ROOM_TYPE.html">MILES_ROOM_TYPE</a> constants.</dd>
+</dl>
+<h4>Discussion</h4>
+<p>Use <a href="MILES_ROOM_TYPE.html#ENVIRONMENT_GENERIC">ENVIRONMENT_GENERIC</a> to use the provider's default settings. Use <a href="AIL_set_sample_reverolliaa.html">AIL_set_sample_reverb_levels</a> to control the amount of room effects applied to each sample. </p><p> It's mandatory to use <a href="AIL_set_sample_reverolliaa.html">AIL_set_sample_reverb_levels</a> to turn the wet effects level up for any 3D samples that should have reverb. The per-sample wet level defaults to 0.0, so if you're not hearing your selected room effects, this is probably why! </p><p> You can find out if the provider you are using supports room types by querying the current room type with <a href="AIL_room_type.html">AIL_room_type</a>. If it returns a -1, then room-type control is unsupported. </p><p>This function will have no effect with per-voice hardware drivers that don't support reverb in hardware. Currently, this applies only to the MSS_MC_DIRECTSOUND3D value from the <a href="MSS_MC_SPEC.html">MSS_MC_SPEC</a> list, since the EAX providers handle reverb directly and the software-mixing options emulate EAX. </p><p> Example files that use this function: examms.cpp </p>
+<p>
+<br>
+<b>Group:</b>
+<a href="Digital Audio Services.html">Digital Audio Services</a><br>
+<b>Related Sections:</b>
+<a href="Creative's EAX 2 Prosaseaa.html">Creative's EAX 2 Properties</a><br>
+<b>Related Functions:</b>
+<a href="AIL_digital_master_reverb.html">AIL_digital_master_reverb</a>, <a href="AIL_digital_master_r9odawz.html">AIL_digital_master_reverb_levels</a>, <a href="AIL_output_filter_dr8og4f1.html">AIL_output_filter_driver_property</a>, <a href="AIL_room_type.html">AIL_room_type</a>, <a href="AIL_set_digital_mast3hdbfa.html">AIL_set_digital_master_reverb</a>, <a href="AIL_set_digital_mastfheawz.html">AIL_set_digital_master_reverb_levels</a>, <a href="AIL_set_sample_reverolliaa.html">AIL_set_sample_reverb_levels</a><br>
+<b>Related Basic Types:</b>
+<a href="HDIGDRIVER.html">HDIGDRIVER</a>, <a href="MILES_ROOM_TYPE.html">MILES_ROOM_TYPE</a>, <a href="MSS_MC_SPEC.html">MSS_MC_SPEC</a>, <a href="S32.html">S32</a>, <a href="void.html">void</a><br>
+<b>Related FAQs:</b>
+<a href="What's the best way 3k0qus.html">What's the best way to port my older Miles application to MSS 7?</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

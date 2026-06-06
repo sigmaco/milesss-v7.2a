@@ -1,0 +1,57 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>AIL_set_scratchpad_policy</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="specifies whether (and how) MSS can use the PS2's scratchpad RAM.">
+<meta name="ms-hkwd" content="AIL_set_scratchpad_policy">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>AIL_set_scratchpad_policy</h1>
+<p>The function  <b>AIL_set_scratchpad_policy</b> specifies whether (and how) MSS can use the PS2's scratchpad RAM.</p>
+<table width=100% cellspacing=0 class=pre>
+<tr class=pre>
+<td class=pre>
+<pre><b><a href="MSS_RESOURCE_POLICY.html" class=trn>MSS_RESOURCE_POLICY</a> <a href="AIL_set_scratchpad_policy.html" class=trn>AIL_set_scratchpad_policy</a>(</b>
+<b>&nbsp;&nbsp;<a href="MSS_RESOURCE_POLICY.html" class=trn>MSS_RESOURCE_POLICY</a>&nbsp;</b><i>policy</i>
+<b>);</b></pre>
+</td>
+</tr>
+</table>
+<h4>In Parameters</h4>
+<dl>
+<dt><i>policy</i></dt>
+<dd>specifies the requested resource-usage policy.</dd>
+</dl>
+<h4>Returns</h4>
+<p>The resource policy currently applicable to scratchpad RAM usage.</p>
+<h4>Discussion</h4>
+<p>By default, MSS does not use the PS2 scratchpad. However, certain operations (currently limited to MP3 decoding and DTS encoding) can be accelerated slightly by giving MSS permission to store intermediate results in SPRAM. </p><p> If your application does not use MP3 decoding or DTS output, then you do not need to call this function. If your application uses Miles's DTS or MP3 support but otherwise does not use the scratchpad RAM for anything <i>including mixed foreground and background calls to the MP3 decoder</i>, you can call this function with MSS_USE_WITHOUT_SAVING. If you need to be able to use the scratchpad with interrupts enabled, but would like the interrupt-driven parts of MSS to use it as well, you should pass MSS_USE_AND_SAVE to this function. (Saving and restoring the scratchpad contents imposes a performance cost of its own, so we can run a little faster if we don't have to preserve the scratchpad contents at interrupt time.) </p><p> You can call this function at any time. However, any requested changes made to Miles's scratchpad-usage policy will not take effect until the next end-of-buffer interrupt that Miles receives from the IOP. At that time, the value reported by <a href="AIL_scratchpad_policy.html">AIL_scratchpad_policy</a> (as well as this function) will change to reflect the new policy. Note that any foreground calls made by the application that end up calling the MP3 decoder to decompress audio data will <b>not</b> save the scratchpad contents under any conditions. This means that if you need to disable scratchpad usage in preparation for a foreground call to <a href="AIL_process_digital_audio.html">AIL_process_digital_audio</a> or a similar function, you'll want to poll <a href="AIL_scratchpad_policy.html">AIL_scratchpad_policy</a> first until your requested change takes effect. </p>
+<p>
+<br>
+<b>Group:</b>
+<a href="Low-Level Sony PlaySecs659.html">Low-Level Sony PlayStation 2 Support Services</a><br>
+<b>Related Sections:</b>
+<a href="Miles DTS Provider fiu59xr.html">Miles DTS Provider for the Sony PS2</a>, <a href="Resource Usage on thg47bsy.html">Resource Usage on the Playstation 2</a><br>
+<b>Related Functions:</b>
+<a href="AIL_process_digital_audio.html">AIL_process_digital_audio</a>, <a href="AIL_scratchpad_policy.html">AIL_scratchpad_policy</a><br>
+<b>Related Basic Types:</b>
+<a href="MSS_RESOURCE_POLICY.html">MSS_RESOURCE_POLICY</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>AIL_open_digital_driver</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="opens a digital driver to play 2D digital audio.">
+<meta name="ms-hkwd" content="AIL_open_digital_driver">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>AIL_open_digital_driver</h1>
+<p>The function  <b>AIL_open_digital_driver</b> opens a digital driver to play 2D digital audio.</p>
+<table width=100% cellspacing=0 class=pre>
+<tr class=pre>
+<td class=pre>
+<pre><b><a href="HDIGDRIVER.html" class=trn>HDIGDRIVER</a> <a href="AIL_open_digital_driver.html" class=trn>AIL_open_digital_driver</a>(</b>
+<b>&nbsp;&nbsp;<a href="U32.html" class=trn>U32</a>&nbsp;</b><i>frequency</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a>&nbsp;</b><i>bits</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a>&nbsp;</b><i>channels</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="U32.html" class=trn>U32</a>&nbsp;</b><i>flags</i>
+<b>);</b></pre>
+</td>
+</tr>
+</table>
+<h4>In Parameters</h4>
+<dl>
+<dt><i>frequency</i></dt>
+<dd>specifies the output sample frequency to initialize the driver to.</dd>
+<dt><i>bits</i></dt>
+<dd>specifies the bits of sound quality to initialize the driver to. Use 8 for 8-bit, and 16 for 16-bit.</dd>
+<dt><i>channels</i></dt>
+<dd>specifies the number of sound channels. You will usually default to using MSS_MC_USE_SYSTEM_CONFIG, but you can also use 1 for mono, 2 for stereo, or one of the <a href="MSS_MC_SPEC.html">MSS_MC_SPEC</a> specifiers.</dd>
+<dt><i>flags</i></dt>
+<dd>0 or one of the <a href="MILES_OPEN_DIGITAL_FLAGS.html">MILES_OPEN_DIGITAL_FLAGS</a> constants.</dd>
+</dl>
+<h4>Returns</h4>
+<p>If successful, this function returns a non-zero handle to a digital driver. If the driver failed to open, then 0 is returned (use <a href="AIL_last_error.html">AIL_last_error</a> for the cause).</p>
+<h4>Discussion</h4>
+<p>This function will open a digital driver on any of the Miles platforms. </p><p><i>Important</i>: the channels parameter does <b>not</b> specify the number of available mixer voices!</i> The number of mixer voices is determined by the value of the <a href="MILES_PREFERENCES.html#DIG_MIXER_CHANNELS">DIG_MIXER_CHANNELS</a> preference at the time this function is called. </p><p>When using the MSS_MC_USE_SYSTEM_CONFIG flag for the channels parameter, the output configuration is determined as follows (note that not all of the speaker systems are supported on all platforms): </p><p><table border> 	<tr> <th> Operating System Reports </th> <th> Equivalent <a href="MSS_MC_SPEC.html">MSS_MC_SPEC</a> Value </th> </tr> <tr> <td>Headphones</td> <td>MSS_MC_HEADPHONES</td> </tr> <tr> <td>Mono speaker</td> <td>MSS_MC_MONO</td> </tr> <tr> <td>Quad speakers</td> <td>MSS_MC_40_DISCRETE</td> </tr> <tr> <td>Stereo speakers</td> <td>MSS_MC_STEREO</td> </tr> <tr> <td>Surround speakers</td> <td>MSS_MC_SRS_CIRCLE_SURROUND</td> </tr> <tr> <td>5.1 speakers</td> <td>MSS_MC_51_DISCRETE</td> </tr> <tr> <td>6.1 speakers</td> <td>MSS_MC_61_DISCRETE</td> </tr> <tr> <td>5.1 speakers</td> <td>MSS_MC_51_DISCRETE</td> </tr> <tr> <td>8.1 speakers</td> <td>MSS_MC_81_DISCRETE</td> </tr> </table> </p><p>You can query the chosen <a href="MSS_MC_SPEC.html">MSS_MC_SPEC</a> value by calling <a href="AIL_speaker_configuration.html">AIL_speaker_configuration</a> on the returned HDIGDRIVER. Unfortunately, the control-panel or other system setting may not reflect the user's actual hardware configuration. Worst, from the sound driver's point of view, the configuration may be determined by a separate, proprietary applet -- which may or may not keep itself synchronized with the operating system settings. Further, the limited range of operating system values don't begin to address all of the possible configurations (for example, under Windows there is no option for 6.1 speakers). Therefore, it's best not to rely solely on the OS to report a meaningful speaker-configuration value; we strongly recommend offering the user the ability to select an MSS_MC_ configuration directly as part of your application's sound-options dialog. So, default to MSS_MS_USE_SYSTEM_CONFIG, but give the user the ability to override. </p><p>Also on Win32 and Win64, make sure that you have created an HWND before calling this function (DirectSound requires this). </p><p> Note that under Win32 and Win64, MSS will try DirectSound first, and then fall back to waveOut if DirectSound failed to open or was using emulation mode. If you want to force DirectSound or waveOut specifically, use the <a href="MILES_OPEN_DIGITAL_FLAGS.html#AIL_OPEN_DIGITAL_FORCE_PREFERENCE">AIL_OPEN_DIGITAL_FORCE_PREFERENCE</a> flag. </p><p>On Win32 and Win64, you can use the two preferences, <a href="MILES_PREFERENCES.html#DIG_PREFERRED_WO_DEVICE">DIG_PREFERRED_WO_DEVICE</a> and <a href="MILES_PREFERENCES.html#DIG_PREFERRED_DS_DEVICE">DIG_PREFERRED_DS_DEVICE</a>, to force <a href="AIL_open_digital_driver.html">AIL_open_digital_driver</a> and <a href="AIL_quick_startup.html">AIL_quick_startup</a> to use a specific waveOut device ID or DirectSound LPGUID. This allows you to enumerate and open a specific sound card (or even multiple sound cards) if necessary. </p><p>Under the original Xbox, this function will open the DirectSound system. </p><p>The Xbox hardware always uses a fixed 48 Khz, 16-bit output, so the frequency, bits, and channels don't specify the output mode, but instead specify the default format of each sound buffer. You should set these parameters to those of the majority of your sound samples (if not, Miles will simply reset the format when you start the sound which is a little less efficient). </p><p>Under the Xbox 360, this function will open the XAudio system. </p><p>On the Nintendo Wii, the driver is always opened in 32038 Hz 16-bit mode. </p><p>On the Sony PS2, the driver is always opened in 48 kHz 16-bit stereo mode. The only meaningful configurations are MSS_MC_STEREO, MSS_MC_40_DTS, and MSS_MC_51_DTS. </p><p>On the Sony PS3, the driver is always opened in 48 kHz, 32-bit floating point. The only meaningful configurations are MSS_MC_STEREO, MSS_MC_51_DISCRETE, and MSS_MC_71_DISCRETE. </p><p> Under MacOS, MSS will use the Sound Manager. There have been many versions of the Sound Manager, some of which behave better than others. If you have trouble, try downloading the latest version of QuickTime - this will get you the latest version of Sound Manager. </p><p> Under DOS, MSS will set the sound format preferences and then call AIL_install_DIG_INI to load a real-mode DOS driver. </p><p>For an understanding of the options available with the output_channels parameter, see the <i>How do I use multi-channel sound output in Miles?</i> <a href="How do I use multi-ckfnxne.html#FAQ">FAQ</a>. </p><p> Example files that use this function: EXAMMS.CPP</p>
+<p>
+<br>
+<b>Group:</b>
+<a href="Digital Audio Services.html">Digital Audio Services</a><br>
+<b>Related Sections:</b>
+<a href="Miles DTS Provider fiu59xr.html">Miles DTS Provider for the Sony PS2</a>, <a href="Miles Dolby Surroundbibtqb.html">Miles Dolby Surround Provider</a>, <a href="Miles SRS Circle Surh9nhww.html">Miles SRS Circle Surround Provider</a><br>
+<b>Related Functions:</b>
+<a href="AIL_HWND.html">AIL_HWND</a>, <a href="AIL_close_digital_driver.html">AIL_close_digital_driver</a>, <a href="AIL_digital_output_filter.html">AIL_digital_output_filter</a>, <a href="AIL_get_DirectSound_info.html">AIL_get_DirectSound_info</a>, <a href="AIL_install_DIG_INI.html">AIL_install_DIG_INI</a>, <a href="AIL_install_DIG_driv6dbdaa.html">AIL_install_DIG_driver_file</a>, <a href="AIL_last_error.html">AIL_last_error</a>, <a href="AIL_open_digital_driver.html">AIL_open_digital_driver</a>, <a href="AIL_output_filter_dr8og4f1.html">AIL_output_filter_driver_property</a>, <a href="AIL_quick_handles.html">AIL_quick_handles</a>, <a href="AIL_quick_startup.html">AIL_quick_startup</a>, <a href="AIL_set_DirectSound_HWND.html">AIL_set_DirectSound_HWND</a>, <a href="AIL_set_sample_playbug1eaa.html">AIL_set_sample_playback_rate</a>, <a href="AIL_set_sample_volume_pan.html">AIL_set_sample_volume_pan</a>, <a href="AIL_speaker_configuration.html">AIL_speaker_configuration</a><br>
+<b>Related Basic Types:</b>
+<a href="HDIGDRIVER.html">HDIGDRIVER</a>, <a href="MILES_OPEN_DIGITAL_FLAGS.html">MILES_OPEN_DIGITAL_FLAGS</a>, <a href="MILES_PREFERENCES.html">MILES_PREFERENCES</a>, <a href="MSS_MC_SPEC.html">MSS_MC_SPEC</a>, <a href="MSS_PLATFORM_PROPERTY.html">MSS_PLATFORM_PROPERTY</a>, <a href="S32.html">S32</a>, <a href="U32.html">U32</a><br>
+<b>Related FAQs:</b>
+<a href="How do I initialize owpc2p.html">How do I initialize the Miles Sound System for use?</a>, <a href="How do I use multi-ckfnxne.html">How do I use multi-channel sound output in Miles?</a>, <a href="I'm setting a preferwfslqr.html">I'm setting a preference and it isn't having any effect - what's going on?</a>, <a href="My 3D audio is a lotxfhqaf.html">My 3D audio is a lot louder than my 2D audio - what can I do?</a>, <a href="My application is crs22pi6.html">My application is crashing - what should I try?</a>, <a href="What's the best way 3k0qus.html">What's the best way to port my older Miles application to MSS 7?</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

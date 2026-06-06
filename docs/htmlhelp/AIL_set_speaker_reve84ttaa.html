@@ -1,0 +1,67 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>AIL_set_speaker_reverb_levels</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="sets the global wet and dry reverb-response scalars at one or more speakers.">
+<meta name="ms-hkwd" content="AIL_set_speaker_reverb_levels">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>AIL_set_speaker_reverb_levels</h1>
+<p>The function  <b>AIL_set_speaker_reverb_levels</b> sets the global wet and dry reverb-response scalars at one or more speakers.</p>
+<table width=100% cellspacing=0 class=pre>
+<tr class=pre>
+<td class=pre>
+<pre><b><a href="void.html" class=trn>void</a> <a href="AIL_set_speaker_reve84ttaa.html" class=trn>AIL_set_speaker_reverb_levels</a>(</b>
+<b>&nbsp;&nbsp;<a href="HDIGDRIVER.html" class=trn>HDIGDRIVER</a>&nbsp;</b><i>dig</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="F32.html" class=trn>F32 *</a>&nbsp;</b><i>wet_array</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="F32.html" class=trn>F32 *</a>&nbsp;</b><i>dry_array</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="MSS_SPEAKER.html" class=trn>MSS_SPEAKER *</a>&nbsp;</b><i>speaker_index_array</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a>&nbsp;</b><i>n_levels</i>
+<b>);</b></pre>
+</td>
+</tr>
+</table>
+<h4>In Parameters</h4>
+<dl>
+<dt><i>dig</i></dt>
+<dd>indicates the driver whose speaker reverb response should be set.</dd>
+<dt><i>wet_array</i></dt>
+<dd>if not NULL, specifies an array of coefficients from 0.0 to 1.0 which will scale the wet reverb response at each specified output channel, from 0.0 (no wet reverb) to 1.0 (full wet reverb response).</dd>
+<dt><i>dry_array</i></dt>
+<dd>if not NULL, specifies an array of coefficients from 0.0 to 1.0 which will scale the dry response at each specified output channel, from 0.0 (no dry level) to 1.0 (full dry level response).</dd>
+<dt><i>speaker_index_array</i></dt>
+<dd>specifies an array of speaker locations for each supplied wet_array/dry_array entry.</dd>
+<dt><i>n_levels</i></dt>
+<dd>specifies the number of entries in wet_array, dry_array, and speaker_index_array.</dd>
+</dl>
+<h4>Discussion</h4>
+<p>When the Miles software mixer is in use, this function may be called to suppress or amplify wet/dry reverb effects on a per-speaker basis. For instance, you could use it to keep reverb out of the surround channels in a 5.1 configuration. By default, all speaker response scalars are set to 1.0 when the driver is opened. </p><p> The wet_array and dry_array values are linear scalars, where each doubling of the level value represents a 6-dB change in the wet or dry level for that channel. For instance, a value of 0.5 is 6 dB quieter than a value of 1.0, and 0.25 would be 12 dB quieter than 1.0. </p><p>Either the wet_array or dry_array parameters may be set to NULL to leave the corresponding driver-level response scalars intact. </p><p>This function will have no effect with per-voice hardware drivers that don't use the Miles software mixer. Currently, this applies only to the MSS_MC_DIRECTSOUND3D and MSS_MC_EAX? values from the <a href="MSS_MC_SPEC.html">MSS_MC_SPEC</a> list. </p><p>This function is also not supported on Xbox 1, as the hardware reverb system is much more sophisticated and should be programmed directly. See the Xbox docs for details. </p><p>For a detailed understanding of channel-based control functions such as this one, you should carefully review the <i>How do I use multi-channel sound output in Miles? </i><a href="How do I use multi-ckfnxne.html#FAQ">FAQ</a>. </p>
+<p>
+<br>
+<b>Group:</b>
+<a href="Digital Audio Services.html">Digital Audio Services</a><br>
+<b>Related Functions:</b>
+<a href="AIL_speaker_reverb_levels.html">AIL_speaker_reverb_levels</a><br>
+<b>Related Basic Types:</b>
+<a href="F32.html">F32</a>, <a href="HDIGDRIVER.html">HDIGDRIVER</a>, <a href="MSS_MC_SPEC.html">MSS_MC_SPEC</a>, <a href="MSS_SPEAKER.html">MSS_SPEAKER</a>, <a href="S32.html">S32</a>, <a href="void.html">void</a><br>
+<b>Related FAQs:</b>
+<a href="How do I use multi-ckfnxne.html">How do I use multi-channel sound output in Miles?</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

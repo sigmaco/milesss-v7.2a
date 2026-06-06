@@ -1,0 +1,71 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>AIL_quick_startup</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="initializes the quick integration system.">
+<meta name="ms-hkwd" content="AIL_quick_startup">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>AIL_quick_startup</h1>
+<p>The function  <b>AIL_quick_startup</b> initializes the quick integration system.</p>
+<table width=100% cellspacing=0 class=pre>
+<tr class=pre>
+<td class=pre>
+<pre><b><a href="S32.html" class=trn>S32</a> <a href="AIL_quick_startup.html" class=trn>AIL_quick_startup</a>(</b>
+<b>&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a>&nbsp;</b><i>use_digital</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a>&nbsp;</b><i>use_MIDI</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="U32.html" class=trn>U32</a>&nbsp;</b><i>output_rate</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a>&nbsp;</b><i>output_bits</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="S32.html" class=trn>S32</a>&nbsp;</b><i>output_channels</i>
+<b>);</b></pre>
+</td>
+</tr>
+</table>
+<h4>In Parameters</h4>
+<dl>
+<dt><i>use_digital</i></dt>
+<dd>specifies whether you want to play digital sounds. Use one of the <a href="MILES_QUICK_DIGITAL_OPEN.html">MILES_QUICK_DIGITAL_OPEN</a> constants.</dd>
+<dt><i>use_MIDI</i></dt>
+<dd>specifies whether you want to play XMIDI files. Use one of the <a href="MILES_QUICK_MIDI_OPEN.html">MILES_QUICK_MIDI_OPEN</a> constants.</dd>
+<dt><i>output_rate</i></dt>
+<dd>specifies the desired digital audio output frequency rate (11025, 22050, etc.).</dd>
+<dt><i>output_bits</i></dt>
+<dd>specifies the desired digital audio output word size (8 or 16 bits).</dd>
+<dt><i>output_channels</i></dt>
+<dd>specifies the desired number of digital audio output channels (1 = mono, 2 = stereo, or an <a href="MSS_MC_SPEC.html">MSS_MC_SPEC</a> enum value).</dd>
+</dl>
+<h4>Returns</h4>
+<p>This function will return a non-zero value if the function succeeded. If it failed (zero return value), then <a href="AIL_last_error.html">AIL_last_error</a> will contain the reason.</p>
+<h4>Discussion</h4>
+<p>This function must be called before <i>any</i> other quick API functions are used. You can use either the digital, XMIDI, or both systems simultaneously. You can pass in zeros for any of the output parameters, if you'd like MSS to choose the best value. Note that the output rate represents only the final output quality of the sound system - you can play any type of sound and MSS will convert it on-the-fly. </p><p> Call <a href="AIL_quick_shutdown.html">AIL_quick_shutdown</a> to close the Quick Services. </p><p> You must call <a href="AIL_set_redist_directory.html">AIL_set_redist_directory</a> to set your application's Miles directory <i>before</i> calling this function. </p><p> Under DOS, Wii, PS2 and MacOS 9, this function must not be invoked from an interrupt-based callback function. </p><p>Under the original Xbox, this function will open the DirectSound system. </p><p>The Xbox hardware always uses a fixed 48 Khz, 16-bit output, so the frequency, bits, and channels don't specify the output mode, but instead specify the default format of each sound buffer. You should set these parameters to those of the majority of your sound samples (if not, Miles will simply reset the format when you start the sound which is a little less efficient). </p><p>On the Xbox 360, this function will open the XAudio system. </p><p>On the Sony PS2, the driver is always opened in 48 kHz 16-bit stereo mode. The only meaningful channel configurations are MSS_MC_STEREO, MSS_MC_40_DTS, and MSS_MC_51_DTS. </p><p>On the Nintendo Wii, the driver is always opened in 32028 Hz 16-bit mode. Miles will use one or two AX voices. </p><p>On the Sony PS3, this function opens one of the libaudio ports for output. Miles for PS3 always uses 48 Khz, 32-bit floating point output. </p><p> Under MacOS, MSS will use the Sound Manager. There have been many versions of the Sound Manager, some of which behave better than others. If you have trouble, try downloading the latest version of QuickTime - this will get you the latest version of Sound Manager. </p><p> Under DOS, MSS will set the sound format preferences and then call AIL_install_DIG_INI to load a real-mode DOS driver. </p><p> For an understanding of the options available with the output_channels parameter, see the <i>How do I use multi-channel sound output in Miles?</i> <a href="How do I use multi-ckfnxne.html#FAQ">FAQ</a>. </p><p> Example files that use this function: Quick.C, Play.C</p>
+<p>
+<br>
+<b>Group:</b>
+<a href="Quick Integration Sesm1baa.html">Quick Integration Services</a><br>
+<b>Related Sections:</b>
+<a href="Miles DTS Provider fiu59xr.html">Miles DTS Provider for the Sony PS2</a>, <a href="Miles Dolby Surroundbibtqb.html">Miles Dolby Surround Provider</a>, <a href="Miles SRS Circle Surh9nhww.html">Miles SRS Circle Surround Provider</a><br>
+<b>Related Functions:</b>
+<a href="AIL_last_error.html">AIL_last_error</a>, <a href="AIL_open_digital_driver.html">AIL_open_digital_driver</a>, <a href="AIL_quick_handles.html">AIL_quick_handles</a>, <a href="AIL_quick_shutdown.html">AIL_quick_shutdown</a>, <a href="AIL_set_redist_directory.html">AIL_set_redist_directory</a>, <a href="AIL_speaker_configuration.html">AIL_speaker_configuration</a>, <a href="AIL_startup.html">AIL_startup</a><br>
+<b>Related Basic Types:</b>
+<a href="MILES_QUICK_DIGITAL_OPEN.html">MILES_QUICK_DIGITAL_OPEN</a>, <a href="MILES_QUICK_MIDI_OPEN.html">MILES_QUICK_MIDI_OPEN</a>, <a href="MSS_MC_SPEC.html">MSS_MC_SPEC</a>, <a href="S32.html">S32</a>, <a href="U32.html">U32</a><br>
+<b>Related FAQs:</b>
+<a href="How do I initialize owpc2p.html">How do I initialize the Miles Sound System for use?</a>, <a href="How do I use multi-ckfnxne.html">How do I use multi-channel sound output in Miles?</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

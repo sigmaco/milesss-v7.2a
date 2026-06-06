@@ -1,0 +1,118 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>MSS_MC_SPEC</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="specifies an output channel-configuration option for use with AIL_open_digital_driver or AIL_quick_startup.">
+<meta name="ms-hkwd" content="MSS_MC_SPEC">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>MSS_MC_SPEC</h1>
+<p>The basic type <b>MSS_MC_SPEC</b> specifies an output channel-configuration option for use with AIL_open_digital_driver or AIL_quick_startup.</p>
+<h4>Fundamental Values</h4>
+<table class=list width=90%>
+<tr valign=top class=list>
+<th width=29% height=25 valign=middle class=list>&nbsp;Value</th>
+<th width=71% height=25 valign=middle class=list>&nbsp;Description</th>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#MSS_MC_MONO" href="#MSS_MC_MONO" class=trn>&nbsp;MSS_MC_MONO</a></td>
+<td width=71% height=25 valign=middle class=list>Conventional monaural (single-speaker) sound. Equal to the constant 1.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#MSS_MC_STEREO" href="#MSS_MC_STEREO" class=trn>&nbsp;MSS_MC_STEREO</a></td>
+<td width=71% height=25 valign=middle class=list>Conventional stereo sound. Equal to the constant 2. Miles's 3D positional math assumes two (left and right) speakers are in front of the listener at 45-degree angles.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#MSS_MC_HEADPHONES" href="#MSS_MC_HEADPHONES" class=trn>&nbsp;MSS_MC_HEADPHONES</a></td>
+<td width=71% height=25 valign=middle class=list>Similar to MSS_MC_STEREO, but Miles assumes the speakers are positioned directly to either side of the listener.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#MSS_MC_DOLBY_SURROUND" href="#MSS_MC_DOLBY_SURROUND" class=trn>&nbsp;MSS_MC_DOLBY_SURROUND</a></td>
+<td width=71% height=25 valign=middle class=list>This option assumes the user has connected a Dolby Surround-capable receiver to their (two-channel) sound card. It is identical to the Miles Dolby Surround M3D provider from earlier versions. Dolby Surround provides three logical channels (front left, front right, and monaural rear).</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#MSS_MC_SRS_CIRCLE_SURROUND" href="#MSS_MC_SRS_CIRCLE_SURROUND" class=trn>&nbsp;MSS_MC_SRS_CIRCLE_SURROUND</a></td>
+<td width=71% height=25 valign=middle class=list>SRS Circle Surround(r)<http://www.srslabs.com> is a two-channel matrix format can be thought of as an improved replacement for Dolby Surround. It is compatible with consumer receivers that support Dolby, and offers 6.1 logical channels (front left, front right, front center, subwoofer, rear left, rear right, and rear center) on native Circle Surround(r)-compatible equipment.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#MSS_MC_40_DISCRETE" href="#MSS_MC_40_DISCRETE" class=trn>&nbsp;MSS_MC_40_DISCRETE</a></td>
+<td width=71% height=25 valign=middle class=list>This option assumes that four speakers (front left, front right, rear left, and rear right) are connected in a quadraphonic discrete configuration without the center speaker or subwoofer typical of 5.1 configurations.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#MSS_MC_51_DISCRETE" href="#MSS_MC_51_DISCRETE" class=trn>&nbsp;MSS_MC_51_DISCRETE</a></td>
+<td width=71% height=25 valign=middle class=list>Use this option to support the 'sweet spot' of current home audio systems, the 5.1-channel discrete configuration.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#MSS_MC_40_DTS" href="#MSS_MC_40_DTS" class=trn>&nbsp;MSS_MC_40_DTS</a></td>
+<td width=71% height=25 valign=middle class=list>Four-channel discrete DTS support via the S/PDIF port on the Sony PS2.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#MSS_MC_51_DTS" href="#MSS_MC_51_DTS" class=trn>&nbsp;MSS_MC_51_DTS</a></td>
+<td width=71% height=25 valign=middle class=list>True 5.1-channel discrete DTS support via the S/PDIF port on the Sony PS2.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#MSS_MC_61_DISCRETE" href="#MSS_MC_61_DISCRETE" class=trn>&nbsp;MSS_MC_61_DISCRETE</a></td>
+<td width=71% height=25 valign=middle class=list>Similar to 5.1, but with a rear center speaker.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#MSS_MC_71_DISCRETE" href="#MSS_MC_71_DISCRETE" class=trn>&nbsp;MSS_MC_71_DISCRETE</a></td>
+<td width=71% height=25 valign=middle class=list>Similar to 5.1, but with side surrounds.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#MSS_MC_81_DISCRETE" href="#MSS_MC_81_DISCRETE" class=trn>&nbsp;MSS_MC_81_DISCRETE</a></td>
+<td width=71% height=25 valign=middle class=list>Similar to 5.1, but with both side surrounds and a center rear speaker.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#MSS_MC_DIRECTSOUND3D" href="#MSS_MC_DIRECTSOUND3D" class=trn>&nbsp;MSS_MC_DIRECTSOUND3D</a></td>
+<td width=71% height=25 valign=middle class=list>Uses DirectSound3D for output, bypassing the Miles internal mixer.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#MSS_MC_EAX2" href="#MSS_MC_EAX2" class=trn>&nbsp;MSS_MC_EAX2</a></td>
+<td width=71% height=25 valign=middle class=list>Adds hardware-accelerated environmental reverb effects, occlusion, obstruction, and per-sample wet/dry mix control to DirectSound3D.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#MSS_MC_EAX3" href="#MSS_MC_EAX3" class=trn>&nbsp;MSS_MC_EAX3</a></td>
+<td width=71% height=25 valign=middle class=list>Adds exclusion and several other properties to the EAX 2 feature set.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#MSS_MC_EAX4" href="#MSS_MC_EAX4" class=trn>&nbsp;MSS_MC_EAX4</a></td>
+<td width=71% height=25 valign=middle class=list>Higher-quality effects and new control options (see the <b>EAX4EXAM.CPP</b> example application), currently available only in Creative Labs' highest-end hardware.</td>
+</tr>
+<tr valign=top class=list>
+<td width=29% height=25 valign=middle class=list><a name="#MSS_MC_USE_SYSTEM_CONFIG" href="#MSS_MC_USE_SYSTEM_CONFIG" class=trn>&nbsp;MSS_MC_USE_SYSTEM_CONFIG</a></td>
+<td width=71% height=25 valign=middle class=list>This option causes MSS to choose an appropriate <a href="MSS_MC_SPEC.html">MSS_MC_SPEC</a> setting based on the Windows control-panel settings as reported by IDirectSound::GetSpeakerConfig.</td>
+</tr>
+</table>
+<h4>Discussion</h4>
+<p>See the <i>How do I use multi-channel sound output in Miles? </i><a href="How do I use multi-ckfnxne.html#FAQ">FAQ</a> for more information on the <a href="MSS_MC_SPEC.html">MSS_MC_SPEC</a> type, including a list of currently-supported values.</p>
+<p>
+<br>
+<b>Group:</b>
+<a href="Digital Audio Services.html">Digital Audio Services</a><br>
+<b>Related Sections:</b>
+<a href="Miles DTS Provider fiu59xr.html">Miles DTS Provider for the Sony PS2</a><br>
+<b>Related Functions:</b>
+<a href="AIL_digital_master_reverb.html">AIL_digital_master_reverb</a>, <a href="AIL_digital_master_r9odawz.html">AIL_digital_master_reverb_levels</a>, <a href="AIL_open_digital_driver.html">AIL_open_digital_driver</a>, <a href="AIL_quick_set_reverbolliaa.html">AIL_quick_set_reverb_levels</a>, <a href="AIL_quick_startup.html">AIL_quick_startup</a>, <a href="AIL_sample_channel_levels.html">AIL_sample_channel_levels</a>, <a href="AIL_sample_output_levels.html">AIL_sample_output_levels</a>, <a href="AIL_set_digital_mast3hdbfa.html">AIL_set_digital_master_reverb</a>, <a href="AIL_set_digital_mastfheawz.html">AIL_set_digital_master_reverb_levels</a>, <a href="AIL_set_room_type.html">AIL_set_room_type</a>, <a href="AIL_set_sample_channsk7xda.html">AIL_set_sample_channel_levels</a>, <a href="AIL_set_sample_volume_pan.html">AIL_set_sample_volume_pan</a>, <a href="AIL_set_speaker_confj3o8fa.html">AIL_set_speaker_configuration</a>, <a href="AIL_set_speaker_reve84ttaa.html">AIL_set_speaker_reverb_levels</a>, <a href="AIL_speaker_configuration.html">AIL_speaker_configuration</a>, <a href="AIL_speaker_reverb_levels.html">AIL_speaker_reverb_levels</a><br>
+<b>Related Basic Types:</b>
+<a href="MSS_MC_SPEC.html">MSS_MC_SPEC</a><br>
+<b>Related FAQs:</b>
+<a href="How do I use multi-ckfnxne.html">How do I use multi-channel sound output in Miles?</a>, <a href="My application is crs22pi6.html">My application is crashing - what should I try?</a>, <a href="What's the best way 3k0qus.html">What's the best way to port my older Miles application to MSS 7?</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

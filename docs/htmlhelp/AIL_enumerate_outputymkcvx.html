@@ -1,0 +1,66 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>AIL_enumerate_output_filter_sample_properties</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="enumerates the possible sample-level properties of an output filter.">
+<meta name="ms-hkwd" content="AIL_enumerate_output_filter_sample_properties">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<h1>AIL_enumerate_output_filter_sample_properties</h1>
+<p>The function  <b>AIL_enumerate_output_filter_sample_properties</b> enumerates the possible sample-level properties of an output filter.</p>
+<table width=100% cellspacing=0 class=pre>
+<tr class=pre>
+<td class=pre>
+<pre><b><a href="S32.html" class=trn>S32</a> <a href="AIL_enumerate_outputymkcvx.html" class=trn>AIL_enumerate_output_filter_sample_properties</a>(</b>
+<b>&nbsp;&nbsp;<a href="HPROVIDER.html" class=trn>HPROVIDER</a>&nbsp;</b><i>filter</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="HINTENUM.html" class=trn>HINTENUM</a>&nbsp;*</b><i>next</i><b>,</b>
+<b>&nbsp;&nbsp;<a href="RIB_INTERFACE_ENTRY.html" class=trn>RIB_INTERFACE_ENTRY</a>&nbsp;*</b><i>dest</i>
+<b>);</b></pre>
+</td>
+</tr>
+</table>
+<h4>In Parameters</h4>
+<dl>
+<dt><i>filter</i></dt>
+<dd>specifies the output filter whose sample-level properties should be enumerated.</dd>
+</dl>
+<h4>Out Parameters</h4>
+<dl>
+<dt><i>next</i></dt>
+<dd>is a pointer that MSS uses to keep track of the next property to return. You initialize the next variable with the constant HINTENUM_FIRST before the first call to <a href="AIL_enumerate_outputymkcvx.html">AIL_enumerate_output_filter_sample_properties</a>.</dd>
+<dt><i>dest</i></dt>
+<dd>points to an structure of type RIB_INTERFACE_ENTRY that receives the property information. The most important field in this RIB structure is "entry_name". This is a pointer to the property name, which can be used in calls to the <a href="AIL_sample_stage_property.html">AIL_sample_stage_property</a> function for the sample's SP_OUTPUT stage.</dd>
+</dl>
+<h4>Returns</h4>
+<p>0 if no further properties were found; non-zero if another property was found.</p>
+<h4>Discussion</h4>
+<p> Certain digital sound configurations, including DirectSound3D, EAX, Dolby Surround, DTS, and SRS Circle Surround(r), are implemented with internal extension modules called <i>output filters</i>. Output filters can offer additional control options beyond those available from the core MSS API. </p><p> Sample-level properties are properties that apply to an individual HSAMPLE being processed or played by a particular filter. </p><p>Sample-level properties may be accessed through calls to <a href="AIL_sample_stage_property.html">AIL_sample_stage_property</a> with the SP_OUTPUT stage identifier. Sample-level property control is available only for hardware voice filters such as DirectSound3D and EAX, not matrix filters such as Dolby. </p><p>You can find a list of configuration-specific properties in the chapter on the specific output filter you are using. See the <b>examms</b> demo program for an example of how to enumerate and query provider-level, driver-level, and sample-level properties. </p><p> You can get the HPROVIDER handle corresponding to a driver's matrix or per-voice output filter, if any, by calling <a href="AIL_digital_output_filter.html">AIL_digital_output_filter</a>. </p><p> Prior to MSS 7, 3D driver properties were accessed at the HPROVIDER level. In MSS 7, a given HPROVIDER may provide 3D services for a number of HDIGDRIVERS at once. Consequently, very few provider-level properties are associated with output filters other than the filter's name and version. </p><p> You can also obtain a list of sample-specific output filter properties by calling the <a href="AIL_enumerate_sampleiv92e3.html">AIL_enumerate_sample_stage_properties</a> function for the SP_OUTPUT stage of a given HSAMPLE. However, <a href="AIL_enumerate_outputymkcvx.html">AIL_enumerate_output_filter_sample_properties</a> works even without a valid HSAMPLE. </p><p> Example files that use this function: examms.cpp</p>
+<p>
+<br>
+<b>Group:</b>
+<a href="Digital Audio Services.html">Digital Audio Services</a><br>
+<b>Related Functions:</b>
+<a href="AIL_digital_output_filter.html">AIL_digital_output_filter</a>, <a href="AIL_enumerate_outputymkcvx.html">AIL_enumerate_output_filter_sample_properties</a>, <a href="AIL_enumerate_sampleiv92e3.html">AIL_enumerate_sample_stage_properties</a>, <a href="AIL_output_filter_dr8og4f1.html">AIL_output_filter_driver_property</a>, <a href="AIL_sample_stage_property.html">AIL_sample_stage_property</a><br>
+<b>Related Basic Types:</b>
+<a href="HINTENUM.html">HINTENUM</a>, <a href="HPROVIDER.html">HPROVIDER</a>, <a href="S32.html">S32</a><br>
+<b>Related Structures:</b>
+<a href="RIB_INTERFACE_ENTRY.html">RIB_INTERFACE_ENTRY</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>

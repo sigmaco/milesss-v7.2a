@@ -1,0 +1,37 @@
+<!-- This page was created with the RAD auto-doc generator. -->
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+<title>How do I set a DSP filter on a sample?</title>
+<meta http-equiv="content-type" content="text/html; charset=iso8859-1">
+<meta name="ms.locale" content="en-us">
+<meta name="description" content="">
+<meta name="ms-hkwd" content="How do I set a DSP filter on a sample?">
+<link rel="stylesheet" title="default" href="reference.css" type="text/css" media="screen">
+</head>
+<body topmargin="0">
+<table cellspacing=0 cellpadding=0 class=bar width=100% height=25>
+<tr class=bar>
+<td class=bar>
+<i>&nbsp;<a href="index.html" class=trn>Miles Sound System SDK 7.2a</a></i>
+</td>
+</tr>
+</table>
+<table>
+<tr valign=top><td><b><p>Q:</p></b></td><td><b><p>How do I set a DSP filter on a sample?</p></b></td></tr>
+<tr valign=top><td><p>A:</p></td><td><p>To set a DSP filter, you have to first find the filter(s) that you want to apply. To find a filter, you can either enumerate through the possible filters looking for the one you want (using the <a href="AIL_enumerate_filters.html">AIL_enumerate_filters</a> function), or you can use the simple utility function <a href="AIL_find_filter.html">AIL_find_filter</a>. For example, to find the high-pass DSP filter, do something like this: </p><p></p><code><font size=3 color=#006000><pre><br>Register_RIB(DSP);   // Needed on non-Win32 DLL platforms such as DOS, Xbox, Wii, PS2 and PS3<br>AIL_startup();<br>...<br>...<br>...<br>HPROVIDER high_pass;<br>if ( AIL_find_filter( "HighPass Filter", &high_pass ) )<br>{<br>  // success!<br>}<br></pre></font></code><p></p><p> Once we have a handle to the high-pass filter, we have to apply it to our HSAMPLE with the <a href="AIL_set_sample_processor.html">AIL_set_sample_processor</a> function. Eight filter slots, labelled SP_FILTER_0 through SP_FILTER_7, are available: </p><p></p><code><font size=3 color=#006000><pre><br>// init the sample<br>AIL_init_sample( S, DIG_F_MONO_16, 0 );<br><br><br>//later, apply the filter<br>AIL_set_sample_processor( S, SP_FILTER_0, high_pass );<br></pre></font></code><p></p><p> Make sure you call <a href="AIL_set_sample_processor.html">AIL_set_sample_processor</a> <i>after</i> you call <a href="AIL_init_sample.html">AIL_init_sample</a>, <a href="AIL_set_sample_file.html">AIL_set_sample_file</a>, <a href="AIL_set_sample_info.html">AIL_set_sample_info</a>, or <a href="AIL_set_named_sample_file.html">AIL_set_named_sample_file</a>. Filters may be assigned in any order, and it's OK to skip slots altogether. Filters assigned to lower-numbered slots are executed prior to those in higher-numbered ones. </p><p>Now, all that remains is setting the specific filter properties that you'd like to control. To do that, call the <a href="AIL_sample_stage_property.html">AIL_sample_stage_property</a> function with one of the properties described in the Digital Filter Services <i><a href="Digital Filter Services.html#Section">Section</a></i>. To finish our example, let's set the high-pass filter to kick in at 4000 Hz, like this: </p><p></p><code><font size=3 color=#006000><pre><br>F32 value=4000.0F;<br>AIL_sample_stage_property( S, SP_FILTER_0, "Highpass Cutoff", &value, 0, 0 );<br></pre></font></code><p></p><p> Again, in most cases, you should install any DSP filters after declaring an HSAMPLE's format, but before starting playback. Installing or removing a DSP pipeline filter on a playing HSAMPLE may cause audible artifacts. To disable an existing filter's influence on a given HSAMPLE without uninstalling the filter, set the filter's "Mix' preference (if available) to 0.0. </p><p>Software DSP filters may be unsuitable for performance-critical applications on the original Xbox; the Xbox has specific dedicated DSP hardware that you may wish to use instead. Software DSP filters on the Xbox cannot be applied to Xbox ADPCM samples or 8-bit PCM samples. </p><p>See the FILTER.CPP and MULTIFLT.CPP example programs for more information. </p></td></tr>
+</table>
+<p><a href="How much CPU do the wv3vjf.html">Next Topic (How much CPU do the various filters use?)</a>  </p><p><a href="How do I apply a low58e4ti.html">Previous Topic (How do I apply a low-pass filter?)</a>  </p><p>
+<br>
+<b>Group:</b>
+<a href="FAQs and How Tos.html">FAQs and How Tos</a><br>
+<b>Related Functions:</b>
+<a href="AIL_enumerate_filters.html">AIL_enumerate_filters</a>, <a href="AIL_find_filter.html">AIL_find_filter</a>, <a href="AIL_init_sample.html">AIL_init_sample</a>, <a href="AIL_sample_stage_property.html">AIL_sample_stage_property</a>, <a href="AIL_set_named_sample_file.html">AIL_set_named_sample_file</a>, <a href="AIL_set_sample_file.html">AIL_set_sample_file</a>, <a href="AIL_set_sample_info.html">AIL_set_sample_info</a>, <a href="AIL_set_sample_processor.html">AIL_set_sample_processor</a></p>
+<p align=center>
+<a href="mailto:Miles3@radgametools.com">For technical support, e-mail Miles3@radgametools.com</a>
+<br>
+<a href="http://www.radgametools.com/miles.htm?from=help7.2a">&#169; Copyright 1991-2007 RAD Game Tools, Inc. All Rights Reserved.</a>
+</p>
+<br>
+</body>
+</html>
